@@ -5,7 +5,7 @@
 -- Dumped from database version 9.4.5
 -- Dumped by pg_dump version 9.5.1
 
--- Started on 2016-06-25 01:41:14 CDT
+-- Started on 2016-06-25 01:44:30 CDT
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -16,7 +16,7 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
--- TOC entry 9 (class 2615 OID 18726)
+-- TOC entry 8 (class 2615 OID 19473)
 -- Name: update; Type: SCHEMA; Schema: -; Owner: serveradmin
 --
 
@@ -26,7 +26,7 @@ CREATE SCHEMA update;
 ALTER SCHEMA update OWNER TO serveradmin;
 
 --
--- TOC entry 8 (class 2615 OID 18114)
+-- TOC entry 9 (class 2615 OID 19474)
 -- Name: users; Type: SCHEMA; Schema: -; Owner: serveradmin
 --
 
@@ -44,7 +44,7 @@ CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
 
 
 --
--- TOC entry 2720 (class 0 OID 0)
+-- TOC entry 2624 (class 0 OID 0)
 -- Dependencies: 1
 -- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
 --
@@ -53,7 +53,7 @@ COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
 
 
 --
--- TOC entry 2 (class 3079 OID 18115)
+-- TOC entry 2 (class 3079 OID 19475)
 -- Name: uuid-ossp; Type: EXTENSION; Schema: -; Owner: 
 --
 
@@ -61,7 +61,7 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp" WITH SCHEMA public;
 
 
 --
--- TOC entry 2721 (class 0 OID 0)
+-- TOC entry 2625 (class 0 OID 0)
 -- Dependencies: 2
 -- Name: EXTENSION "uuid-ossp"; Type: COMMENT; Schema: -; Owner: 
 --
@@ -72,7 +72,7 @@ COMMENT ON EXTENSION "uuid-ossp" IS 'generate universally unique identifiers (UU
 SET search_path = public, pg_catalog;
 
 --
--- TOC entry 228 (class 1255 OID 18126)
+-- TOC entry 222 (class 1255 OID 19486)
 -- Name: calc_amountpaid(text); Type: FUNCTION; Schema: public; Owner: serveradmin
 --
 
@@ -152,7 +152,7 @@ $$;
 ALTER FUNCTION public.calc_amountpaid(param1 text) OWNER TO serveradmin;
 
 --
--- TOC entry 229 (class 1255 OID 18127)
+-- TOC entry 223 (class 1255 OID 19487)
 -- Name: calc_amountpaid_triggfunc(); Type: FUNCTION; Schema: public; Owner: serveradmin
 --
 
@@ -180,7 +180,7 @@ End;$$;
 ALTER FUNCTION public.calc_amountpaid_triggfunc() OWNER TO serveradmin;
 
 --
--- TOC entry 250 (class 1255 OID 18128)
+-- TOC entry 224 (class 1255 OID 19488)
 -- Name: calc_dept_grandtotal(text); Type: FUNCTION; Schema: public; Owner: serveradmin
 --
 
@@ -289,7 +289,7 @@ $$;
 ALTER FUNCTION public.calc_dept_grandtotal(param1 text) OWNER TO serveradmin;
 
 --
--- TOC entry 230 (class 1255 OID 18129)
+-- TOC entry 225 (class 1255 OID 19489)
 -- Name: calc_dept_grandtotal_triggfunc(); Type: FUNCTION; Schema: public; Owner: serveradmin
 --
 
@@ -311,7 +311,7 @@ End;$$;
 ALTER FUNCTION public.calc_dept_grandtotal_triggfunc() OWNER TO serveradmin;
 
 --
--- TOC entry 231 (class 1255 OID 18130)
+-- TOC entry 226 (class 1255 OID 19490)
 -- Name: calc_dept_totals(text); Type: FUNCTION; Schema: public; Owner: serveradmin
 --
 
@@ -434,7 +434,7 @@ $$;
 ALTER FUNCTION public.calc_dept_totals(param1 text) OWNER TO serveradmin;
 
 --
--- TOC entry 232 (class 1255 OID 18131)
+-- TOC entry 227 (class 1255 OID 19491)
 -- Name: calc_dept_totals_triggfunc(); Type: FUNCTION; Schema: public; Owner: serveradmin
 --
 
@@ -460,7 +460,7 @@ End;$$;
 ALTER FUNCTION public.calc_dept_totals_triggfunc() OWNER TO serveradmin;
 
 --
--- TOC entry 233 (class 1255 OID 18132)
+-- TOC entry 228 (class 1255 OID 19492)
 -- Name: calc_eipl_subtotal(text); Type: FUNCTION; Schema: public; Owner: serveradmin
 --
 
@@ -541,7 +541,7 @@ $$;
 ALTER FUNCTION public.calc_eipl_subtotal(param1 text) OWNER TO serveradmin;
 
 --
--- TOC entry 234 (class 1255 OID 18133)
+-- TOC entry 229 (class 1255 OID 19493)
 -- Name: calc_eipl_subtotal_triggfunc(); Type: FUNCTION; Schema: public; Owner: serveradmin
 --
 
@@ -569,7 +569,7 @@ End;$$;
 ALTER FUNCTION public.calc_eipl_subtotal_triggfunc() OWNER TO serveradmin;
 
 --
--- TOC entry 251 (class 1255 OID 18134)
+-- TOC entry 231 (class 1255 OID 19494)
 -- Name: calc_eipl_totals(text); Type: FUNCTION; Schema: public; Owner: serveradmin
 --
 
@@ -690,7 +690,7 @@ $$;
 ALTER FUNCTION public.calc_eipl_totals(param1 text) OWNER TO serveradmin;
 
 --
--- TOC entry 236 (class 1255 OID 18135)
+-- TOC entry 232 (class 1255 OID 19495)
 -- Name: calc_eipl_totals_triggfunc(); Type: FUNCTION; Schema: public; Owner: serveradmin
 --
 
@@ -712,7 +712,7 @@ End;$$;
 ALTER FUNCTION public.calc_eipl_totals_triggfunc() OWNER TO serveradmin;
 
 --
--- TOC entry 243 (class 1255 OID 18136)
+-- TOC entry 233 (class 1255 OID 19496)
 -- Name: calc_lineitem_total(text); Type: FUNCTION; Schema: public; Owner: serveradmin
 --
 
@@ -843,7 +843,7 @@ $$;
 ALTER FUNCTION public.calc_lineitem_total(param1 text) OWNER TO serveradmin;
 
 --
--- TOC entry 237 (class 1255 OID 18137)
+-- TOC entry 234 (class 1255 OID 19497)
 -- Name: calc_lineitem_total_triggfunc(); Type: FUNCTION; Schema: public; Owner: serveradmin
 --
 
@@ -865,7 +865,72 @@ End;$$;
 ALTER FUNCTION public.calc_lineitem_total_triggfunc() OWNER TO serveradmin;
 
 --
--- TOC entry 238 (class 1255 OID 18138)
+-- TOC entry 246 (class 1255 OID 20090)
+-- Name: create_contract_number(); Type: FUNCTION; Schema: public; Owner: serveradmin
+--
+
+CREATE FUNCTION create_contract_number() RETURNS text
+    LANGUAGE plpgsql
+    AS $$
+-- create_contract_id
+	-- Triggerd From 
+	-- Triggered on Insert into contracts_
+	-- Purpose is to 
+		-- create a new id for a contract
+
+Declare
+	n1		integer;
+	n2		integer;
+	s1		text;
+	year_currval	int;
+	final_id 	text;
+	next_seq_value 	int;
+
+
+Begin
+
+	-- set the current year
+	s1 = 'year';
+	year_currval = date_part( s1, current_timestamp );
+	
+	-- store the full year for later use
+	n1 = year_currval;
+	
+	-- grab just the last 2 numbers of the year
+	s1 = cast( year_currval as text );
+	s1 = right( s1, 2 );
+	year_currval = cast( s1 as int );
+
+	-- check if any eipls exist from this year
+	Select count(*) Into n2 From contracts_ Where date_part( 'year', contracts_.row_created ) = n1;
+
+	-- if no eipls from this year exit we reset the sequence to 1000
+	If n2 = 0 Then
+		n1 = 1000;
+		Perform setval( 'contract_number_sequence', n1 );
+	End If;
+
+
+	-- Pull the next value from contract_number_sequence
+	next_seq_value = nextval( 'contract_number_sequence' );
+
+	--Combine into final id
+	final_id = cast( year_currval as text ) || '-' || cast( next_seq_value as text );
+	
+	
+	
+
+
+Return final_id;
+End
+
+$$;
+
+
+ALTER FUNCTION public.create_contract_number() OWNER TO serveradmin;
+
+--
+-- TOC entry 235 (class 1255 OID 19498)
 -- Name: cvd_update_function(); Type: FUNCTION; Schema: public; Owner: serveradmin
 --
 
@@ -897,7 +962,7 @@ END;
 ALTER FUNCTION public.cvd_update_function() OWNER TO serveradmin;
 
 --
--- TOC entry 239 (class 1255 OID 18139)
+-- TOC entry 236 (class 1255 OID 19499)
 -- Name: deleterecord(text, text, text); Type: FUNCTION; Schema: public; Owner: serveradmin
 --
 
@@ -963,7 +1028,7 @@ End;$_$;
 ALTER FUNCTION public.deleterecord(p_options text, p_pkid text, p_table text) OWNER TO serveradmin;
 
 --
--- TOC entry 240 (class 1255 OID 18140)
+-- TOC entry 237 (class 1255 OID 19500)
 -- Name: inventory_to_lineitem(text, text); Type: FUNCTION; Schema: public; Owner: serveradmin
 --
 
@@ -984,7 +1049,7 @@ END;$$;
 ALTER FUNCTION public.inventory_to_lineitem(inventoryid text, eiplid text) OWNER TO serveradmin;
 
 --
--- TOC entry 241 (class 1255 OID 18714)
+-- TOC entry 238 (class 1255 OID 19501)
 -- Name: lineitem_to_inventory(text); Type: FUNCTION; Schema: public; Owner: serveradmin
 --
 
@@ -1005,7 +1070,7 @@ END;$$;
 ALTER FUNCTION public.lineitem_to_inventory(lineitem_id text) OWNER TO serveradmin;
 
 --
--- TOC entry 244 (class 1255 OID 18141)
+-- TOC entry 239 (class 1255 OID 19502)
 -- Name: mknexteipl(text, integer); Type: FUNCTION; Schema: public; Owner: serveradmin
 --
 
@@ -1126,7 +1191,7 @@ $_$;
 ALTER FUNCTION public.mknexteipl(p_pkid text, p_mode integer) OWNER TO serveradmin;
 
 --
--- TOC entry 245 (class 1255 OID 18142)
+-- TOC entry 240 (class 1255 OID 19503)
 -- Name: new_eipl_function(); Type: FUNCTION; Schema: public; Owner: serveradmin
 --
 
@@ -1160,7 +1225,7 @@ $_$;
 ALTER FUNCTION public.new_eipl_function() OWNER TO serveradmin;
 
 --
--- TOC entry 242 (class 1255 OID 18143)
+-- TOC entry 241 (class 1255 OID 19504)
 -- Name: newpayment(text); Type: FUNCTION; Schema: public; Owner: serveradmin
 --
 
@@ -1181,7 +1246,7 @@ End;$$;
 ALTER FUNCTION public.newpayment(p_pkid text) OWNER TO serveradmin;
 
 --
--- TOC entry 246 (class 1255 OID 18144)
+-- TOC entry 242 (class 1255 OID 19505)
 -- Name: notify_table_change(); Type: FUNCTION; Schema: public; Owner: serveradmin
 --
 
@@ -1236,7 +1301,7 @@ END;$_$;
 ALTER FUNCTION public.notify_table_change() OWNER TO serveradmin;
 
 --
--- TOC entry 247 (class 1255 OID 18145)
+-- TOC entry 243 (class 1255 OID 19506)
 -- Name: primary_update_function(); Type: FUNCTION; Schema: public; Owner: serveradmin
 --
 
@@ -1290,7 +1355,7 @@ $_$;
 ALTER FUNCTION public.primary_update_function() OWNER TO serveradmin;
 
 --
--- TOC entry 248 (class 1255 OID 18146)
+-- TOC entry 244 (class 1255 OID 19507)
 -- Name: testing(text); Type: FUNCTION; Schema: public; Owner: serveradmin
 --
 
@@ -1367,7 +1432,7 @@ ALTER FUNCTION public.testing(param1 text) OWNER TO serveradmin;
 SET search_path = users, pg_catalog;
 
 --
--- TOC entry 249 (class 1255 OID 18147)
+-- TOC entry 245 (class 1255 OID 19508)
 -- Name: activity_status_modify_after(); Type: FUNCTION; Schema: users; Owner: serveradmin
 --
 
@@ -1434,7 +1499,7 @@ $_$;
 ALTER FUNCTION users.activity_status_modify_after() OWNER TO serveradmin;
 
 --
--- TOC entry 235 (class 1255 OID 18148)
+-- TOC entry 230 (class 1255 OID 19509)
 -- Name: con_insert_trigger_fuction(); Type: FUNCTION; Schema: users; Owner: serveradmin
 --
 
@@ -1471,7 +1536,7 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- TOC entry 176 (class 1259 OID 18149)
+-- TOC entry 176 (class 1259 OID 19510)
 -- Name: mGlobal; Type: TABLE; Schema: public; Owner: serveradmin
 --
 
@@ -1487,7 +1552,7 @@ CREATE TABLE "mGlobal" (
 ALTER TABLE "mGlobal" OWNER TO serveradmin;
 
 --
--- TOC entry 2722 (class 0 OID 0)
+-- TOC entry 2626 (class 0 OID 0)
 -- Dependencies: 176
 -- Name: COLUMN "mGlobal".row_in_use; Type: COMMENT; Schema: public; Owner: serveradmin
 --
@@ -1497,7 +1562,7 @@ COMMENT ON COLUMN "mGlobal".row_in_use IS '
 
 
 --
--- TOC entry 177 (class 1259 OID 18160)
+-- TOC entry 177 (class 1259 OID 19521)
 -- Name: ContactDetails; Type: TABLE; Schema: public; Owner: serveradmin
 --
 
@@ -1522,20 +1587,7 @@ INHERITS ("mGlobal");
 ALTER TABLE "ContactDetails" OWNER TO serveradmin;
 
 --
--- TOC entry 178 (class 1259 OID 18171)
--- Name: EIPLTypes; Type: TABLE; Schema: public; Owner: serveradmin
---
-
-CREATE TABLE "EIPLTypes" (
-    "TypeName" text
-)
-INHERITS ("mGlobal");
-
-
-ALTER TABLE "EIPLTypes" OWNER TO serveradmin;
-
---
--- TOC entry 179 (class 1259 OID 18182)
+-- TOC entry 178 (class 1259 OID 19543)
 -- Name: eipl; Type: TABLE; Schema: public; Owner: serveradmin
 --
 
@@ -1565,8 +1617,8 @@ INHERITS ("mGlobal");
 ALTER TABLE eipl OWNER TO serveradmin;
 
 --
--- TOC entry 2723 (class 0 OID 0)
--- Dependencies: 179
+-- TOC entry 2627 (class 0 OID 0)
+-- Dependencies: 178
 -- Name: COLUMN eipl.balance_; Type: COMMENT; Schema: public; Owner: serveradmin
 --
 
@@ -1574,8 +1626,8 @@ COMMENT ON COLUMN eipl.balance_ IS 'stored as cents';
 
 
 --
--- TOC entry 2724 (class 0 OID 0)
--- Dependencies: 179
+-- TOC entry 2628 (class 0 OID 0)
+-- Dependencies: 178
 -- Name: COLUMN eipl.grandtotal_; Type: COMMENT; Schema: public; Owner: serveradmin
 --
 
@@ -1583,8 +1635,8 @@ COMMENT ON COLUMN eipl.grandtotal_ IS 'stored as cents';
 
 
 --
--- TOC entry 2725 (class 0 OID 0)
--- Dependencies: 179
+-- TOC entry 2629 (class 0 OID 0)
+-- Dependencies: 178
 -- Name: COLUMN eipl.subtotal_; Type: COMMENT; Schema: public; Owner: serveradmin
 --
 
@@ -1592,8 +1644,8 @@ COMMENT ON COLUMN eipl.subtotal_ IS 'stored in cents';
 
 
 --
--- TOC entry 2726 (class 0 OID 0)
--- Dependencies: 179
+-- TOC entry 2630 (class 0 OID 0)
+-- Dependencies: 178
 -- Name: COLUMN eipl.discount_; Type: COMMENT; Schema: public; Owner: serveradmin
 --
 
@@ -1601,8 +1653,8 @@ COMMENT ON COLUMN eipl.discount_ IS 'stored as cents';
 
 
 --
--- TOC entry 2727 (class 0 OID 0)
--- Dependencies: 179
+-- TOC entry 2631 (class 0 OID 0)
+-- Dependencies: 178
 -- Name: COLUMN eipl.lidiscountsum_; Type: COMMENT; Schema: public; Owner: serveradmin
 --
 
@@ -1610,8 +1662,8 @@ COMMENT ON COLUMN eipl.lidiscountsum_ IS 'stored as cents';
 
 
 --
--- TOC entry 2728 (class 0 OID 0)
--- Dependencies: 179
+-- TOC entry 2632 (class 0 OID 0)
+-- Dependencies: 178
 -- Name: COLUMN eipl.totalpaid_; Type: COMMENT; Schema: public; Owner: serveradmin
 --
 
@@ -1619,8 +1671,8 @@ COMMENT ON COLUMN eipl.totalpaid_ IS 'stored as cents';
 
 
 --
--- TOC entry 2729 (class 0 OID 0)
--- Dependencies: 179
+-- TOC entry 2633 (class 0 OID 0)
+-- Dependencies: 178
 -- Name: COLUMN eipl.discountamount_; Type: COMMENT; Schema: public; Owner: serveradmin
 --
 
@@ -1628,8 +1680,8 @@ COMMENT ON COLUMN eipl.discountamount_ IS 'stored as cents';
 
 
 --
--- TOC entry 2730 (class 0 OID 0)
--- Dependencies: 179
+-- TOC entry 2634 (class 0 OID 0)
+-- Dependencies: 178
 -- Name: COLUMN eipl.taxtotal_; Type: COMMENT; Schema: public; Owner: serveradmin
 --
 
@@ -1637,8 +1689,8 @@ COMMENT ON COLUMN eipl.taxtotal_ IS 'stored as cents';
 
 
 --
--- TOC entry 2731 (class 0 OID 0)
--- Dependencies: 179
+-- TOC entry 2635 (class 0 OID 0)
+-- Dependencies: 178
 -- Name: COLUMN eipl.discounttotal_; Type: COMMENT; Schema: public; Owner: serveradmin
 --
 
@@ -1646,7 +1698,7 @@ COMMENT ON COLUMN eipl.discounttotal_ IS 'stored as cents';
 
 
 --
--- TOC entry 180 (class 1259 OID 18200)
+-- TOC entry 179 (class 1259 OID 19561)
 -- Name: EIPL_EIPL_nmbr_seq; Type: SEQUENCE; Schema: public; Owner: serveradmin
 --
 
@@ -1661,8 +1713,8 @@ CREATE SEQUENCE "EIPL_EIPL_nmbr_seq"
 ALTER TABLE "EIPL_EIPL_nmbr_seq" OWNER TO serveradmin;
 
 --
--- TOC entry 2732 (class 0 OID 0)
--- Dependencies: 180
+-- TOC entry 2636 (class 0 OID 0)
+-- Dependencies: 179
 -- Name: EIPL_EIPL_nmbr_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: serveradmin
 --
 
@@ -1670,203 +1722,7 @@ ALTER SEQUENCE "EIPL_EIPL_nmbr_seq" OWNED BY eipl.eipl_nmbr;
 
 
 --
--- TOC entry 181 (class 1259 OID 18202)
--- Name: Employees; Type: TABLE; Schema: public; Owner: serveradmin
---
-
-CREATE TABLE "Employees" (
-    "NameFirst" text,
-    "NameLast" text,
-    "EmployeeID" integer,
-    "PaymentMethod" text,
-    "JobTitle" text
-)
-INHERITS ("mGlobal");
-
-
-ALTER TABLE "Employees" OWNER TO serveradmin;
-
---
--- TOC entry 182 (class 1259 OID 18213)
--- Name: InvItemized; Type: TABLE; Schema: public; Owner: serveradmin
---
-
-CREATE TABLE "InvItemized" (
-    "fkInventory" text,
-    "ItemID" text DEFAULT 'N/A'::text NOT NULL,
-    "PurchaseDate" date,
-    "fkItemStatus" text
-)
-INHERITS ("mGlobal");
-
-
-ALTER TABLE "InvItemized" OWNER TO serveradmin;
-
---
--- TOC entry 2733 (class 0 OID 0)
--- Dependencies: 182
--- Name: COLUMN "InvItemized"."ItemID"; Type: COMMENT; Schema: public; Owner: serveradmin
---
-
-COMMENT ON COLUMN "InvItemized"."ItemID" IS 'ex. AR-120';
-
-
---
--- TOC entry 183 (class 1259 OID 18225)
--- Name: itemdescriptors; Type: TABLE; Schema: public; Owner: serveradmin
---
-
-CREATE TABLE itemdescriptors (
-    name_ text,
-    manufacturer text,
-    model text,
-    department text,
-    category text,
-    subcategory text,
-    description text,
-    price integer DEFAULT 0 NOT NULL,
-    quantity_ integer DEFAULT 0
-)
-INHERITS ("mGlobal");
-
-
-ALTER TABLE itemdescriptors OWNER TO serveradmin;
-
---
--- TOC entry 2734 (class 0 OID 0)
--- Dependencies: 183
--- Name: COLUMN itemdescriptors.price; Type: COMMENT; Schema: public; Owner: serveradmin
---
-
-COMMENT ON COLUMN itemdescriptors.price IS 'stored as cents';
-
-
---
--- TOC entry 184 (class 1259 OID 18238)
--- Name: inventory; Type: TABLE; Schema: public; Owner: serveradmin
---
-
-CREATE TABLE inventory (
-    name_ text,
-    manufacturer text,
-    model text,
-    department text,
-    category text,
-    subcategory text,
-    description text,
-    price integer DEFAULT 0,
-    "fkItemTypes" text,
-    owner text,
-    taxable_ text DEFAULT 'False'::text
-)
-INHERITS ("mGlobal", itemdescriptors);
-
-
-ALTER TABLE inventory OWNER TO serveradmin;
-
---
--- TOC entry 2735 (class 0 OID 0)
--- Dependencies: 184
--- Name: COLUMN inventory.price; Type: COMMENT; Schema: public; Owner: serveradmin
---
-
-COMMENT ON COLUMN inventory.price IS 'stored as cents';
-
-
---
--- TOC entry 185 (class 1259 OID 18252)
--- Name: InvTemp; Type: TABLE; Schema: public; Owner: serveradmin
---
-
-CREATE TABLE "InvTemp" (
-)
-INHERITS (inventory);
-
-
-ALTER TABLE "InvTemp" OWNER TO serveradmin;
-
---
--- TOC entry 186 (class 1259 OID 18266)
--- Name: ItemStatus; Type: TABLE; Schema: public; Owner: serveradmin
---
-
-CREATE TABLE "ItemStatus" (
-    "StatusName" text
-)
-INHERITS ("mGlobal");
-
-
-ALTER TABLE "ItemStatus" OWNER TO serveradmin;
-
---
--- TOC entry 187 (class 1259 OID 18277)
--- Name: ItemTypes; Type: TABLE; Schema: public; Owner: serveradmin
---
-
-CREATE TABLE "ItemTypes" (
-    "TypeName" text
-)
-INHERITS ("mGlobal");
-
-
-ALTER TABLE "ItemTypes" OWNER TO serveradmin;
-
---
--- TOC entry 188 (class 1259 OID 18288)
--- Name: MaintenenceLogs; Type: TABLE; Schema: public; Owner: serveradmin
---
-
-CREATE TABLE "MaintenenceLogs" (
-    "fkInvItemized" text,
-    "Name" text,
-    "Status" text,
-    "Description" text
-)
-INHERITS ("mGlobal");
-
-
-ALTER TABLE "MaintenenceLogs" OWNER TO serveradmin;
-
---
--- TOC entry 189 (class 1259 OID 18299)
--- Name: Notes; Type: TABLE; Schema: public; Owner: serveradmin
---
-
-CREATE TABLE "Notes" (
-    "fkMaster" text,
-    "Title" text,
-    "Body" text
-)
-INHERITS ("mGlobal");
-
-
-ALTER TABLE "Notes" OWNER TO serveradmin;
-
---
--- TOC entry 190 (class 1259 OID 18310)
--- Name: Photos; Type: TABLE; Schema: public; Owner: serveradmin
---
-
-CREATE TABLE "Photos" (
-    "fkMaster" text,
-    "Title" text
-)
-INHERITS ("mGlobal");
-
-
-ALTER TABLE "Photos" OWNER TO serveradmin;
-
---
--- TOC entry 2736 (class 0 OID 0)
--- Dependencies: 190
--- Name: COLUMN "Photos"."fkMaster"; Type: COMMENT; Schema: public; Owner: serveradmin
---
-
-COMMENT ON COLUMN "Photos"."fkMaster" IS 'not actually linkedby postgres';
-
-
---
--- TOC entry 191 (class 1259 OID 18321)
+-- TOC entry 182 (class 1259 OID 19682)
 -- Name: contact_venue_data; Type: TABLE; Schema: public; Owner: serveradmin
 --
 
@@ -1883,8 +1739,8 @@ INHERITS ("mGlobal");
 ALTER TABLE contact_venue_data OWNER TO serveradmin;
 
 --
--- TOC entry 2737 (class 0 OID 0)
--- Dependencies: 191
+-- TOC entry 2637 (class 0 OID 0)
+-- Dependencies: 182
 -- Name: COLUMN contact_venue_data.fkvenues; Type: COMMENT; Schema: public; Owner: serveradmin
 --
 
@@ -1893,7 +1749,7 @@ COMMENT ON COLUMN contact_venue_data.fkvenues IS '
 
 
 --
--- TOC entry 192 (class 1259 OID 18333)
+-- TOC entry 183 (class 1259 OID 19694)
 -- Name: contacts; Type: TABLE; Schema: public; Owner: serveradmin
 --
 
@@ -1908,7 +1764,47 @@ INHERITS ("mGlobal", "ContactDetails");
 ALTER TABLE contacts OWNER TO serveradmin;
 
 --
--- TOC entry 193 (class 1259 OID 18344)
+-- TOC entry 198 (class 1259 OID 20084)
+-- Name: contract_number_sequence; Type: SEQUENCE; Schema: public; Owner: serveradmin
+--
+
+CREATE SEQUENCE contract_number_sequence
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE contract_number_sequence OWNER TO serveradmin;
+
+--
+-- TOC entry 197 (class 1259 OID 20071)
+-- Name: contract_sections_; Type: TABLE; Schema: public; Owner: serveradmin
+--
+
+CREATE TABLE contract_sections_ (
+)
+INHERITS ("mGlobal");
+
+
+ALTER TABLE contract_sections_ OWNER TO serveradmin;
+
+--
+-- TOC entry 196 (class 1259 OID 20060)
+-- Name: contracts_; Type: TABLE; Schema: public; Owner: serveradmin
+--
+
+CREATE TABLE contracts_ (
+    contract_number text DEFAULT create_contract_number()
+)
+INHERITS ("mGlobal");
+
+
+ALTER TABLE contracts_ OWNER TO serveradmin;
+
+--
+-- TOC entry 184 (class 1259 OID 19705)
 -- Name: discounts_; Type: TABLE; Schema: public; Owner: serveradmin
 --
 
@@ -1928,8 +1824,8 @@ INHERITS ("mGlobal");
 ALTER TABLE discounts_ OWNER TO serveradmin;
 
 --
--- TOC entry 2738 (class 0 OID 0)
--- Dependencies: 193
+-- TOC entry 2638 (class 0 OID 0)
+-- Dependencies: 184
 -- Name: COLUMN discounts_.department_; Type: COMMENT; Schema: public; Owner: serveradmin
 --
 
@@ -1939,8 +1835,8 @@ COMMENT ON COLUMN discounts_.department_ IS '
 
 
 --
--- TOC entry 2739 (class 0 OID 0)
--- Dependencies: 193
+-- TOC entry 2639 (class 0 OID 0)
+-- Dependencies: 184
 -- Name: COLUMN discounts_.amount_; Type: COMMENT; Schema: public; Owner: serveradmin
 --
 
@@ -1948,8 +1844,8 @@ COMMENT ON COLUMN discounts_.amount_ IS 'stored as cents';
 
 
 --
--- TOC entry 2740 (class 0 OID 0)
--- Dependencies: 193
+-- TOC entry 2640 (class 0 OID 0)
+-- Dependencies: 184
 -- Name: COLUMN discounts_.grandtotal_; Type: COMMENT; Schema: public; Owner: serveradmin
 --
 
@@ -1957,8 +1853,8 @@ COMMENT ON COLUMN discounts_.grandtotal_ IS 'stored in cents';
 
 
 --
--- TOC entry 2741 (class 0 OID 0)
--- Dependencies: 193
+-- TOC entry 2641 (class 0 OID 0)
+-- Dependencies: 184
 -- Name: COLUMN discounts_.subtotal_; Type: COMMENT; Schema: public; Owner: serveradmin
 --
 
@@ -1966,7 +1862,7 @@ COMMENT ON COLUMN discounts_.subtotal_ IS 'stored in cents';
 
 
 --
--- TOC entry 194 (class 1259 OID 18357)
+-- TOC entry 185 (class 1259 OID 19718)
 -- Name: events_; Type: TABLE; Schema: public; Owner: serveradmin
 --
 
@@ -1993,7 +1889,69 @@ INHERITS ("mGlobal");
 ALTER TABLE events_ OWNER TO serveradmin;
 
 --
--- TOC entry 195 (class 1259 OID 18381)
+-- TOC entry 180 (class 1259 OID 19586)
+-- Name: itemdescriptors; Type: TABLE; Schema: public; Owner: serveradmin
+--
+
+CREATE TABLE itemdescriptors (
+    name_ text,
+    manufacturer text,
+    model text,
+    department text,
+    category text,
+    subcategory text,
+    description text,
+    price integer DEFAULT 0 NOT NULL,
+    quantity_ integer DEFAULT 0
+)
+INHERITS ("mGlobal");
+
+
+ALTER TABLE itemdescriptors OWNER TO serveradmin;
+
+--
+-- TOC entry 2642 (class 0 OID 0)
+-- Dependencies: 180
+-- Name: COLUMN itemdescriptors.price; Type: COMMENT; Schema: public; Owner: serveradmin
+--
+
+COMMENT ON COLUMN itemdescriptors.price IS 'stored as cents';
+
+
+--
+-- TOC entry 181 (class 1259 OID 19599)
+-- Name: inventory; Type: TABLE; Schema: public; Owner: serveradmin
+--
+
+CREATE TABLE inventory (
+    name_ text,
+    manufacturer text,
+    model text,
+    department text,
+    category text,
+    subcategory text,
+    description text,
+    price integer DEFAULT 0,
+    "fkItemTypes" text,
+    owner text,
+    taxable_ text DEFAULT 'False'::text
+)
+INHERITS ("mGlobal", itemdescriptors);
+
+
+ALTER TABLE inventory OWNER TO serveradmin;
+
+--
+-- TOC entry 2643 (class 0 OID 0)
+-- Dependencies: 181
+-- Name: COLUMN inventory.price; Type: COMMENT; Schema: public; Owner: serveradmin
+--
+
+COMMENT ON COLUMN inventory.price IS 'stored as cents';
+
+
+--
+-- TOC entry 186 (class 1259 OID 19742)
 -- Name: lineitems; Type: TABLE; Schema: public; Owner: serveradmin
 --
 
@@ -2026,8 +1984,8 @@ INHERITS ("mGlobal", itemdescriptors);
 ALTER TABLE lineitems OWNER TO serveradmin;
 
 --
--- TOC entry 2742 (class 0 OID 0)
--- Dependencies: 195
+-- TOC entry 2644 (class 0 OID 0)
+-- Dependencies: 186
 -- Name: COLUMN lineitems.taxtotal_; Type: COMMENT; Schema: public; Owner: serveradmin
 --
 
@@ -2035,7 +1993,7 @@ COMMENT ON COLUMN lineitems.taxtotal_ IS 'stored as cents';
 
 
 --
--- TOC entry 196 (class 1259 OID 18400)
+-- TOC entry 187 (class 1259 OID 19761)
 -- Name: payments_; Type: TABLE; Schema: public; Owner: serveradmin
 --
 
@@ -2052,8 +2010,8 @@ INHERITS ("mGlobal");
 ALTER TABLE payments_ OWNER TO serveradmin;
 
 --
--- TOC entry 2743 (class 0 OID 0)
--- Dependencies: 196
+-- TOC entry 2645 (class 0 OID 0)
+-- Dependencies: 187
 -- Name: COLUMN payments_.amount_; Type: COMMENT; Schema: public; Owner: serveradmin
 --
 
@@ -2061,7 +2019,7 @@ COMMENT ON COLUMN payments_.amount_ IS 'stored in cents';
 
 
 --
--- TOC entry 197 (class 1259 OID 18413)
+-- TOC entry 188 (class 1259 OID 19774)
 -- Name: result; Type: TABLE; Schema: public; Owner: serveradmin
 --
 
@@ -2073,20 +2031,7 @@ CREATE TABLE result (
 ALTER TABLE result OWNER TO serveradmin;
 
 --
--- TOC entry 198 (class 1259 OID 18419)
--- Name: testtable; Type: TABLE; Schema: public; Owner: serveradmin
---
-
-CREATE TABLE testtable (
-    pkid text DEFAULT uuid_generate_v4(),
-    field1 text
-);
-
-
-ALTER TABLE testtable OWNER TO serveradmin;
-
---
--- TOC entry 199 (class 1259 OID 18426)
+-- TOC entry 189 (class 1259 OID 19787)
 -- Name: venues; Type: TABLE; Schema: public; Owner: serveradmin
 --
 
@@ -2099,10 +2044,25 @@ INHERITS ("mGlobal", "ContactDetails");
 
 ALTER TABLE venues OWNER TO serveradmin;
 
+--
+-- TOC entry 199 (class 1259 OID 20086)
+-- Name: year_sequence; Type: SEQUENCE; Schema: public; Owner: serveradmin
+--
+
+CREATE SEQUENCE year_sequence
+    START WITH 16
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE year_sequence OWNER TO serveradmin;
+
 SET search_path = update, pg_catalog;
 
 --
--- TOC entry 205 (class 1259 OID 18730)
+-- TOC entry 190 (class 1259 OID 19798)
 -- Name: Version; Type: TABLE; Schema: update; Owner: serveradmin
 --
 
@@ -2120,7 +2080,7 @@ ALTER TABLE "Version" OWNER TO serveradmin;
 SET search_path = users, pg_catalog;
 
 --
--- TOC entry 200 (class 1259 OID 18437)
+-- TOC entry 191 (class 1259 OID 19806)
 -- Name: activity; Type: TABLE; Schema: users; Owner: serveradmin
 --
 
@@ -2137,7 +2097,7 @@ INHERITS (public."mGlobal");
 ALTER TABLE activity OWNER TO serveradmin;
 
 --
--- TOC entry 201 (class 1259 OID 18450)
+-- TOC entry 192 (class 1259 OID 19819)
 -- Name: con_template; Type: TABLE; Schema: users; Owner: serveradmin
 --
 
@@ -2159,7 +2119,7 @@ CREATE TABLE con_template (
 ALTER TABLE con_template OWNER TO serveradmin;
 
 --
--- TOC entry 202 (class 1259 OID 18461)
+-- TOC entry 193 (class 1259 OID 19830)
 -- Name: con1; Type: TABLE; Schema: users; Owner: serveradmin
 --
 
@@ -2171,7 +2131,7 @@ INHERITS (con_template);
 ALTER TABLE con1 OWNER TO serveradmin;
 
 --
--- TOC entry 203 (class 1259 OID 18472)
+-- TOC entry 194 (class 1259 OID 19841)
 -- Name: con2; Type: TABLE; Schema: users; Owner: serveradmin
 --
 
@@ -2183,7 +2143,7 @@ INHERITS (con_template);
 ALTER TABLE con2 OWNER TO serveradmin;
 
 --
--- TOC entry 204 (class 1259 OID 18483)
+-- TOC entry 195 (class 1259 OID 19852)
 -- Name: testtable; Type: TABLE; Schema: users; Owner: serveradmin
 --
 
@@ -2197,7 +2157,7 @@ ALTER TABLE testtable OWNER TO serveradmin;
 SET search_path = public, pg_catalog;
 
 --
--- TOC entry 2328 (class 2604 OID 19339)
+-- TOC entry 2293 (class 2604 OID 19855)
 -- Name: pkid; Type: DEFAULT; Schema: public; Owner: serveradmin
 --
 
@@ -2205,7 +2165,7 @@ ALTER TABLE ONLY "ContactDetails" ALTER COLUMN pkid SET DEFAULT uuid_generate_v4
 
 
 --
--- TOC entry 2329 (class 2604 OID 19340)
+-- TOC entry 2294 (class 2604 OID 19856)
 -- Name: row_created; Type: DEFAULT; Schema: public; Owner: serveradmin
 --
 
@@ -2213,7 +2173,7 @@ ALTER TABLE ONLY "ContactDetails" ALTER COLUMN row_created SET DEFAULT timezone(
 
 
 --
--- TOC entry 2330 (class 2604 OID 19341)
+-- TOC entry 2295 (class 2604 OID 19857)
 -- Name: row_modified; Type: DEFAULT; Schema: public; Owner: serveradmin
 --
 
@@ -2221,7 +2181,7 @@ ALTER TABLE ONLY "ContactDetails" ALTER COLUMN row_modified SET DEFAULT timezone
 
 
 --
--- TOC entry 2331 (class 2604 OID 19342)
+-- TOC entry 2296 (class 2604 OID 19858)
 -- Name: row_username; Type: DEFAULT; Schema: public; Owner: serveradmin
 --
 
@@ -2229,7 +2189,7 @@ ALTER TABLE ONLY "ContactDetails" ALTER COLUMN row_username SET DEFAULT "current
 
 
 --
--- TOC entry 2332 (class 2604 OID 19343)
+-- TOC entry 2297 (class 2604 OID 19859)
 -- Name: row_in_use; Type: DEFAULT; Schema: public; Owner: serveradmin
 --
 
@@ -2237,391 +2197,7 @@ ALTER TABLE ONLY "ContactDetails" ALTER COLUMN row_in_use SET DEFAULT false;
 
 
 --
--- TOC entry 2333 (class 2604 OID 19344)
--- Name: pkid; Type: DEFAULT; Schema: public; Owner: serveradmin
---
-
-ALTER TABLE ONLY "EIPLTypes" ALTER COLUMN pkid SET DEFAULT uuid_generate_v4();
-
-
---
--- TOC entry 2334 (class 2604 OID 19345)
--- Name: row_created; Type: DEFAULT; Schema: public; Owner: serveradmin
---
-
-ALTER TABLE ONLY "EIPLTypes" ALTER COLUMN row_created SET DEFAULT timezone('utc'::text, now());
-
-
---
--- TOC entry 2335 (class 2604 OID 19346)
--- Name: row_modified; Type: DEFAULT; Schema: public; Owner: serveradmin
---
-
-ALTER TABLE ONLY "EIPLTypes" ALTER COLUMN row_modified SET DEFAULT timezone('utc'::text, now());
-
-
---
--- TOC entry 2336 (class 2604 OID 19347)
--- Name: row_username; Type: DEFAULT; Schema: public; Owner: serveradmin
---
-
-ALTER TABLE ONLY "EIPLTypes" ALTER COLUMN row_username SET DEFAULT "current_user"();
-
-
---
--- TOC entry 2337 (class 2604 OID 19348)
--- Name: row_in_use; Type: DEFAULT; Schema: public; Owner: serveradmin
---
-
-ALTER TABLE ONLY "EIPLTypes" ALTER COLUMN row_in_use SET DEFAULT false;
-
-
---
--- TOC entry 2351 (class 2604 OID 19349)
--- Name: pkid; Type: DEFAULT; Schema: public; Owner: serveradmin
---
-
-ALTER TABLE ONLY "Employees" ALTER COLUMN pkid SET DEFAULT uuid_generate_v4();
-
-
---
--- TOC entry 2352 (class 2604 OID 19350)
--- Name: row_created; Type: DEFAULT; Schema: public; Owner: serveradmin
---
-
-ALTER TABLE ONLY "Employees" ALTER COLUMN row_created SET DEFAULT timezone('utc'::text, now());
-
-
---
--- TOC entry 2353 (class 2604 OID 19351)
--- Name: row_modified; Type: DEFAULT; Schema: public; Owner: serveradmin
---
-
-ALTER TABLE ONLY "Employees" ALTER COLUMN row_modified SET DEFAULT timezone('utc'::text, now());
-
-
---
--- TOC entry 2354 (class 2604 OID 19352)
--- Name: row_username; Type: DEFAULT; Schema: public; Owner: serveradmin
---
-
-ALTER TABLE ONLY "Employees" ALTER COLUMN row_username SET DEFAULT "current_user"();
-
-
---
--- TOC entry 2355 (class 2604 OID 19353)
--- Name: row_in_use; Type: DEFAULT; Schema: public; Owner: serveradmin
---
-
-ALTER TABLE ONLY "Employees" ALTER COLUMN row_in_use SET DEFAULT false;
-
-
---
--- TOC entry 2356 (class 2604 OID 19354)
--- Name: pkid; Type: DEFAULT; Schema: public; Owner: serveradmin
---
-
-ALTER TABLE ONLY "InvItemized" ALTER COLUMN pkid SET DEFAULT uuid_generate_v4();
-
-
---
--- TOC entry 2357 (class 2604 OID 19355)
--- Name: row_created; Type: DEFAULT; Schema: public; Owner: serveradmin
---
-
-ALTER TABLE ONLY "InvItemized" ALTER COLUMN row_created SET DEFAULT timezone('utc'::text, now());
-
-
---
--- TOC entry 2358 (class 2604 OID 19356)
--- Name: row_modified; Type: DEFAULT; Schema: public; Owner: serveradmin
---
-
-ALTER TABLE ONLY "InvItemized" ALTER COLUMN row_modified SET DEFAULT timezone('utc'::text, now());
-
-
---
--- TOC entry 2359 (class 2604 OID 19357)
--- Name: row_username; Type: DEFAULT; Schema: public; Owner: serveradmin
---
-
-ALTER TABLE ONLY "InvItemized" ALTER COLUMN row_username SET DEFAULT "current_user"();
-
-
---
--- TOC entry 2360 (class 2604 OID 19358)
--- Name: row_in_use; Type: DEFAULT; Schema: public; Owner: serveradmin
---
-
-ALTER TABLE ONLY "InvItemized" ALTER COLUMN row_in_use SET DEFAULT false;
-
-
---
--- TOC entry 2377 (class 2604 OID 19359)
--- Name: pkid; Type: DEFAULT; Schema: public; Owner: serveradmin
---
-
-ALTER TABLE ONLY "InvTemp" ALTER COLUMN pkid SET DEFAULT uuid_generate_v4();
-
-
---
--- TOC entry 2378 (class 2604 OID 19360)
--- Name: row_created; Type: DEFAULT; Schema: public; Owner: serveradmin
---
-
-ALTER TABLE ONLY "InvTemp" ALTER COLUMN row_created SET DEFAULT timezone('utc'::text, now());
-
-
---
--- TOC entry 2379 (class 2604 OID 19361)
--- Name: row_modified; Type: DEFAULT; Schema: public; Owner: serveradmin
---
-
-ALTER TABLE ONLY "InvTemp" ALTER COLUMN row_modified SET DEFAULT timezone('utc'::text, now());
-
-
---
--- TOC entry 2380 (class 2604 OID 19362)
--- Name: row_username; Type: DEFAULT; Schema: public; Owner: serveradmin
---
-
-ALTER TABLE ONLY "InvTemp" ALTER COLUMN row_username SET DEFAULT "current_user"();
-
-
---
--- TOC entry 2381 (class 2604 OID 19363)
--- Name: row_in_use; Type: DEFAULT; Schema: public; Owner: serveradmin
---
-
-ALTER TABLE ONLY "InvTemp" ALTER COLUMN row_in_use SET DEFAULT false;
-
-
---
--- TOC entry 2382 (class 2604 OID 19364)
--- Name: price; Type: DEFAULT; Schema: public; Owner: serveradmin
---
-
-ALTER TABLE ONLY "InvTemp" ALTER COLUMN price SET DEFAULT 0;
-
-
---
--- TOC entry 2383 (class 2604 OID 19365)
--- Name: quantity_; Type: DEFAULT; Schema: public; Owner: serveradmin
---
-
-ALTER TABLE ONLY "InvTemp" ALTER COLUMN quantity_ SET DEFAULT 0;
-
-
---
--- TOC entry 2384 (class 2604 OID 19366)
--- Name: taxable_; Type: DEFAULT; Schema: public; Owner: serveradmin
---
-
-ALTER TABLE ONLY "InvTemp" ALTER COLUMN taxable_ SET DEFAULT 'False'::text;
-
-
---
--- TOC entry 2385 (class 2604 OID 19367)
--- Name: pkid; Type: DEFAULT; Schema: public; Owner: serveradmin
---
-
-ALTER TABLE ONLY "ItemStatus" ALTER COLUMN pkid SET DEFAULT uuid_generate_v4();
-
-
---
--- TOC entry 2386 (class 2604 OID 19368)
--- Name: row_created; Type: DEFAULT; Schema: public; Owner: serveradmin
---
-
-ALTER TABLE ONLY "ItemStatus" ALTER COLUMN row_created SET DEFAULT timezone('utc'::text, now());
-
-
---
--- TOC entry 2387 (class 2604 OID 19369)
--- Name: row_modified; Type: DEFAULT; Schema: public; Owner: serveradmin
---
-
-ALTER TABLE ONLY "ItemStatus" ALTER COLUMN row_modified SET DEFAULT timezone('utc'::text, now());
-
-
---
--- TOC entry 2388 (class 2604 OID 19370)
--- Name: row_username; Type: DEFAULT; Schema: public; Owner: serveradmin
---
-
-ALTER TABLE ONLY "ItemStatus" ALTER COLUMN row_username SET DEFAULT "current_user"();
-
-
---
--- TOC entry 2389 (class 2604 OID 19371)
--- Name: row_in_use; Type: DEFAULT; Schema: public; Owner: serveradmin
---
-
-ALTER TABLE ONLY "ItemStatus" ALTER COLUMN row_in_use SET DEFAULT false;
-
-
---
--- TOC entry 2390 (class 2604 OID 19372)
--- Name: pkid; Type: DEFAULT; Schema: public; Owner: serveradmin
---
-
-ALTER TABLE ONLY "ItemTypes" ALTER COLUMN pkid SET DEFAULT uuid_generate_v4();
-
-
---
--- TOC entry 2391 (class 2604 OID 19373)
--- Name: row_created; Type: DEFAULT; Schema: public; Owner: serveradmin
---
-
-ALTER TABLE ONLY "ItemTypes" ALTER COLUMN row_created SET DEFAULT timezone('utc'::text, now());
-
-
---
--- TOC entry 2392 (class 2604 OID 19374)
--- Name: row_modified; Type: DEFAULT; Schema: public; Owner: serveradmin
---
-
-ALTER TABLE ONLY "ItemTypes" ALTER COLUMN row_modified SET DEFAULT timezone('utc'::text, now());
-
-
---
--- TOC entry 2393 (class 2604 OID 19375)
--- Name: row_username; Type: DEFAULT; Schema: public; Owner: serveradmin
---
-
-ALTER TABLE ONLY "ItemTypes" ALTER COLUMN row_username SET DEFAULT "current_user"();
-
-
---
--- TOC entry 2394 (class 2604 OID 19376)
--- Name: row_in_use; Type: DEFAULT; Schema: public; Owner: serveradmin
---
-
-ALTER TABLE ONLY "ItemTypes" ALTER COLUMN row_in_use SET DEFAULT false;
-
-
---
--- TOC entry 2395 (class 2604 OID 19377)
--- Name: pkid; Type: DEFAULT; Schema: public; Owner: serveradmin
---
-
-ALTER TABLE ONLY "MaintenenceLogs" ALTER COLUMN pkid SET DEFAULT uuid_generate_v4();
-
-
---
--- TOC entry 2396 (class 2604 OID 19378)
--- Name: row_created; Type: DEFAULT; Schema: public; Owner: serveradmin
---
-
-ALTER TABLE ONLY "MaintenenceLogs" ALTER COLUMN row_created SET DEFAULT timezone('utc'::text, now());
-
-
---
--- TOC entry 2397 (class 2604 OID 19379)
--- Name: row_modified; Type: DEFAULT; Schema: public; Owner: serveradmin
---
-
-ALTER TABLE ONLY "MaintenenceLogs" ALTER COLUMN row_modified SET DEFAULT timezone('utc'::text, now());
-
-
---
--- TOC entry 2398 (class 2604 OID 19380)
--- Name: row_username; Type: DEFAULT; Schema: public; Owner: serveradmin
---
-
-ALTER TABLE ONLY "MaintenenceLogs" ALTER COLUMN row_username SET DEFAULT "current_user"();
-
-
---
--- TOC entry 2399 (class 2604 OID 19381)
--- Name: row_in_use; Type: DEFAULT; Schema: public; Owner: serveradmin
---
-
-ALTER TABLE ONLY "MaintenenceLogs" ALTER COLUMN row_in_use SET DEFAULT false;
-
-
---
--- TOC entry 2400 (class 2604 OID 19382)
--- Name: pkid; Type: DEFAULT; Schema: public; Owner: serveradmin
---
-
-ALTER TABLE ONLY "Notes" ALTER COLUMN pkid SET DEFAULT uuid_generate_v4();
-
-
---
--- TOC entry 2401 (class 2604 OID 19383)
--- Name: row_created; Type: DEFAULT; Schema: public; Owner: serveradmin
---
-
-ALTER TABLE ONLY "Notes" ALTER COLUMN row_created SET DEFAULT timezone('utc'::text, now());
-
-
---
--- TOC entry 2402 (class 2604 OID 19384)
--- Name: row_modified; Type: DEFAULT; Schema: public; Owner: serveradmin
---
-
-ALTER TABLE ONLY "Notes" ALTER COLUMN row_modified SET DEFAULT timezone('utc'::text, now());
-
-
---
--- TOC entry 2403 (class 2604 OID 19385)
--- Name: row_username; Type: DEFAULT; Schema: public; Owner: serveradmin
---
-
-ALTER TABLE ONLY "Notes" ALTER COLUMN row_username SET DEFAULT "current_user"();
-
-
---
--- TOC entry 2404 (class 2604 OID 19386)
--- Name: row_in_use; Type: DEFAULT; Schema: public; Owner: serveradmin
---
-
-ALTER TABLE ONLY "Notes" ALTER COLUMN row_in_use SET DEFAULT false;
-
-
---
--- TOC entry 2405 (class 2604 OID 19387)
--- Name: pkid; Type: DEFAULT; Schema: public; Owner: serveradmin
---
-
-ALTER TABLE ONLY "Photos" ALTER COLUMN pkid SET DEFAULT uuid_generate_v4();
-
-
---
--- TOC entry 2406 (class 2604 OID 19388)
--- Name: row_created; Type: DEFAULT; Schema: public; Owner: serveradmin
---
-
-ALTER TABLE ONLY "Photos" ALTER COLUMN row_created SET DEFAULT timezone('utc'::text, now());
-
-
---
--- TOC entry 2407 (class 2604 OID 19389)
--- Name: row_modified; Type: DEFAULT; Schema: public; Owner: serveradmin
---
-
-ALTER TABLE ONLY "Photos" ALTER COLUMN row_modified SET DEFAULT timezone('utc'::text, now());
-
-
---
--- TOC entry 2408 (class 2604 OID 19390)
--- Name: row_username; Type: DEFAULT; Schema: public; Owner: serveradmin
---
-
-ALTER TABLE ONLY "Photos" ALTER COLUMN row_username SET DEFAULT "current_user"();
-
-
---
--- TOC entry 2409 (class 2604 OID 19391)
--- Name: row_in_use; Type: DEFAULT; Schema: public; Owner: serveradmin
---
-
-ALTER TABLE ONLY "Photos" ALTER COLUMN row_in_use SET DEFAULT false;
-
-
---
--- TOC entry 2410 (class 2604 OID 19392)
+-- TOC entry 2327 (class 2604 OID 19908)
 -- Name: pkid; Type: DEFAULT; Schema: public; Owner: serveradmin
 --
 
@@ -2629,7 +2205,7 @@ ALTER TABLE ONLY contact_venue_data ALTER COLUMN pkid SET DEFAULT uuid_generate_
 
 
 --
--- TOC entry 2411 (class 2604 OID 19393)
+-- TOC entry 2328 (class 2604 OID 19909)
 -- Name: row_created; Type: DEFAULT; Schema: public; Owner: serveradmin
 --
 
@@ -2637,7 +2213,7 @@ ALTER TABLE ONLY contact_venue_data ALTER COLUMN row_created SET DEFAULT timezon
 
 
 --
--- TOC entry 2412 (class 2604 OID 19394)
+-- TOC entry 2329 (class 2604 OID 19910)
 -- Name: row_modified; Type: DEFAULT; Schema: public; Owner: serveradmin
 --
 
@@ -2645,7 +2221,7 @@ ALTER TABLE ONLY contact_venue_data ALTER COLUMN row_modified SET DEFAULT timezo
 
 
 --
--- TOC entry 2413 (class 2604 OID 19395)
+-- TOC entry 2330 (class 2604 OID 19911)
 -- Name: row_username; Type: DEFAULT; Schema: public; Owner: serveradmin
 --
 
@@ -2653,7 +2229,7 @@ ALTER TABLE ONLY contact_venue_data ALTER COLUMN row_username SET DEFAULT "curre
 
 
 --
--- TOC entry 2414 (class 2604 OID 19396)
+-- TOC entry 2331 (class 2604 OID 19912)
 -- Name: row_in_use; Type: DEFAULT; Schema: public; Owner: serveradmin
 --
 
@@ -2661,7 +2237,7 @@ ALTER TABLE ONLY contact_venue_data ALTER COLUMN row_in_use SET DEFAULT false;
 
 
 --
--- TOC entry 2416 (class 2604 OID 19397)
+-- TOC entry 2332 (class 2604 OID 19913)
 -- Name: pkid; Type: DEFAULT; Schema: public; Owner: serveradmin
 --
 
@@ -2669,7 +2245,7 @@ ALTER TABLE ONLY contacts ALTER COLUMN pkid SET DEFAULT uuid_generate_v4();
 
 
 --
--- TOC entry 2417 (class 2604 OID 19398)
+-- TOC entry 2333 (class 2604 OID 19914)
 -- Name: row_created; Type: DEFAULT; Schema: public; Owner: serveradmin
 --
 
@@ -2677,7 +2253,7 @@ ALTER TABLE ONLY contacts ALTER COLUMN row_created SET DEFAULT timezone('utc'::t
 
 
 --
--- TOC entry 2418 (class 2604 OID 19399)
+-- TOC entry 2334 (class 2604 OID 19915)
 -- Name: row_modified; Type: DEFAULT; Schema: public; Owner: serveradmin
 --
 
@@ -2685,7 +2261,7 @@ ALTER TABLE ONLY contacts ALTER COLUMN row_modified SET DEFAULT timezone('utc'::
 
 
 --
--- TOC entry 2419 (class 2604 OID 19400)
+-- TOC entry 2335 (class 2604 OID 19916)
 -- Name: row_username; Type: DEFAULT; Schema: public; Owner: serveradmin
 --
 
@@ -2693,7 +2269,7 @@ ALTER TABLE ONLY contacts ALTER COLUMN row_username SET DEFAULT "current_user"()
 
 
 --
--- TOC entry 2420 (class 2604 OID 19401)
+-- TOC entry 2336 (class 2604 OID 19917)
 -- Name: row_in_use; Type: DEFAULT; Schema: public; Owner: serveradmin
 --
 
@@ -2701,7 +2277,87 @@ ALTER TABLE ONLY contacts ALTER COLUMN row_in_use SET DEFAULT false;
 
 
 --
--- TOC entry 2421 (class 2604 OID 19402)
+-- TOC entry 2420 (class 2604 OID 20074)
+-- Name: pkid; Type: DEFAULT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY contract_sections_ ALTER COLUMN pkid SET DEFAULT uuid_generate_v4();
+
+
+--
+-- TOC entry 2421 (class 2604 OID 20075)
+-- Name: row_created; Type: DEFAULT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY contract_sections_ ALTER COLUMN row_created SET DEFAULT timezone('utc'::text, now());
+
+
+--
+-- TOC entry 2422 (class 2604 OID 20076)
+-- Name: row_modified; Type: DEFAULT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY contract_sections_ ALTER COLUMN row_modified SET DEFAULT timezone('utc'::text, now());
+
+
+--
+-- TOC entry 2423 (class 2604 OID 20077)
+-- Name: row_username; Type: DEFAULT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY contract_sections_ ALTER COLUMN row_username SET DEFAULT "current_user"();
+
+
+--
+-- TOC entry 2424 (class 2604 OID 20078)
+-- Name: row_in_use; Type: DEFAULT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY contract_sections_ ALTER COLUMN row_in_use SET DEFAULT false;
+
+
+--
+-- TOC entry 2414 (class 2604 OID 20063)
+-- Name: pkid; Type: DEFAULT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY contracts_ ALTER COLUMN pkid SET DEFAULT uuid_generate_v4();
+
+
+--
+-- TOC entry 2415 (class 2604 OID 20064)
+-- Name: row_created; Type: DEFAULT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY contracts_ ALTER COLUMN row_created SET DEFAULT timezone('utc'::text, now());
+
+
+--
+-- TOC entry 2416 (class 2604 OID 20065)
+-- Name: row_modified; Type: DEFAULT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY contracts_ ALTER COLUMN row_modified SET DEFAULT timezone('utc'::text, now());
+
+
+--
+-- TOC entry 2417 (class 2604 OID 20066)
+-- Name: row_username; Type: DEFAULT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY contracts_ ALTER COLUMN row_username SET DEFAULT "current_user"();
+
+
+--
+-- TOC entry 2418 (class 2604 OID 20067)
+-- Name: row_in_use; Type: DEFAULT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY contracts_ ALTER COLUMN row_in_use SET DEFAULT false;
+
+
+--
+-- TOC entry 2339 (class 2604 OID 19918)
 -- Name: pkid; Type: DEFAULT; Schema: public; Owner: serveradmin
 --
 
@@ -2709,7 +2365,7 @@ ALTER TABLE ONLY discounts_ ALTER COLUMN pkid SET DEFAULT uuid_generate_v4();
 
 
 --
--- TOC entry 2422 (class 2604 OID 19403)
+-- TOC entry 2340 (class 2604 OID 19919)
 -- Name: row_created; Type: DEFAULT; Schema: public; Owner: serveradmin
 --
 
@@ -2717,7 +2373,7 @@ ALTER TABLE ONLY discounts_ ALTER COLUMN row_created SET DEFAULT timezone('utc':
 
 
 --
--- TOC entry 2423 (class 2604 OID 19404)
+-- TOC entry 2341 (class 2604 OID 19920)
 -- Name: row_modified; Type: DEFAULT; Schema: public; Owner: serveradmin
 --
 
@@ -2725,7 +2381,7 @@ ALTER TABLE ONLY discounts_ ALTER COLUMN row_modified SET DEFAULT timezone('utc'
 
 
 --
--- TOC entry 2424 (class 2604 OID 19405)
+-- TOC entry 2342 (class 2604 OID 19921)
 -- Name: row_username; Type: DEFAULT; Schema: public; Owner: serveradmin
 --
 
@@ -2733,7 +2389,7 @@ ALTER TABLE ONLY discounts_ ALTER COLUMN row_username SET DEFAULT "current_user"
 
 
 --
--- TOC entry 2425 (class 2604 OID 19406)
+-- TOC entry 2343 (class 2604 OID 19922)
 -- Name: row_in_use; Type: DEFAULT; Schema: public; Owner: serveradmin
 --
 
@@ -2741,7 +2397,7 @@ ALTER TABLE ONLY discounts_ ALTER COLUMN row_in_use SET DEFAULT false;
 
 
 --
--- TOC entry 2345 (class 2604 OID 19407)
+-- TOC entry 2305 (class 2604 OID 19923)
 -- Name: pkid; Type: DEFAULT; Schema: public; Owner: serveradmin
 --
 
@@ -2749,7 +2405,7 @@ ALTER TABLE ONLY eipl ALTER COLUMN pkid SET DEFAULT uuid_generate_v4();
 
 
 --
--- TOC entry 2346 (class 2604 OID 19408)
+-- TOC entry 2306 (class 2604 OID 19924)
 -- Name: row_created; Type: DEFAULT; Schema: public; Owner: serveradmin
 --
 
@@ -2757,7 +2413,7 @@ ALTER TABLE ONLY eipl ALTER COLUMN row_created SET DEFAULT timezone('utc'::text,
 
 
 --
--- TOC entry 2347 (class 2604 OID 19409)
+-- TOC entry 2307 (class 2604 OID 19925)
 -- Name: row_modified; Type: DEFAULT; Schema: public; Owner: serveradmin
 --
 
@@ -2765,7 +2421,7 @@ ALTER TABLE ONLY eipl ALTER COLUMN row_modified SET DEFAULT timezone('utc'::text
 
 
 --
--- TOC entry 2348 (class 2604 OID 19410)
+-- TOC entry 2308 (class 2604 OID 19926)
 -- Name: row_username; Type: DEFAULT; Schema: public; Owner: serveradmin
 --
 
@@ -2773,7 +2429,7 @@ ALTER TABLE ONLY eipl ALTER COLUMN row_username SET DEFAULT "current_user"();
 
 
 --
--- TOC entry 2349 (class 2604 OID 19411)
+-- TOC entry 2309 (class 2604 OID 19927)
 -- Name: row_in_use; Type: DEFAULT; Schema: public; Owner: serveradmin
 --
 
@@ -2781,7 +2437,7 @@ ALTER TABLE ONLY eipl ALTER COLUMN row_in_use SET DEFAULT false;
 
 
 --
--- TOC entry 2350 (class 2604 OID 19412)
+-- TOC entry 2310 (class 2604 OID 19928)
 -- Name: eipl_nmbr; Type: DEFAULT; Schema: public; Owner: serveradmin
 --
 
@@ -2789,7 +2445,7 @@ ALTER TABLE ONLY eipl ALTER COLUMN eipl_nmbr SET DEFAULT nextval('"EIPL_EIPL_nmb
 
 
 --
--- TOC entry 2429 (class 2604 OID 19413)
+-- TOC entry 2357 (class 2604 OID 19929)
 -- Name: pkid; Type: DEFAULT; Schema: public; Owner: serveradmin
 --
 
@@ -2797,7 +2453,7 @@ ALTER TABLE ONLY events_ ALTER COLUMN pkid SET DEFAULT uuid_generate_v4();
 
 
 --
--- TOC entry 2431 (class 2604 OID 19414)
+-- TOC entry 2358 (class 2604 OID 19930)
 -- Name: row_created; Type: DEFAULT; Schema: public; Owner: serveradmin
 --
 
@@ -2805,7 +2461,7 @@ ALTER TABLE ONLY events_ ALTER COLUMN row_created SET DEFAULT timezone('utc'::te
 
 
 --
--- TOC entry 2432 (class 2604 OID 19415)
+-- TOC entry 2359 (class 2604 OID 19931)
 -- Name: row_modified; Type: DEFAULT; Schema: public; Owner: serveradmin
 --
 
@@ -2813,7 +2469,7 @@ ALTER TABLE ONLY events_ ALTER COLUMN row_modified SET DEFAULT timezone('utc'::t
 
 
 --
--- TOC entry 2433 (class 2604 OID 19416)
+-- TOC entry 2360 (class 2604 OID 19932)
 -- Name: row_username; Type: DEFAULT; Schema: public; Owner: serveradmin
 --
 
@@ -2821,7 +2477,7 @@ ALTER TABLE ONLY events_ ALTER COLUMN row_username SET DEFAULT "current_user"();
 
 
 --
--- TOC entry 2434 (class 2604 OID 19417)
+-- TOC entry 2361 (class 2604 OID 19933)
 -- Name: row_in_use; Type: DEFAULT; Schema: public; Owner: serveradmin
 --
 
@@ -2829,7 +2485,7 @@ ALTER TABLE ONLY events_ ALTER COLUMN row_in_use SET DEFAULT false;
 
 
 --
--- TOC entry 2371 (class 2604 OID 19418)
+-- TOC entry 2320 (class 2604 OID 19934)
 -- Name: pkid; Type: DEFAULT; Schema: public; Owner: serveradmin
 --
 
@@ -2837,7 +2493,7 @@ ALTER TABLE ONLY inventory ALTER COLUMN pkid SET DEFAULT uuid_generate_v4();
 
 
 --
--- TOC entry 2372 (class 2604 OID 19419)
+-- TOC entry 2321 (class 2604 OID 19935)
 -- Name: row_created; Type: DEFAULT; Schema: public; Owner: serveradmin
 --
 
@@ -2845,7 +2501,7 @@ ALTER TABLE ONLY inventory ALTER COLUMN row_created SET DEFAULT timezone('utc'::
 
 
 --
--- TOC entry 2373 (class 2604 OID 19420)
+-- TOC entry 2322 (class 2604 OID 19936)
 -- Name: row_modified; Type: DEFAULT; Schema: public; Owner: serveradmin
 --
 
@@ -2853,7 +2509,7 @@ ALTER TABLE ONLY inventory ALTER COLUMN row_modified SET DEFAULT timezone('utc':
 
 
 --
--- TOC entry 2374 (class 2604 OID 19421)
+-- TOC entry 2323 (class 2604 OID 19937)
 -- Name: row_username; Type: DEFAULT; Schema: public; Owner: serveradmin
 --
 
@@ -2861,7 +2517,7 @@ ALTER TABLE ONLY inventory ALTER COLUMN row_username SET DEFAULT "current_user"(
 
 
 --
--- TOC entry 2375 (class 2604 OID 19422)
+-- TOC entry 2324 (class 2604 OID 19938)
 -- Name: row_in_use; Type: DEFAULT; Schema: public; Owner: serveradmin
 --
 
@@ -2869,7 +2525,7 @@ ALTER TABLE ONLY inventory ALTER COLUMN row_in_use SET DEFAULT false;
 
 
 --
--- TOC entry 2376 (class 2604 OID 19423)
+-- TOC entry 2325 (class 2604 OID 19939)
 -- Name: quantity_; Type: DEFAULT; Schema: public; Owner: serveradmin
 --
 
@@ -2877,7 +2533,7 @@ ALTER TABLE ONLY inventory ALTER COLUMN quantity_ SET DEFAULT 0;
 
 
 --
--- TOC entry 2364 (class 2604 OID 19424)
+-- TOC entry 2313 (class 2604 OID 19940)
 -- Name: pkid; Type: DEFAULT; Schema: public; Owner: serveradmin
 --
 
@@ -2885,7 +2541,7 @@ ALTER TABLE ONLY itemdescriptors ALTER COLUMN pkid SET DEFAULT uuid_generate_v4(
 
 
 --
--- TOC entry 2365 (class 2604 OID 19425)
+-- TOC entry 2314 (class 2604 OID 19941)
 -- Name: row_created; Type: DEFAULT; Schema: public; Owner: serveradmin
 --
 
@@ -2893,7 +2549,7 @@ ALTER TABLE ONLY itemdescriptors ALTER COLUMN row_created SET DEFAULT timezone('
 
 
 --
--- TOC entry 2366 (class 2604 OID 19426)
+-- TOC entry 2315 (class 2604 OID 19942)
 -- Name: row_modified; Type: DEFAULT; Schema: public; Owner: serveradmin
 --
 
@@ -2901,7 +2557,7 @@ ALTER TABLE ONLY itemdescriptors ALTER COLUMN row_modified SET DEFAULT timezone(
 
 
 --
--- TOC entry 2367 (class 2604 OID 19427)
+-- TOC entry 2316 (class 2604 OID 19943)
 -- Name: row_username; Type: DEFAULT; Schema: public; Owner: serveradmin
 --
 
@@ -2909,7 +2565,7 @@ ALTER TABLE ONLY itemdescriptors ALTER COLUMN row_username SET DEFAULT "current_
 
 
 --
--- TOC entry 2368 (class 2604 OID 19428)
+-- TOC entry 2317 (class 2604 OID 19944)
 -- Name: row_in_use; Type: DEFAULT; Schema: public; Owner: serveradmin
 --
 
@@ -2917,7 +2573,7 @@ ALTER TABLE ONLY itemdescriptors ALTER COLUMN row_in_use SET DEFAULT false;
 
 
 --
--- TOC entry 2446 (class 2604 OID 19429)
+-- TOC entry 2368 (class 2604 OID 19945)
 -- Name: pkid; Type: DEFAULT; Schema: public; Owner: serveradmin
 --
 
@@ -2925,7 +2581,7 @@ ALTER TABLE ONLY lineitems ALTER COLUMN pkid SET DEFAULT uuid_generate_v4();
 
 
 --
--- TOC entry 2453 (class 2604 OID 19430)
+-- TOC entry 2369 (class 2604 OID 19946)
 -- Name: row_created; Type: DEFAULT; Schema: public; Owner: serveradmin
 --
 
@@ -2933,7 +2589,7 @@ ALTER TABLE ONLY lineitems ALTER COLUMN row_created SET DEFAULT timezone('utc'::
 
 
 --
--- TOC entry 2454 (class 2604 OID 19431)
+-- TOC entry 2370 (class 2604 OID 19947)
 -- Name: row_modified; Type: DEFAULT; Schema: public; Owner: serveradmin
 --
 
@@ -2941,7 +2597,7 @@ ALTER TABLE ONLY lineitems ALTER COLUMN row_modified SET DEFAULT timezone('utc':
 
 
 --
--- TOC entry 2455 (class 2604 OID 19432)
+-- TOC entry 2371 (class 2604 OID 19948)
 -- Name: row_username; Type: DEFAULT; Schema: public; Owner: serveradmin
 --
 
@@ -2949,7 +2605,7 @@ ALTER TABLE ONLY lineitems ALTER COLUMN row_username SET DEFAULT "current_user"(
 
 
 --
--- TOC entry 2456 (class 2604 OID 19433)
+-- TOC entry 2372 (class 2604 OID 19949)
 -- Name: row_in_use; Type: DEFAULT; Schema: public; Owner: serveradmin
 --
 
@@ -2957,7 +2613,7 @@ ALTER TABLE ONLY lineitems ALTER COLUMN row_in_use SET DEFAULT false;
 
 
 --
--- TOC entry 2457 (class 2604 OID 19434)
+-- TOC entry 2373 (class 2604 OID 19950)
 -- Name: price; Type: DEFAULT; Schema: public; Owner: serveradmin
 --
 
@@ -2965,7 +2621,7 @@ ALTER TABLE ONLY lineitems ALTER COLUMN price SET DEFAULT 0;
 
 
 --
--- TOC entry 2458 (class 2604 OID 19435)
+-- TOC entry 2374 (class 2604 OID 19951)
 -- Name: quantity_; Type: DEFAULT; Schema: public; Owner: serveradmin
 --
 
@@ -2973,7 +2629,7 @@ ALTER TABLE ONLY lineitems ALTER COLUMN quantity_ SET DEFAULT 1;
 
 
 --
--- TOC entry 2461 (class 2604 OID 19436)
+-- TOC entry 2377 (class 2604 OID 19952)
 -- Name: pkid; Type: DEFAULT; Schema: public; Owner: serveradmin
 --
 
@@ -2981,7 +2637,7 @@ ALTER TABLE ONLY payments_ ALTER COLUMN pkid SET DEFAULT uuid_generate_v4();
 
 
 --
--- TOC entry 2462 (class 2604 OID 19437)
+-- TOC entry 2378 (class 2604 OID 19953)
 -- Name: row_created; Type: DEFAULT; Schema: public; Owner: serveradmin
 --
 
@@ -2989,7 +2645,7 @@ ALTER TABLE ONLY payments_ ALTER COLUMN row_created SET DEFAULT timezone('utc'::
 
 
 --
--- TOC entry 2463 (class 2604 OID 19438)
+-- TOC entry 2379 (class 2604 OID 19954)
 -- Name: row_modified; Type: DEFAULT; Schema: public; Owner: serveradmin
 --
 
@@ -2997,7 +2653,7 @@ ALTER TABLE ONLY payments_ ALTER COLUMN row_modified SET DEFAULT timezone('utc':
 
 
 --
--- TOC entry 2464 (class 2604 OID 19439)
+-- TOC entry 2380 (class 2604 OID 19955)
 -- Name: row_username; Type: DEFAULT; Schema: public; Owner: serveradmin
 --
 
@@ -3005,7 +2661,7 @@ ALTER TABLE ONLY payments_ ALTER COLUMN row_username SET DEFAULT "current_user"(
 
 
 --
--- TOC entry 2465 (class 2604 OID 19440)
+-- TOC entry 2381 (class 2604 OID 19956)
 -- Name: row_in_use; Type: DEFAULT; Schema: public; Owner: serveradmin
 --
 
@@ -3013,7 +2669,7 @@ ALTER TABLE ONLY payments_ ALTER COLUMN row_in_use SET DEFAULT false;
 
 
 --
--- TOC entry 2467 (class 2604 OID 19441)
+-- TOC entry 2382 (class 2604 OID 19957)
 -- Name: pkid; Type: DEFAULT; Schema: public; Owner: serveradmin
 --
 
@@ -3021,7 +2677,7 @@ ALTER TABLE ONLY venues ALTER COLUMN pkid SET DEFAULT uuid_generate_v4();
 
 
 --
--- TOC entry 2468 (class 2604 OID 19442)
+-- TOC entry 2383 (class 2604 OID 19958)
 -- Name: row_created; Type: DEFAULT; Schema: public; Owner: serveradmin
 --
 
@@ -3029,7 +2685,7 @@ ALTER TABLE ONLY venues ALTER COLUMN row_created SET DEFAULT timezone('utc'::tex
 
 
 --
--- TOC entry 2469 (class 2604 OID 19443)
+-- TOC entry 2384 (class 2604 OID 19959)
 -- Name: row_modified; Type: DEFAULT; Schema: public; Owner: serveradmin
 --
 
@@ -3037,7 +2693,7 @@ ALTER TABLE ONLY venues ALTER COLUMN row_modified SET DEFAULT timezone('utc'::te
 
 
 --
--- TOC entry 2470 (class 2604 OID 19444)
+-- TOC entry 2385 (class 2604 OID 19960)
 -- Name: row_username; Type: DEFAULT; Schema: public; Owner: serveradmin
 --
 
@@ -3045,7 +2701,7 @@ ALTER TABLE ONLY venues ALTER COLUMN row_username SET DEFAULT "current_user"();
 
 
 --
--- TOC entry 2471 (class 2604 OID 19445)
+-- TOC entry 2386 (class 2604 OID 19961)
 -- Name: row_in_use; Type: DEFAULT; Schema: public; Owner: serveradmin
 --
 
@@ -3055,7 +2711,7 @@ ALTER TABLE ONLY venues ALTER COLUMN row_in_use SET DEFAULT false;
 SET search_path = users, pg_catalog;
 
 --
--- TOC entry 2474 (class 2604 OID 19446)
+-- TOC entry 2394 (class 2604 OID 19962)
 -- Name: pkid; Type: DEFAULT; Schema: users; Owner: serveradmin
 --
 
@@ -3063,7 +2719,7 @@ ALTER TABLE ONLY activity ALTER COLUMN pkid SET DEFAULT public.uuid_generate_v4(
 
 
 --
--- TOC entry 2475 (class 2604 OID 19447)
+-- TOC entry 2395 (class 2604 OID 19963)
 -- Name: row_created; Type: DEFAULT; Schema: users; Owner: serveradmin
 --
 
@@ -3071,7 +2727,7 @@ ALTER TABLE ONLY activity ALTER COLUMN row_created SET DEFAULT timezone('utc'::t
 
 
 --
--- TOC entry 2476 (class 2604 OID 19448)
+-- TOC entry 2396 (class 2604 OID 19964)
 -- Name: row_modified; Type: DEFAULT; Schema: users; Owner: serveradmin
 --
 
@@ -3079,7 +2735,7 @@ ALTER TABLE ONLY activity ALTER COLUMN row_modified SET DEFAULT timezone('utc'::
 
 
 --
--- TOC entry 2477 (class 2604 OID 19449)
+-- TOC entry 2397 (class 2604 OID 19965)
 -- Name: row_username; Type: DEFAULT; Schema: users; Owner: serveradmin
 --
 
@@ -3087,7 +2743,7 @@ ALTER TABLE ONLY activity ALTER COLUMN row_username SET DEFAULT "current_user"()
 
 
 --
--- TOC entry 2478 (class 2604 OID 19450)
+-- TOC entry 2398 (class 2604 OID 19966)
 -- Name: row_in_use; Type: DEFAULT; Schema: users; Owner: serveradmin
 --
 
@@ -3095,7 +2751,7 @@ ALTER TABLE ONLY activity ALTER COLUMN row_in_use SET DEFAULT false;
 
 
 --
--- TOC entry 2484 (class 2604 OID 19451)
+-- TOC entry 2404 (class 2604 OID 19967)
 -- Name: pkID; Type: DEFAULT; Schema: users; Owner: serveradmin
 --
 
@@ -3103,7 +2759,7 @@ ALTER TABLE ONLY con1 ALTER COLUMN "pkID" SET DEFAULT public.uuid_generate_v4();
 
 
 --
--- TOC entry 2485 (class 2604 OID 19452)
+-- TOC entry 2405 (class 2604 OID 19968)
 -- Name: row_created; Type: DEFAULT; Schema: users; Owner: serveradmin
 --
 
@@ -3111,7 +2767,7 @@ ALTER TABLE ONLY con1 ALTER COLUMN row_created SET DEFAULT timezone('utc'::text,
 
 
 --
--- TOC entry 2486 (class 2604 OID 19453)
+-- TOC entry 2406 (class 2604 OID 19969)
 -- Name: row_modified; Type: DEFAULT; Schema: users; Owner: serveradmin
 --
 
@@ -3119,7 +2775,7 @@ ALTER TABLE ONLY con1 ALTER COLUMN row_modified SET DEFAULT timezone('utc'::text
 
 
 --
--- TOC entry 2487 (class 2604 OID 19454)
+-- TOC entry 2407 (class 2604 OID 19970)
 -- Name: row_username; Type: DEFAULT; Schema: users; Owner: serveradmin
 --
 
@@ -3127,7 +2783,7 @@ ALTER TABLE ONLY con1 ALTER COLUMN row_username SET DEFAULT "current_user"();
 
 
 --
--- TOC entry 2488 (class 2604 OID 19455)
+-- TOC entry 2408 (class 2604 OID 19971)
 -- Name: row_in_use; Type: DEFAULT; Schema: users; Owner: serveradmin
 --
 
@@ -3135,7 +2791,7 @@ ALTER TABLE ONLY con1 ALTER COLUMN row_in_use SET DEFAULT false;
 
 
 --
--- TOC entry 2489 (class 2604 OID 19456)
+-- TOC entry 2409 (class 2604 OID 19972)
 -- Name: pkID; Type: DEFAULT; Schema: users; Owner: serveradmin
 --
 
@@ -3143,7 +2799,7 @@ ALTER TABLE ONLY con2 ALTER COLUMN "pkID" SET DEFAULT public.uuid_generate_v4();
 
 
 --
--- TOC entry 2490 (class 2604 OID 19457)
+-- TOC entry 2410 (class 2604 OID 19973)
 -- Name: row_created; Type: DEFAULT; Schema: users; Owner: serveradmin
 --
 
@@ -3151,7 +2807,7 @@ ALTER TABLE ONLY con2 ALTER COLUMN row_created SET DEFAULT timezone('utc'::text,
 
 
 --
--- TOC entry 2491 (class 2604 OID 19458)
+-- TOC entry 2411 (class 2604 OID 19974)
 -- Name: row_modified; Type: DEFAULT; Schema: users; Owner: serveradmin
 --
 
@@ -3159,7 +2815,7 @@ ALTER TABLE ONLY con2 ALTER COLUMN row_modified SET DEFAULT timezone('utc'::text
 
 
 --
--- TOC entry 2492 (class 2604 OID 19459)
+-- TOC entry 2412 (class 2604 OID 19975)
 -- Name: row_username; Type: DEFAULT; Schema: users; Owner: serveradmin
 --
 
@@ -3167,15 +2823,1282 @@ ALTER TABLE ONLY con2 ALTER COLUMN row_username SET DEFAULT "current_user"();
 
 
 --
--- TOC entry 2493 (class 2604 OID 19460)
+-- TOC entry 2413 (class 2604 OID 19976)
 -- Name: row_in_use; Type: DEFAULT; Schema: users; Owner: serveradmin
 --
 
 ALTER TABLE ONLY con2 ALTER COLUMN row_in_use SET DEFAULT false;
 
 
+SET search_path = public, pg_catalog;
+
 --
--- TOC entry 2719 (class 0 OID 0)
+-- TOC entry 2594 (class 0 OID 19521)
+-- Dependencies: 177
+-- Data for Name: ContactDetails; Type: TABLE DATA; Schema: public; Owner: serveradmin
+--
+
+COPY "ContactDetails" (pkid, row_created, row_modified, row_username, row_in_use, email, phonecountry, phoneareacode, phonemain, addressline1, addressline2, addresscity, addressstate, addresszip, addresscountry, fkconven, company, "primary") FROM stdin;
+\.
+
+
+--
+-- TOC entry 2646 (class 0 OID 0)
+-- Dependencies: 179
+-- Name: EIPL_EIPL_nmbr_seq; Type: SEQUENCE SET; Schema: public; Owner: serveradmin
+--
+
+SELECT pg_catalog.setval('"EIPL_EIPL_nmbr_seq"', 4716, true);
+
+
+--
+-- TOC entry 2599 (class 0 OID 19682)
+-- Dependencies: 182
+-- Data for Name: contact_venue_data; Type: TABLE DATA; Schema: public; Owner: serveradmin
+--
+
+COPY contact_venue_data (pkid, row_created, row_modified, row_username, row_in_use, fkcontacts, fkvenues, fkevents_, fkeipl, primary_) FROM stdin;
+7ff14b3d-b304-47bc-a177-89fcd3dce16f	2016-06-21 20:53:07.59365-05	2016-06-21 20:53:07.59365-05	ben assef	f	57CA3CB3-33E3-4845-AC84-A2937790B67B	\N	6ba34b35-51d9-456a-9ac1-d3bf8186d837	\N	t
+cddf4cbd-00c5-4e30-ae23-9d7259749da2	2016-06-21 20:53:19.44105-05	2016-06-21 20:53:19.44105-05	ben assef	f	\N	4F026501-6DF2-4464-A9EB-C58C59B5342D	6ba34b35-51d9-456a-9ac1-d3bf8186d837	\N	t
+c3dd77ae-796e-4515-8129-937ed0d4d751	2016-06-21 20:53:26.136839-05	2016-06-21 20:53:26.136839-05	ben assef	f	\N	4F026501-6DF2-4464-A9EB-C58C59B5342D	\N	e68165e8-73cd-498f-a778-1d9126122e16	t
+3f79fc82-e8b3-420a-9c65-7408df8bdb7b	2016-06-21 20:53:26.136839-05	2016-06-21 20:53:26.136839-05	ben assef	f	57CA3CB3-33E3-4845-AC84-A2937790B67B	\N	\N	e68165e8-73cd-498f-a778-1d9126122e16	t
+c56bae55-df72-49eb-a38a-a48934487735	2016-06-21 21:00:16.149115-05	2016-06-21 21:00:16.149115-05	ben assef	f	57CA3CB3-33E3-4845-AC84-A2937790B67B	\N	\N	367b737a-7d2f-4066-af6e-b6410faf5952	t
+e8dbc565-9496-4cc9-bf62-c50009af6d03	2016-06-21 21:00:16.149115-05	2016-06-21 21:00:16.149115-05	ben assef	f	\N	4F026501-6DF2-4464-A9EB-C58C59B5342D	\N	367b737a-7d2f-4066-af6e-b6410faf5952	t
+\.
+
+
+--
+-- TOC entry 2600 (class 0 OID 19694)
+-- Dependencies: 183
+-- Data for Name: contacts; Type: TABLE DATA; Schema: public; Owner: serveradmin
+--
+
+COPY contacts (pkid, row_created, row_modified, row_username, row_in_use, email, phonecountry, phoneareacode, phonemain, addressline1, addressline2, addresscity, addressstate, addresszip, addresscountry, fkconven, company, "primary", namefirst, namelast, jobtitle) FROM stdin;
+71BD2C86-583C-413A-81AE-0D5B824E19D6	2015-07-01 08:45:37-05	2015-07-01 08:45:54-05	ben assef	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	Suckerpunch	Sally	\N
+974D39B5-7481-483F-9A93-2864A556A81F	2015-06-24 10:52:51-05	2015-06-24 10:53:20-05	ben assef	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	SEMYO	\N	Katie	Livingood	\N
+71CDC511-0DF9-494B-B0B7-A022F64982B4	2016-06-08 18:44:47.417181-05	2015-03-24 00:54:24-05	ben assef	f	mbrogan555@hotmail.com	\N	\N	507-421-2563	\N	\N	\N	\N	\N	\N	\N	\N	\N	Marc 	Brogan	\N
+17995CE7-BD93-624F-9D33-5EC998112769	2016-06-08 18:44:47.3632-05	2015-03-24 00:54:24-05	serveradmin	f	parker.f@midwestmusicfest.org	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	Midwest Music Fest	\N	Parker	Forsell	\N
+DAF372AE-75E6-554F-BDD0-F17E76473B13	2016-06-08 18:44:47.387167-05	2015-03-24 00:54:24-05	ben assef	f	ponloeu.chim@imaa.net	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	IMAA	\N	Ponloeu	Chim	\N
+A52775C4-3E83-4D0C-BEA6-037D060D9337	2015-05-19 21:32:40-05	2015-05-19 21:35:11-05	ben assef	f	ehamernik@bgclubroch.org	\N	\N	507-226-0104	1026 East Center St	\N	Rochester	MN	55904	\N	\N	Boys & Girls Club	\N	Ellen	Hamernik	\N
+8E2E423F-E97B-468A-8237-0BD5D5A3D310	2015-05-05 23:01:56-05	2015-05-05 23:02:54-05	ben assef	f	ekrapf85@gmail.com	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	SOAP	\N	Erich	Krapf	\N
+B8C3A02F-BE56-1B41-BF9D-0FC3EB8B0A24	2016-06-08 18:44:47.422238-05	2015-03-24 00:54:24-05	iPhone	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	Chop Liver	\N	Mark	Opdahl 	\N
+AD100406-9845-FB42-9D18-FFA58463FF2E	2016-06-08 18:44:47.392349-05	2015-03-24 00:54:24-05	Sean O'Connell	f	\N	\N	\N	\N	\N	\N	\N	MN	\N	\N	\N	\N	\N	Kevin	Dobbe	\N
+3D36B540-FD4F-D04D-873F-8BEEFF5BDDC4	2016-06-08 18:44:47.374341-05	2015-03-24 00:54:24-05	serveradmin	f	rlais@rochestermnchamber.com	\N	\N	507-424-5678	220 South Broadway, Suite 100	\N	Rochester	MN	55904	\N	\N	Rochester Chamber of Comerce	\N	Ryan	Lais	\N
+BE473059-EE64-4A23-93BE-20662FCA9BF1	2015-05-11 12:39:13-05	2015-05-11 12:39:27-05	ben assef	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	Craig	Baumann	\N
+61CB113C-C9B7-4A51-A4C9-836BE7451AE8	2015-06-17 00:01:56-05	2015-06-17 00:02:34-05	ben assef	f	\N	\N	\N	608-392-7749 	\N	\N	\N	\N	\N	\N	\N	\N	\N	Heidi	Odegaard	\N
+5FBD9C34-C1EE-4A39-BF01-B6DEC6520F37	2015-06-15 14:03:05-05	2015-06-15 14:04:34-05	ben assef	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	Country Jam USA	\N	Jim	Bischel	\N
+693DA165-FB21-7443-8449-FADD0289E216	2016-06-08 18:44:47.396903-05	2015-03-24 00:54:24-05	ben assef	f	cmlochmondy@gmail.com	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	Claire 	Lochmondy	\N
+4BB57CF3-6BAC-6A45-AFAE-DD036FBB5CCD	2016-06-08 18:44:47.38195-05	2015-03-24 00:54:24-05	ben assef	f	mjamel@aol.com	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	Mantorville Stagecoach Days	\N	Melisa	Ferris	\N
+1028C328-6547-8246-8EF0-8F53FB18DE61	2016-06-08 18:44:47.426822-05	2015-06-03 22:51:24-05	ben assef	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	C4	\N	Jim	Fricker II	\N
+E1616C9E-B6F2-44D5-9DAA-0AAF5AFB81BC	2015-05-29 09:05:18-05	2015-05-29 09:06:15-05	ben assef	f	kmpales@yahoo.com	\N	\N	320-282-6072	\N	\N	\N	\N	\N	\N	\N	\N	\N	Kathryn	Palen	\N
+F3C34A29-F687-4078-ADA0-5C0D28AB723C	2015-05-06 01:19:29-05	2015-05-06 23:26:05-05	ben assef	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	Blue Ox Festival	\N	Kevin	Kniebel	\N
+A06542E4-62FD-A042-9D83-604D1C2FB3DF	2016-06-08 18:44:47.401525-05	2015-03-24 00:54:24-05	ben assef	f	jblair@dayblockbrewing.com 	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	Day Block Brewing	\N	Jared	Blair	\N
+73BFBA5B-3768-43B8-9F1D-EC7782C4792B	2015-03-31 16:26:55-05	2015-03-31 16:34:39-05	ben assef	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	Melanie	Messmann	\N
+F13DD243-5CA0-4569-9545-7D23FEB3FBA0	2015-05-13 12:54:53-05	2015-05-13 12:55:20-05	ben assef	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	Majestic Tents	\N	Steve 	Birdseye	\N
+F6DB6DF3-29AA-4147-A725-F134E9A32CBC	2016-06-08 18:44:47.406809-05	2015-03-24 00:54:24-05	ben assef	f	aprilhornepmp@hotmail.com	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	April	Horne	\N
+D9936C92-E5E7-4E40-BBC8-960F78E73B55	2015-05-19 23:04:51-05	2015-05-19 23:05:52-05	ben assef	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	Mac's	\N	Sunny 	Prabhakar	\N
+B7A46271-302D-7846-92A3-F5236E611837	2015-05-06 18:39:54-05	2015-05-19 22:55:02-05	Sean O'Connell	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	The Commission 	\N	Sunny	Prabhakar	\N
+A6C1C7F0-ADDF-4E55-9FB8-922D06443830	2015-05-03 18:31:29-05	2015-05-03 18:33:14-05	ben assef	f	carole.brown@rochesterfest.com	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	Rochesterfest	\N	Carole	Brown	\N
+C936764E-1CDC-2B4A-8835-E039C92F9612	2016-06-08 18:44:47.411313-05	2015-03-24 00:54:24-05	ben assef	f	tyson@tandjhospitality.com	\N	\N	608-343-1805	\N	\N	\N	\N	\N	\N	\N	T and J Hospitality	\N	Tyson 	Koput	\N
+F33E1E08-065B-456E-AF10-3D5333F18FFB	2015-08-14 13:06:16-05	2015-08-14 13:06:40-05	Ben Assef	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	Coyote Creek	\N	Craig	Reichel	\N
+D674A5CF-2931-4852-BA94-189DFAA99A84	2015-05-19 20:02:08-05	2015-05-19 20:03:28-05	ben assef	f	mjgpro2@gmail.com	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	MJG Productions	\N	Mark 	Grundhoefer	\N
+EC1914AA-EE4C-2241-B17B-0F1D77EF1F21	2015-05-06 18:52:08-05	2015-05-06 18:52:16-05	Sean O'Connell	f	\N	\N	\N	\N	\N	\N	\N	MN	\N	\N	\N	\N	\N	Test	Contact	\N
+1C6A5667-40DA-4AE0-A77D-55D9050DC0FD	2015-05-04 12:49:13-05	2015-05-04 12:49:48-05	ben assef	f	amyl@rochestersymphony.org	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	RSOC	\N	Amy	Lindstrom	\N
+2DD498A3-5B1A-4568-A2EC-666747158996	2015-07-10 12:00:16-05	2015-07-10 12:00:47-05	ben assef	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	Creative Side Events	\N	Christina	Welke	\N
+67D9BD35-2E3A-43D8-8EA9-6E6987EA9A53	2015-07-08 14:58:28-05	2015-07-08 14:58:46-05	ben assef	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	Rochester Area Foundation	\N	Max	Evans	\N
+45D88FEF-664D-451F-8656-8B9DD784FC05	2015-07-01 08:06:51-05	2015-07-01 08:07:17-05	ben assef	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	Rochester Arts Council	\N	Bari	Amadio	\N
+96E9F9DD-7640-413F-83EA-A157135F9BE6	2015-05-21 00:08:41-05	2015-07-06 13:46:19-05	ben assef	f	hello@fabeventdesign.com	\N	\N	612.850.1552	\N	\N	\N	\N	\N	\N	\N	Fab Event Design	\N	Kristen	Fischer	\N
+1D603D12-0CCE-0A41-8E9C-D455CA1152B2	2015-05-10 16:44:15-05	2015-05-10 16:44:21-05	Sean O'Connell	f	\N	\N	\N	\N	\N	\N	\N	MN	\N	\N	\N	\N	\N	test	yup	\N
+F539E914-82EE-40BC-BBF3-1163F2223474	2015-06-17 00:35:01-05	2015-06-17 00:35:42-05	ben assef	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	Suite	\N	Erich 	Lechelt	\N
+465D63C4-A818-450E-AFEF-7D7FB472FB77	2015-06-16 23:28:12-05	2015-06-16 23:29:12-05	ben assef	f	tr@mayociviccenter.com	\N	\N	(507) 328-2125	\N	\N	\N	\N	\N	\N	\N	Mayo Civic Center	\N	T.R.	Wheeler	\N
+4A4C2D11-2AFE-47D5-8343-DBB8D194B14F	2015-06-09 13:10:46-05	2015-06-09 13:11:24-05	ben assef	f	\N	\N	\N	\N	615 6th Ave NW	\N	Rochester	MN	55901	\N	\N	MDC	\N	Brianna	Truax	\N
+D250F4AA-4336-4AE6-8BFF-09BDE9324E34	2015-05-29 11:45:50-05	2015-05-29 11:48:19-05	ben assef	f	prtieskoetter@bremer.com	\N	\N	507-252-2823	45 28th st SE	\N	Rochester	MN	55904	\N	\N	Bremer Bank	\N	Paul 	Tieskoetter	\N
+2ECFE080-F033-4D0C-89E0-1CE36FE02E6D	2015-08-03 22:32:28-05	2015-08-03 22:34:03-05	Ben Assef	f	caitlin.stephenson@townsquaremedia.com	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	Townsquare Media	\N	Caitlin	Stephenson	\N
+1BE0AF2D-DBE7-49FA-BD21-F680CF3782E4	2015-07-01 09:40:04-05	2015-07-01 09:40:41-05	ben assef	f	jbowman@rdowntownalliance.com	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	RDA	\N	Jenna	Bowman	\N
+2E02DF94-A175-4D37-9C0D-2C9860D30BCB	2015-08-18 09:14:50-05	2015-08-18 09:15:59-05	Ben Assef	f	tim@sbmg.com	\N	\N	704-241-6141	\N	\N	\N	\N	\N	\N	\N	Scott Brown Media Group	\N	Tim	Kolesar	\N
+AEF337D7-EF8D-497B-AC26-6C6AF6FC55FB	2015-08-14 14:47:22-05	2015-08-14 14:47:44-05	Ben Assef	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	Smartride Eco Taxi	\N	Miguel	Valdez	\N
+CCC7AF3B-E70F-4F88-B970-C9777EC0A856	2015-08-12 08:45:23-05	2015-08-12 08:46:27-05	Ben Assef	f	tami@pearlstreetbrewery.com	\N	\N	608-385-2505	\N	\N	\N	\N	\N	\N	\N	Pearl Street Brewery	\N	Tami	\N	\N
+08D6D808-769E-4B27-B16E-3353497E0145	2015-08-16 19:29:53-05	2015-08-16 19:30:27-05	Ben Assef	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	Riverside Concerts	\N	Steve 	Schmidt	\N
+03DC8ABA-C5AC-4EC5-8C79-7410689E7D3B	2015-08-19 14:17:48-05	2015-08-19 14:19:04-05	Ben Assef	f	jpleich@deschutesbrewery.com	\N	\N	541 410-1486	\N	\N	\N	\N	\N	\N	\N	Deschutes Brewery	\N	Joey	Pleich	\N
+B8591E3A-D35D-4BE2-969E-2DDDE91430ED	2015-08-20 14:45:10-05	2015-08-20 14:45:16-05	Ben Assef	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	C4	\N	\N
+7C080FF2-6896-4DE4-8DB2-9DE435BA1D4A	2015-08-24 12:30:16-05	2015-08-24 12:30:24-05	Ben Assef	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	Seamus	\N	\N
+C085432C-8614-4B2D-AFCF-E14228DAF23F	2015-08-31 07:40:13-05	2015-08-31 07:42:36-05	Ben Assef	f	bstiles.nogosek@rochestermnchamber.com	\N	\N	507-424-5662	\N	\N	\N	\N	\N	\N	\N	Rochester Area Chamber Of Commerce	\N	Becca 	Stiles-Nogosek	\N
+371D3BCC-6793-4727-A07D-878CC31A1724	2015-09-02 08:15:55-05	2015-09-02 08:16:17-05	Ben Assef	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	RTO Productions	\N	Tom 	Fassbender	\N
+44F2E4A8-0BA1-483B-8697-51985E940CD0	2016-03-02 16:38:13-06	2016-03-02 16:38:26-06	Ben Assef	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	Kamau	Wilkins	\N
+FF18AE39-C7D1-4EA2-9761-69665DBA5DBF	2016-03-15 23:36:41-05	2016-03-15 23:37:43-05	Ben Assef	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	Mark	Gehring	\N
+162853D2-8EBD-4E61-83C5-BCD51BACCC93	2016-01-19 13:05:59-06	2016-01-20 10:46:30-06	Ben Assef	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	Berne Wood-Fired Pizza	\N	Angela	Organ	\N
+1D561912-0422-4321-9AAF-1D473AC99412	2015-12-17 09:20:48-06	2015-12-17 09:22:06-06	Ben Assef	f	paul.griffith@novarestaurantgroup.com	\N	\N	507-923-5092	\N	\N	Rochester	MN	\N	\N	\N	Nova Restaurant Group	\N	Paul	Griffith	\N
+B994B733-F13E-4E82-A7D1-FC5289FDD54A	2015-09-08 21:55:30-05	2015-09-08 21:55:49-05	Ben Assef	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	The Best Ride	\N	Laura	Elwood	\N
+A23F2CE8-E369-4333-9ABF-A4177B1C57A6	2015-11-16 16:08:24-06	2015-11-16 16:09:12-06	Ben Assef	f	\N	\N	\N	(507)213-1284	\N	\N	\N	\N	\N	\N	\N	\N	\N	Kyle	Johnson	\N
+BFA542A1-8220-4F99-A212-8A2503E3BF74	2016-02-22 16:34:22-06	2016-02-22 16:35:08-06	Ben Assef	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	La Vetta	\N	Steve 	Watson	\N
+974825E2-08AE-4F88-975A-0BFBC89EBB71	2016-03-09 10:26:23-06	2016-03-09 10:27:14-06	Ben Assef	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	Think Mutual Bank	\N	Carol	Thouin	\N
+8507F1CB-9008-47A2-89A7-DC4E2638F166	2015-09-23 21:40:50-05	2015-09-23 21:41:27-05	Ben Assef	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	Rochester Downtown Alliance	\N	Laura 	Engelman	\N
+D02F73A5-5983-49D5-BDA8-2848E7430B89	2015-11-24 22:27:21-06	2015-11-24 22:27:53-06	Ben Assef	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	Govindarajan	Rajagopalan	\N
+48D520DC-D352-46CE-BA40-56DB30D8292A	2015-12-22 14:21:47-06	2015-12-22 14:22:04-06	Ben Assef	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	Jamie	Groth	\N
+86C852BD-988A-43FB-9FAE-31B8CD743440	2016-01-25 15:52:40-06	2016-01-25 15:52:54-06	Ben Assef	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	St. John's School	\N	\N
+C3F62BE6-3D7B-4DF6-AB2A-4895A2DBF1D8	2015-09-30 17:00:28-05	2015-09-30 17:00:48-05	Ben Assef	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	Zumba on the Plaza	\N	Sara	Pennington	\N
+572C3107-DB82-4416-B767-E9CE0ED7D1E8	2016-05-11 12:46:58-05	2016-05-11 12:47:38-05	Ben Assef	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	Pine Island Liquor Store	\N	Mary 	Rudlong	\N
+13BA64C2-C562-4585-B120-8AB71F26AFE7	2015-11-25 13:35:43-06	2015-11-25 13:36:23-06	Ben Assef	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	Badlands Entertainment Group	\N	Mike	Findling	\N
+282A8F9B-F067-4114-8BEA-A24F1A766571	2015-12-28 13:29:02-06	2015-12-28 13:29:10-06	Ben Assef	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	RST	\N	\N
+7FF90E4A-976A-4345-862C-8949813EFAE6	2015-10-15 10:41:17-05	2015-10-15 10:45:30-05	Ben Assef	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	Minnesota Housing Finance Agency	\N	Rachel	Franco	\N
+B656A204-9DF2-42FF-9204-9401089685D3	2016-02-28 15:35:54-06	2016-02-28 15:36:06-06	Ben Assef	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	Ford Metro	\N	\N
+B0CDC85C-A5B8-4014-AB33-D7B527E54E9A	2016-03-07 11:28:16-06	2016-03-07 11:28:27-06	Ben Assef	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	Kelley 	Bower	\N
+729C4B2C-DF3A-41E1-B870-EF70AB4AA115	2015-10-15 11:08:11-05	2015-10-15 11:08:32-05	Ben Assef	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	Chris	Koch	\N
+DD2A3291-77F0-461C-B5D9-DE631334423E	2015-12-08 23:20:41-06	2015-12-08 23:21:27-06	Ben Assef	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	Drifltess Music Garden	\N	Tim 	Lochner	\N
+81720E5F-34CA-493E-83E8-224659A76776	2016-01-27 00:13:31-06	2016-01-27 00:14:04-06	Ben Assef	f	\N	\N	\N	\N	\N	\N	Millville	MN	\N	\N	\N	\N	\N	Spring Creek	Motocross	\N
+F57295E0-AAA7-4F40-9708-30F7E08BA687	2015-12-29 23:27:18-06	2015-12-29 23:27:38-06	Ben Assef	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	Grand Rounds	\N	Tessa	Leung	\N
+69990C9B-AEEC-4EE5-AB34-08DB3981DB7C	2015-10-23 15:05:00-05	2015-10-23 15:05:42-05	Ben Assef	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	Charles	Tune	\N
+64AAF6E2-C579-4AED-821C-E0C0DB78AA0E	2016-05-27 10:45:58-05	2016-05-27 10:46:14-05	Ben Assef	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	Five West	\N	Josh	Paulsen	\N
+E0961349-7010-498A-BBED-D5CAFAFECC19	2016-03-18 14:04:38-05	2016-03-18 14:04:53-05	Ben Assef	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	Garrett	Kolb	\N
+72797325-EC95-4A90-B0BE-F9C7929B6C26	2015-12-14 15:15:37-06	2015-12-14 15:18:13-06	Ben Assef	f	rbucholtz@buckyslakeside.com	\N	\N	262-370-9030	\N	\N	\N	\N	\N	\N	\N	Bucky's Lakeside Pub	\N	Ray	Bucholtz	\N
+D286AD23-C7FA-47E1-B8DA-6C942656E650	2015-10-27 22:52:27-05	2015-10-27 22:52:56-05	Ben Assef	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	Legends	\N	Jeff	Fieseler	\N
+29E86796-FE9C-44C4-B062-5DA8A38DFAC2	2016-02-29 00:39:58-06	2016-02-29 00:40:37-06	Ben Assef	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	West Channel Music	\N	Elizabeth	Schmidt	\N
+966108EE-7AFA-4E77-AD07-CB53DF42C6FC	2016-01-07 14:50:31-06	2016-01-07 14:51:04-06	Ben Assef	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	Josh 	Kulack	\N
+02306EF9-B806-490B-968F-0746A7ABE703	2015-11-10 22:03:19-06	2015-11-10 22:03:40-06	Ben Assef	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	Infinitree Media	\N	\N
+2ACA2DEB-CECE-41D6-94B6-E4447A20EB1D	2016-02-10 10:07:51-06	2016-02-10 10:08:14-06	Ben Assef	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	Steamboat Days	\N	Dave 	Pulk	\N
+F4658C44-19AE-4652-BD48-5430BA43F663	2016-03-08 11:00:29-06	2016-03-08 11:00:39-06	Ben Assef	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	Todd	Wickre	\N
+ADAAC102-58F9-45FF-AF37-ECA3DE662E69	2016-01-13 22:17:07-06	2016-01-13 22:17:21-06	Ben Assef	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	HAL	HAMER	\N
+23AE48AD-8D18-4AB6-AE09-8657F199FBF4	2016-03-16 00:44:28-05	2016-03-16 00:45:13-05	Ben Assef	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	Fountain Trail Days	\N	Colleen	Mulvihill	\N
+D21EA473-035E-4B68-9F87-92BC63887461	2016-04-11 23:16:52-05	2016-04-11 23:17:38-05	Ben Assef	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	Lost Highway	\N	Jesse	\N	\N
+9D6656AC-14DF-4E8F-961F-F0E3A3C3FFB6	2016-04-06 01:33:42-05	2016-04-06 11:41:58-05	Ben Assef	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	Teresa	Chapman	\N
+35F72CA2-586D-4F77-8EEE-A462BB10BA8C	2016-02-10 16:03:03-06	2016-02-10 16:03:29-06	Ben Assef	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	Jennifer	Grob	\N
+6AF2F059-FACA-40F8-BA92-E99AA951FFA9	2016-03-02 16:23:30-06	2016-03-02 16:24:50-06	Ben Assef	f	\N	\N	\N	\N	\N	\N	\N	MN	\N	\N	\N	Acillatem	\N	Nick	Wanek	\N
+1B55DA5F-55FE-4965-973A-3123427DB10B	2016-03-10 22:54:15-06	2016-03-10 22:55:28-06	Ben Assef	f	TanyaD@Hbci.com	\N	\N	507-452-1294	\N	\N	Winona	MN	55987	\N	\N	Jim's Truck and Trailer	\N	Tanya	Dais	\N
+C5D2767B-2C93-4C52-9D94-BDA6C6229A6F	2016-03-09 08:39:19-06	2016-03-09 08:39:43-06	Ben Assef	f	director@rochesterfest.com	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	Brent	Ackerman	\N
+BD358AE1-6338-4890-AFED-14C48B3F8584	2016-03-25 13:37:03-05	2016-03-25 13:37:14-05	Ben Assef	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	Forager	\N	Chris	\N	\N
+4FBE07FD-F43D-43C6-81BB-40E2C1ED2B97	2016-03-16 23:17:30-05	2016-03-16 23:17:52-05	Ben Assef	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	Petty Coats Promotions	\N	Jerry	Petty	\N
+1FD9222D-B8A3-4880-BC2D-2C52236A9A13	2016-05-25 11:42:21-05	2016-05-25 11:42:42-05	Ben Assef	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	Rochester Art Center	\N	Susannah	Magers	\N
+7CE62736-4233-4B2D-A216-48FF06D221BF	2016-05-17 22:05:48-05	2016-05-17 22:06:39-05	Ben Assef	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	Mattias	Kriemelmeyer	\N
+3195D229-26E6-4810-AF0A-3B559C79E8C9	2016-04-11 00:46:48-05	2016-04-11 00:47:08-05	Ben Assef	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	Kyle	Sorenson	\N
+687BFA3F-D5CC-4804-8261-26500A9BC093	2016-04-01 17:04:04-05	2016-04-01 17:04:19-05	Ben Assef	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	Nathan	Valenti	\N
+C69F36C0-317D-4090-B4CD-C48C404D02EC	2016-05-16 10:37:49-05	2016-05-16 10:38:11-05	Ben Assef	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	Dirty Word Band	\N	Dale	Hiev	\N
+EFDF3CB1-31F4-4948-9869-E88D3BBAA816	2016-05-31 21:15:28-05	2016-05-31 21:15:57-05	Ben Assef	f	\N	\N	\N	\N	\N	\N	Mabel	MN	\N	\N	\N	Hwy 44 Bar and Grill	\N	Stacy	Woods	\N
+B9A31472-D52C-4BC7-BB40-E28F21D9E08E	2016-05-25 15:38:07-05	2016-05-25 15:39:00-05	Ben Assef	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	Seansons Hospice	\N	Carolyn	Piepho	\N
+57CA3CB3-33E3-4845-AC84-A2937790B67B	2015-06-09 00:37:22-05	2015-06-09 00:38:30-05	ben assef	f	daharveys@msn.com	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	Redeemer Lutheran Church	\N	Michael	Harvey	\N
+\.
+
+
+--
+-- TOC entry 2647 (class 0 OID 0)
+-- Dependencies: 198
+-- Name: contract_number_sequence; Type: SEQUENCE SET; Schema: public; Owner: serveradmin
+--
+
+SELECT pg_catalog.setval('contract_number_sequence', 1002, true);
+
+
+--
+-- TOC entry 2614 (class 0 OID 20071)
+-- Dependencies: 197
+-- Data for Name: contract_sections_; Type: TABLE DATA; Schema: public; Owner: serveradmin
+--
+
+COPY contract_sections_ (pkid, row_created, row_modified, row_username, row_in_use) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2613 (class 0 OID 20060)
+-- Dependencies: 196
+-- Data for Name: contracts_; Type: TABLE DATA; Schema: public; Owner: serveradmin
+--
+
+COPY contracts_ (pkid, row_created, row_modified, row_username, row_in_use, contract_number) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2601 (class 0 OID 19705)
+-- Dependencies: 184
+-- Data for Name: discounts_; Type: TABLE DATA; Schema: public; Owner: serveradmin
+--
+
+COPY discounts_ (pkid, row_created, row_modified, row_username, row_in_use, fkeipl, department_, type_, amount_, grandtotal_, subtotal_, discountperc_, discountamount_) FROM stdin;
+a68c1997-f48e-46fb-b30f-8512875c4d75	2016-06-21 21:00:16.149115-05	2016-06-21 21:00:16.149115-05	ben assef	f	367b737a-7d2f-4066-af6e-b6410faf5952	Lighting	amount	0	20500	20500	\N	\N
+f41f0379-d733-4505-9c44-723e5fea40c8	2016-06-21 16:24:53.406437-05	2016-06-21 16:24:53.406437-05	serveradmin	f	0fee01ab-2fbd-49b5-b7bc-ae5be2b7d334	Audio	amount	2600	13400	16000	10000	1000
+c7e5ad8c-6a2e-481b-97d4-0919b1124f87	2016-06-21 20:55:59.709916-05	2016-06-21 20:55:59.709916-05	ben assef	f	e68165e8-73cd-498f-a778-1d9126122e16	Labor	amount	0	67500	67500	\N	\N
+6e5ad2ad-9542-4f15-8b43-f75e39242cd3	2016-06-22 17:02:05.75064-05	2016-06-22 17:02:05.75064-05	serveradmin	f	4359F11E-CCCD-7545-ACDE-96C4C1607EFC	Audio	amount	0	7000	7000	\N	\N
+b112c151-0948-4738-b58a-7f2c095f8d9f	2016-06-21 20:53:53.528999-05	2016-06-21 20:53:53.528999-05	ben assef	f	e68165e8-73cd-498f-a778-1d9126122e16	Audio	amount	0	62000	62000	\N	\N
+3d2aa8be-0213-4107-a92b-d98593eb5fcb	2016-06-21 20:57:12.386798-05	2016-06-21 20:57:12.386798-05	ben assef	f	e68165e8-73cd-498f-a778-1d9126122e16	Lighting	amount	0	20500	20500	\N	\N
+291254ac-8c9a-41f8-8265-02e1bbb0fcbf	2016-06-22 17:15:22.015545-05	2016-06-22 17:15:22.015545-05	serveradmin	f	46039717-6b0f-453a-bb9c-4b417346d9d9	Misc.	amount	0	0	0	\N	\N
+dca16491-0cb7-42fb-b0ad-4633300424d1	2016-06-14 15:29:21.074964-05	2016-06-14 15:29:21.074964-05	serveradmin	f	48c7d3e4-aad8-44bf-b34f-960640ef0605	Cabling	amount	0	0	0	\N	\N
+418ec0a4-6b27-4cfe-aa4a-237da6f6f46e	2016-06-22 02:18:36.461837-05	2016-06-22 02:18:36.461837-05	serveradmin	f	DAEE0F91-EDDD-7948-A08F-24F7698B09BD	Audio	amount	0	2500	2500	\N	\N
+026fff37-35e5-4c2c-962b-2f52121b6f17	2016-06-14 15:26:37.384797-05	2016-06-14 15:26:37.384797-05	serveradmin	f	48c7d3e4-aad8-44bf-b34f-960640ef0605	Cases	amount	0	0	0	\N	\N
+699f8674-0e0b-4f09-a406-06af51c3724f	2016-06-21 15:52:26.962334-05	2016-06-21 15:52:26.962334-05	serveradmin	f	a5a1109e-c5c7-4764-a564-96a819f15dbc	Audio	amount	2600	13400	16000	10000	1000
+e0d01e7b-9b36-4ba6-8613-dfd5345beddc	2016-06-14 15:28:22.572231-05	2016-06-14 15:28:22.572231-05	serveradmin	f	48c7d3e4-aad8-44bf-b34f-960640ef0605	Audio	amount	0	32000	32000	\N	\N
+8097fc49-6cf5-4f1e-aad6-782b746984e7	2016-06-14 16:49:40.108917-05	2016-06-14 16:49:40.108917-05	serveradmin	f	48c7d3e4-aad8-44bf-b34f-960640ef0605	Lighting	amount	0	12500	12500	\N	\N
+700fef2b-49a5-48c3-a5f6-94c55d0f4d1d	2016-06-22 17:02:26.371151-05	2016-06-22 17:02:26.371151-05	serveradmin	f	59EBF635-AA70-CB44-9A84-7FD1BCA9A65E	Audio	amount	0	5000	5000	\N	\N
+f270b4eb-5dc6-42ab-8257-5c841518d3ab	2016-06-14 17:00:49.678878-05	2016-06-14 17:00:49.678878-05	serveradmin	f	48c7d3e4-aad8-44bf-b34f-960640ef0605	Misc.	amount	0	0	0	\N	\N
+d6a55785-af80-41a5-bf23-6fdc1e8504c7	2016-06-22 21:36:02.344089-05	2016-06-22 21:36:02.344089-05	serveradmin	f	2033FA2D-2403-40D8-A97B-57465FE6E0E8	Audio	amount	0	7500	7500	\N	\N
+4f75cd41-e18d-408a-85ce-d08004a5c303	2016-06-14 17:24:15.265925-05	2016-06-14 17:24:15.265925-05	serveradmin	f	48c7d3e4-aad8-44bf-b34f-960640ef0605	Staging	amount	0	12400	12400	\N	\N
+721328e5-2cde-486b-be2e-d774f38171f8	2016-06-22 17:02:14.575341-05	2016-06-22 17:02:14.575341-05	serveradmin	f	0F0B1C15-D816-47F4-B212-1961D90BB779	Audio	amount	0	17500	17500	\N	\N
+738f2227-9a91-443e-8a98-83bb88e8983c	2016-06-14 16:05:49.67867-05	2016-06-14 16:05:49.67867-05	serveradmin	f	48c7d3e4-aad8-44bf-b34f-960640ef0605	Rigging	amount	0	1000	1000	\N	\N
+4b2a7f14-5b5d-483e-ba1f-8ba3c4c3c1d7	2016-06-14 16:18:27.878744-05	2016-06-14 16:18:27.878744-05	serveradmin	f	48c7d3e4-aad8-44bf-b34f-960640ef0605	Power	amount	0	0	0	\N	\N
+7d241400-075c-4ac1-bb27-d98ade842ec3	2016-06-22 02:18:35.002624-05	2016-06-22 02:18:35.002624-05	serveradmin	f	B9A6E4BF-5D3E-4E9E-B3E2-BC11A2143D6C	Audio	amount	0	0	0	\N	\N
+a97efe37-243d-4b0f-a760-abf318f9a52b	2016-06-22 02:18:37.248736-05	2016-06-22 02:18:37.248736-05	serveradmin	f	86DBBE2E-6A88-434E-B816-07319F50E9FB	Audio	amount	0	10000	10000	\N	\N
+d32d8d78-7c14-4014-9dff-144d1559a558	2016-06-21 21:00:16.149115-05	2016-06-21 21:00:16.149115-05	ben assef	f	367b737a-7d2f-4066-af6e-b6410faf5952	Labor	amount	0	67500	67500	\N	\N
+2b081469-224e-412b-8911-df469774b2d4	2016-06-22 17:12:44.307506-05	2016-06-22 17:12:44.307506-05	serveradmin	f	46039717-6b0f-453a-bb9c-4b417346d9d9	Cabling	amount	0	0	0	\N	\N
+33bde297-a9e8-4136-a6a1-20e3bef6d857	2016-06-21 15:52:01.2888-05	2016-06-21 15:52:01.2888-05	serveradmin	f	2a3521cc-2c87-49e1-b5fd-1f61d6c8929c	Audio	amount	0	66000	66000	\N	\N
+82ecd39a-a3ac-4508-8bce-72a811c40ca5	2016-06-21 21:00:16.149115-05	2016-06-21 21:00:16.149115-05	ben assef	f	367b737a-7d2f-4066-af6e-b6410faf5952	Audio	amount	0	62000	62000	\N	\N
+745f2e1a-48f1-4c6a-a178-1491881bedcd	2016-06-22 02:18:34.340265-05	2016-06-22 02:18:34.340265-05	serveradmin	f	A9DC72D2-556E-B947-8487-932A5291297B	Audio	amount	0	15000	15000	\N	\N
+f5ffb1e2-8d8f-41dd-98d2-6a078accf367	2016-06-22 21:36:07.55054-05	2016-06-22 21:36:07.55054-05	serveradmin	f	4860067A-2482-6A40-BF76-5264447A07FA	Audio	amount	0	5000	5000	\N	\N
+7f5e59d3-4ec6-45ca-8349-bcea484f603d	2016-06-22 17:15:49.721267-05	2016-06-22 17:15:49.721267-05	serveradmin	f	46039717-6b0f-453a-bb9c-4b417346d9d9	Networking	amount	0	0	0	\N	\N
+780e8b68-a2db-4a8f-bae8-72fd5cc00e7c	2016-06-24 19:02:26.062915-05	2016-06-24 19:02:26.062915-05	serveradmin	f	d48e6e3a-2b56-49e4-843a-121f0bfbd23a	Audio	amount	0	135000	135000	\N	\N
+346685fe-28c5-4d30-8642-e9c282683554	2016-06-23 04:41:15.229515-05	2016-06-23 04:41:15.229515-05	serveradmin	f	46039717-6b0f-453a-bb9c-4b417346d9d9	Video	amount	0	0	0	\N	\N
+37b4691a-9ae8-44b7-911d-f7dc60deed80	2016-06-22 17:12:04.229107-05	2016-06-22 17:12:04.229107-05	serveradmin	f	46039717-6b0f-453a-bb9c-4b417346d9d9	Rigging	amount	0	2000	2000	\N	\N
+aa80ef75-5e4a-4343-969f-5b18893bb531	2016-06-22 17:02:56.926299-05	2016-06-22 17:02:56.926299-05	serveradmin	f	46039717-6b0f-453a-bb9c-4b417346d9d9	Audio	amount	0	34000	34000	\N	\N
+\.
+
+
+--
+-- TOC entry 2595 (class 0 OID 19543)
+-- Dependencies: 178
+-- Data for Name: eipl; Type: TABLE DATA; Schema: public; Owner: serveradmin
+--
+
+COPY eipl (pkid, row_created, row_modified, row_username, row_in_use, fkevents_, eipl_nmbr, fkdiscounts, duedate, type_, balance_, grandtotal_, subtotal_, discount_, lidiscountsum_, tax_, totalpaid_, discounttype_, discountperc_, discountamount_, shippingmethod_, taxtotal_, discounttotal_) FROM stdin;
+0fee01ab-2fbd-49b5-b7bc-ae5be2b7d334	2015-06-21 16:24:53.406437-05	2016-06-21 16:24:53.406437-05	serveradmin	f	89d602b3-861c-4b8d-bcb6-4b17d81bb248	4710	\N	2016-06-21	Pack List	11060	11060	13400	2340	\N	0	0	amount	10000	1000	\N	\N	0
+2a3521cc-2c87-49e1-b5fd-1f61d6c8929c	2015-06-21 15:51:56.033027-05	2016-06-21 15:51:56.033027-05	serveradmin	f	89d602b3-861c-4b8d-bcb6-4b17d81bb248	4708	\N	2016-06-21	Estimate	64500	64500	66000	1500	\N	0	0	amount	\N	1500	\N	\N	0
+367b737a-7d2f-4066-af6e-b6410faf5952	2015-06-21 21:00:16.149115-05	2016-06-21 21:00:16.149115-05	ben assef	f	6ba34b35-51d9-456a-9ac1-d3bf8186d837	4712	\N	2016-06-21	Invoice	150000	150000	150000	0	\N	0	0	amount	\N	\N	\N	\N	0
+42790d51-1bc2-4507-b92c-116cc3ba25b3	2014-06-08 21:58:55.941405-05	2016-06-08 21:58:55.941405-05	serveradmin	f	9da7cbf5-4aa4-4586-ba59-3bb68842789a	4706	\N	2016-06-08	Estimate	\N	\N	\N	0	\N	0	0	amount	\N	\N	\N	\N	0
+46039717-6b0f-453a-bb9c-4b417346d9d9	2013-06-22 17:02:53.333872-05	2016-06-22 17:02:53.333872-05	serveradmin	f	f8557b19-33ca-45f4-9fd7-d42dc1f31914	4714	\N	2016-06-22	Pack List	36000	36000	36000	0	\N	0	0	amount	\N	\N	\N	\N	0
+48c7d3e4-aad8-44bf-b34f-960640ef0605	2015-06-14 15:25:43.114692-05	2016-06-14 15:25:43.114692-05	serveradmin	f	6281c765-c091-45af-b7d6-38006586f49e	4707	\N	2016-06-14	Pack List	57900	57900	57900	0	\N	0	0	amount	\N	\N	\N	\N	0
+7f5600a3-e7c3-4898-930a-9cb805bc9e3d	2013-06-22 21:36:45.249467-05	2016-06-22 21:36:45.249467-05	serveradmin	f	89d602b3-861c-4b8d-bcb6-4b17d81bb248	4715	\N	2016-06-22	Pack List	\N	\N	\N	0	\N	0	0	amount	\N	\N	\N	0	0
+a5a1109e-c5c7-4764-a564-96a819f15dbc	2015-06-21 15:52:26.962334-05	2016-06-21 15:52:26.962334-05	serveradmin	f	89d602b3-861c-4b8d-bcb6-4b17d81bb248	4709	\N	2016-06-21	Invoice	10060	10060	13400	3340	\N	0	0	amount	10000	2000	\N	\N	0
+d48e6e3a-2b56-49e4-843a-121f0bfbd23a	2014-06-24 19:02:20.385715-05	2016-06-24 19:02:20.385715-05	serveradmin	f	6281c765-c091-45af-b7d6-38006586f49e	4716	\N	2016-06-24	Estimate	135000	135000	135000	0	\N	0	0	amount	\N	\N	\N	\N	0
+e68165e8-73cd-498f-a778-1d9126122e16	2015-06-21 20:53:26.136839-05	2016-06-21 20:53:26.136839-05	ben assef	f	6ba34b35-51d9-456a-9ac1-d3bf8186d837	4711	\N	2016-06-21	Estimate	150000	150000	150000	0	\N	0	0	amount	\N	\N	\N	\N	0
+\.
+
+
+--
+-- TOC entry 2602 (class 0 OID 19718)
+-- Dependencies: 185
+-- Data for Name: events_; Type: TABLE DATA; Schema: public; Owner: serveradmin
+--
+
+COPY events_ (pkid, row_created, row_modified, row_username, row_in_use, name, start_ts, end_ts, loadin_ts, loadout_ts, details, acountmanager_, startdate_, enddate_, loadindate_, loadoutdate_, starttime_, endtime_, loadintime_, loadouttime_) FROM stdin;
+89d602b3-861c-4b8d-bcb6-4b17d81bb248	2016-06-08 22:02:25.307084-05	2016-06-08 22:02:25.307084-05	ben assef	f	...	2016-06-08 22:02:25.307084-05	2016-06-08 22:02:25.307084-05	2016-06-08 22:02:25.307084-05	2016-06-08 22:02:25.307084-05	\N	\N	2016-06-08	2016-06-08	2016-06-08	2016-06-08	17:02:25.307084	17:02:25.307084	17:02:25.307084	17:02:25.307084
+9da7cbf5-4aa4-4586-ba59-3bb68842789a	2016-06-08 21:58:03.631273-05	2016-06-08 21:58:03.631273-05	serveradmin	f	2016_5 West Block Party	2016-06-08 21:58:03.631273-05	2016-06-08 21:58:03.631273-05	2016-06-08 21:58:03.631273-05	2016-06-08 21:58:03.631273-05	\N	\N	2016-06-08	2016-06-08	2016-06-08	2016-06-08	16:58:03.631273	16:58:00	16:58:03.631273	16:58:03.631273
+f8557b19-33ca-45f4-9fd7-d42dc1f31914	2016-06-22 16:58:46.620423-05	2016-06-22 16:58:46.620423-05	serveradmin	f	2016_SEMYO Silent Movie	2016-06-22 16:58:46.620423-05	2016-06-22 16:58:46.620423-05	2016-06-22 16:58:46.620423-05	2016-06-22 16:58:46.620423-05	\N	\N	2016-06-22	2016-06-22	2016-06-22	2016-06-22	21:00:00	22:00:00	17:00:00	22:00:00
+6ba34b35-51d9-456a-9ac1-d3bf8186d837	2016-06-21 20:50:55.25479-05	2016-06-21 20:50:55.25479-05	ben assef	f	2016_Servant Day	2016-06-21 20:50:55.25479-05	2016-06-21 20:50:55.25479-05	2016-06-21 20:50:55.25479-05	2016-06-21 20:50:55.25479-05	\N	\N	2016-06-15	2016-06-15	2016-06-15	2016-06-15	20:00:00	22:00:00	\N	\N
+6281c765-c091-45af-b7d6-38006586f49e	2016-06-14 15:24:36.562249-05	2016-06-14 15:24:36.562249-05	serveradmin	f	Church Show	2016-06-14 15:24:36.562249-05	2016-06-14 15:24:36.562249-05	2016-06-14 15:24:36.562249-05	2016-06-14 15:24:36.562249-05	\N	\N	2016-06-15	2016-06-15	2016-06-14	2016-06-15	10:24:36.562249	10:24:36.562249	10:24:36.562249	10:24:36.562249
+\.
+
+
+--
+-- TOC entry 2598 (class 0 OID 19599)
+-- Dependencies: 181
+-- Data for Name: inventory; Type: TABLE DATA; Schema: public; Owner: serveradmin
+--
+
+COPY inventory (pkid, row_created, row_modified, row_username, row_in_use, name_, manufacturer, model, department, category, subcategory, description, price, quantity_, "fkItemTypes", owner, taxable_) FROM stdin;
+39CC8DB6-4E73-4649-9A85-65E3AA710694	2016-04-06 16:59:55.397343-05	2015-03-24 18:43:34-05	serveradmin	f	Single Amp Rack	-N/A-	-N/A-	Cases	Audio	Amp Racks	\N	500	1	\N	\N	True
+E2A1FD0A-5C93-004F-B31C-8B030D7A74E4	2016-04-06 16:59:55.430479-05	2015-03-24 18:43:34-05	serveradmin	f	Legs 3'	Staging Concepts	3'	Staging	Legs	\N	\N	400	68	\N	\N	True
+5CB84FE6-E3F3-D24C-A280-4D71132FDD64	2016-04-06 16:59:55.226398-05	2015-03-24 18:43:34-05	serveradmin	f	XLR 25'	-N/A-	-N/A-	Cabling	Audio	\N	\N	0	64	\N	\N	True
+7A2C41F8-F19F-C440-8058-C1F4679B0703	2016-04-06 16:59:55.36657-05	2015-03-24 18:43:34-05	serveradmin	f	Small Amp Rack	-N/A-	-N/A-	Cases	Audio	Amp Racks	\N	2000	2	\N	\N	True
+EA7304EB-E0C5-BF4D-8A8A-31E56F39EE55	2016-04-06 16:59:55.345889-05	2015-08-31 14:01:02-05	serveradmin	f	XTI 4002	Crown	XTI 4002	Audio	Amps	Single	\N	5000	4	\N	\N	True
+E32261ED-7A21-3749-A10D-60346784C3C0	2016-04-06 16:59:55.264214-05	2015-03-24 18:43:34-05	serveradmin	f	Feeder 150'	-N/A-	-N/A-	Cabling	Power	Feeder	\N	0	1	\N	\N	True
+89ADB9D2-48CB-9B43-8304-6FA39F20B083	2016-04-06 16:59:55.191195-05	2015-03-24 18:43:34-05	serveradmin	f	VRX 928	JBL	VRX 928	Audio	Speakers	Array	\N	5500	4	\N	\N	True
+F90EEF20-A39E-FE47-98FC-2999D4687D0E	2016-04-06 16:59:55.29576-05	2015-03-24 18:43:34-05	serveradmin	f	New Distro	-N/A-	-N/A-	Misc.	Power	Distro	\N	0	1	\N	\N	True
+1241DBD4-D3FD-B24E-8088-3CC575C39821	2016-04-06 16:59:55.236544-05	2015-03-24 18:43:34-05	serveradmin	f	XLR 10'	-N/A-	-N/A-	Cabling	Audio	\N	\N	0	23	\N	\N	True
+1CE582F0-46B8-8446-8D08-9D4F531CE384	2016-04-06 16:59:55.203766-05	2015-03-24 18:43:34-05	serveradmin	f	VRX 918	JBL	VRX 918	Audio	Speakers	Subwoofer	\N	5000	8	\N	\N	True
+E2F5996B-A99B-F142-B305-074D7B24B14F	2016-04-06 16:59:55.274569-05	2015-03-24 18:43:34-05	serveradmin	f	Feeder 100'	-N/A-	-N/A-	Cabling	Power	Feeder	\N	0	1	\N	\N	True
+9C658EF9-29A6-DC4E-8B11-69A610AE0F2C	2016-04-06 16:59:55.246544-05	2015-03-24 18:43:34-05	serveradmin	f	XLR 50'	-N/A-	-N/A-	Cabling	Audio	\N	\N	0	10	\N	\N	True
+56D49804-E232-2E49-B6F4-17E7A655E0FF	2016-04-06 16:59:55.215303-05	2015-03-24 18:43:34-05	serveradmin	f	VTX G28	JBL	VTX G28	Audio	Speakers	Subwoofer	\N	15000	8	\N	\N	True
+FC24C2EF-7C0B-2B46-B1BE-72120316BF9F	2016-04-06 16:59:55.306167-05	2015-03-24 18:43:34-05	serveradmin	f	Trunk	-N/A-	-N/A-	Cases	\N	\N	\N	0	9	\N	\N	True
+7DB2166D-3758-3C44-9E06-FC346998B154	2016-04-06 16:59:55.255654-05	2015-03-24 18:43:34-05	serveradmin	f	Cable Ramp	-N/A-	-N/A-	Misc.	\N	\N	\N	0	30	\N	\N	True
+3C767215-ABBE-F145-8B92-005E72A6F303	2016-04-06 16:59:55.38707-05	2015-03-24 18:43:34-05	serveradmin	f	Small Monitor Racks	-N/A-	-N/A-	Cases	Audio	Amp Racks	\N	1000	2	\N	\N	True
+928B097B-65B5-6449-8A33-C3788CD5C57F	2016-04-06 16:59:55.284959-05	2015-06-23 22:10:36-05	serveradmin	f	Feeder 50'	SDO Enterprises	-N/A-	Cabling	Power	Feeder	\N	0	4	\N	\N	True
+F3793E4C-43A4-9843-B422-2309F5B331F4	2016-04-06 16:59:55.335619-05	2015-08-31 14:00:35-05	serveradmin	f	XTI 4000	Crown	XTI 4000	Audio	Amps	Single	\N	5000	5	\N	\N	True
+140BC4B8-68F4-5247-96B5-142F3A79E505	2016-04-06 16:59:55.356232-05	2015-03-24 18:43:34-05	serveradmin	f	Main Amp Rack 	-N/A-	-N/A-	Cases	Audio	Amp Racks	\N	2000	2	\N	\N	True
+982661AB-04D7-6642-9349-3CDC900BCEBA	2016-04-06 16:59:55.419079-05	2015-05-11 13:24:09-05	serveradmin	f	Stage Deck 4' x 4'	Staging Concepts	4' x 4'	Staging	Deck	\N	\N	3000	2	\N	\N	True
+60FDB541-26E8-564D-B614-52BC651FA104	2016-04-06 16:59:55.376594-05	2015-03-24 18:43:34-05	serveradmin	f	Main Monitor Rack	-N/A-	-N/A-	Cases	Audio	Amp Racks	\N	3000	1	\N	\N	True
+B9BE5966-42C5-0844-8493-F1E309B9A888	2016-04-06 16:59:55.408443-05	2015-03-24 18:43:34-05	serveradmin	f	Stage Deck 4' x 8'	Staging Concepts	4' x 8'	Staging	Deck	\N	\N	5000	20	\N	\N	True
+1F212899-EECE-DF4F-887D-228263B64876	2016-04-06 16:59:55.470159-05	2015-03-24 18:43:34-05	serveradmin	f	Large Staging Key	Staging Concepts	Large Staging Key	Staging	Tools	\N	\N	0	2	\N	\N	True
+FED41FE9-5B03-7942-8781-ED2C342BBA94	2016-04-06 16:59:55.507066-05	2015-03-24 18:43:34-05	serveradmin	f	Short Steps	Staging Concepts	Short Steps	Staging	Steps	\N	\N	2500	1	\N	\N	True
+DBCF514A-DD0F-424E-995E-53DF8625028C	2016-04-06 16:59:55.488523-05	2015-03-24 18:43:34-05	serveradmin	f	Long Railing	Staging Concepts	8' Railing	Staging	Railing	\N	\N	2000	10	\N	\N	True
+5C4F3D9C-303C-7747-ACA4-5E610225B817	2016-04-06 16:59:55.47948-05	2015-03-24 18:43:34-05	serveradmin	f	Small Staging Key	Staging Concepts	Small Staging Key	Staging	Tools	\N	\N	0	2	\N	\N	True
+33B977F3-9722-8C49-A623-CC9A752C2F97	2016-04-06 16:59:55.440709-05	2015-10-27 22:57:38-05	serveradmin	f	Legs 16	Staging Concepts	16	Staging	Legs	\N	\N	300	80	\N	\N	True
+20850C13-B055-724D-918B-9E7F8E6F60E5	2016-04-06 16:59:55.450681-05	2015-05-11 13:24:28-05	serveradmin	f	Legs 5	Staging Concepts	5	Staging	Legs	\N	\N	150	16	\N	\N	True
+B0823DD1-89F0-CF4B-8B9D-1568071A7988	2016-04-06 16:59:55.460028-05	2015-03-24 18:43:34-05	serveradmin	f	Rubber Mallet	-N/A-	-N/A-	Tools	Hammers	Mallets	\N	0	2	\N	\N	True
+E19EC4CF-F6AA-9A46-B3B4-C844AD8C3C88	2016-04-06 16:59:55.49797-05	2015-03-24 18:43:34-05	serveradmin	f	Small Railing	Staging Concepts	4' Railing	Staging	Railing	\N	\N	1000	2	\N	\N	True
+6D27EA27-A01A-CD48-AD37-6D026DA487FC	2016-04-06 16:59:55.516805-05	2015-03-24 18:43:34-05	serveradmin	f	Short Ben Steps	Ben	Short Steps	Staging	Steps	\N	\N	2500	2	\N	\N	True
+B73ED1AA-418C-BB4F-BDFC-727DF620E538	2016-04-06 16:59:55.526556-05	2015-03-24 18:43:34-05	serveradmin	f	Stage Frames	Staging Concepts	-N/A-	Staging	Legs	Framed Support	\N	1000	18	\N	\N	True
+608506FE-EE7B-EE4E-AAEC-3DF89612A783	2016-04-06 16:59:55.536517-05	2015-03-24 18:43:34-05	serveradmin	f	Long Cross Brace	Staging Concepts	-N/A-	Staging	Legs	Framed Support	\N	250	18	\N	\N	True
+155D3064-F25B-1E45-8F35-EC7F599AEA7B	2016-04-06 16:59:55.548377-05	2015-03-24 18:43:34-05	serveradmin	f	Short Cross Brace	Staging Concepts	-N/A-	Staging	Legs	Framed Support	\N	250	18	\N	\N	True
+F055E648-36CB-C74A-96E6-0006CFEEBD79	2016-04-06 16:59:55.559797-05	2015-03-24 18:43:34-05	serveradmin	f	Shim (by case)	-N/A-	-N/A-	Misc.	Shims	\N	\N	0	8	\N	\N	True
+5DEBB166-4439-6B4C-8B33-6E3034BFEF8C	2016-04-06 16:59:55.609465-05	2015-03-24 18:43:34-05	serveradmin	f	Toughsticks - Large	Blizzard	-N/A-	Lighting	LED	\N	\N	3500	8	\N	\N	True
+C55075D0-2B46-CB4C-B34B-EAAFB222D3B3	2016-04-06 16:59:55.996442-05	2015-03-24 18:43:34-05	ben assef	f	Mic Stand 6 Pack	\N	\N	Audio	Stands	\N	\N	2500	1	\N	\N	True
+FBB05272-8719-F04B-9268-A9B7CF0FA452	2016-04-06 16:59:55.954405-05	2015-03-24 18:43:34-05	ben assef	f	16 x 4 Snake 100'	\N	\N	Cabling	Snake	Analog	\N	3500	1	\N	\N	True
+04015AE4-4FB7-1C4E-95ED-56F694BC1DD6	2016-04-06 16:59:55.69848-05	2015-05-11 13:23:27-05	ben assef	f	Dimmer Pack 4ch	\N	\N	Lighting	\N	\N	\N	1500	4	\N	\N	True
+4860067A-2482-6A40-BF76-5264447A07FA	2016-04-06 16:59:55.905154-05	2015-03-24 18:43:34-05	ben assef	f	Mic Stand 12 Pack	\N	\N	Audio	Stands	\N	\N	2500	1	\N	\N	True
+DAEE0F91-EDDD-7948-A08F-24F7698B09BD	2016-04-06 16:59:55.658172-05	2015-03-24 18:43:34-05	serveradmin	f	CM15V	Yamaha	CM15V	Audio	Speakers	Monitors	\N	2500	6	\N	\N	True
+0910FB58-27EF-874B-BBA5-8A7E3B53ABB8	2016-04-06 16:59:55.569461-05	2015-03-24 18:43:34-05	serveradmin	f	Torrent F5's	Blizzard	Torrent F5	Lighting	Lights	Moving	\N	6000	8	\N	\N	True
+9EAA023A-B35D-D14E-9C54-C4D9399DBD52	2016-04-06 16:59:55.619023-05	2015-03-24 18:43:34-05	serveradmin	f	Toughsticks - Short	Blizzard	-N/A-	Lighting	LED	\N	\N	3500	6	\N	\N	True
+ED364C81-8679-C949-B42E-448A48BBCFD6	2016-04-06 16:59:55.943976-05	2015-03-24 18:43:34-05	ben assef	f	DMX Controller 	\N	\N	Lighting	Control	Computer	\N	5500	1	\N	\N	True
+A9DC72D2-556E-B947-8487-932A5291297B	2016-04-06 16:59:55.314927-05	2015-08-31 14:00:44-05	serveradmin	f	I-Tech 8000	Crown	I-Tech 8000	Audio	Amps	Single	\N	7500	8	\N	\N	False
+D270B8A1-C902-CD49-97C7-1A479A1AB841	2016-04-06 16:59:54.991746-05	2016-01-13 16:23:42-06	serveradmin	f	VRX 932	JBL	VRX 932	Audio	Speakers	Array	\N	6000	14	\N	\N	True
+DDDAD0DE-430F-9649-9905-9E5C57D9DDB9	2016-04-06 16:59:55.838787-05	2015-03-24 18:43:34-05	ben assef	f	Speaker Stand	\N	\N	Rigging	Stands	Speaker	\N	500	1	\N	\N	True
+49E3F2A3-D7EC-3644-993C-2697214FA4B6	2016-04-06 16:59:55.580136-05	2015-03-24 18:43:34-05	serveradmin	f	3x3 Base Plate	Global Truss	\N	Rigging	Truss	Bases	\N	2500	6	\N	\N	True
+10628AD4-80B7-8141-8064-81C6A219F971	2016-04-06 16:59:55.733362-05	2015-03-24 18:43:34-05	Sean O'Connell	f	IEC 20 Amp	SDO Enterprises	IEC20A	Cabling	Power	IEC	\N	0	3	\N	\N	True
+73D0D811-F4A8-AB41-90F1-7AEE5708EBED	2016-04-06 16:59:55.706115-05	2015-03-24 18:43:34-05	ben assef	f	Labor: Audio Engineer	\N	\N	Labor	\N	\N	\N	27500	1	\N	\N	True
+F5740FF3-FF44-A64C-82C0-5950576DF3C8	2016-04-06 16:59:55.628659-05	2015-03-24 18:43:34-05	serveradmin	f	V12's	Blizzard	V12's	Lighting	LED	\N	\N	3500	12	\N	\N	True
+CB3771F9-1C24-AB4E-BDC7-B8C2583D0FE3	2016-04-06 16:59:55.589577-05	2015-03-24 18:43:34-05	serveradmin	f	Top Plate	Global Truss	\N	Rigging	Truss	Bases	\N	1500	4	\N	\N	True
+C2F2C07C-2D1D-E145-8F3E-66D8D63A87D9	2016-04-06 16:59:55.790496-05	2015-03-24 18:43:34-05	ben assef	f	18ch Dimmer Rack	ETC	Smartpack	Lighting	Conventional	Dimmer	\N	22500	1	\N	\N	True
+1A67960D-9CBB-104A-94B0-B6128162CAF1	2016-04-06 16:59:55.59893-05	2015-06-23 23:18:14-05	serveradmin	f	Cali (f) > Camlock	SDO Enterprises	-N/A-	Cabling	Power	Adapters	\N	0	1	\N	\N	True
+32C38EA3-C42C-3545-8415-935F7A0D729A	2016-04-06 16:59:55.767673-05	2015-03-24 18:43:34-05	ben assef	f	Source Four Par	ETC	Source Four Par	Lighting	Conventional	Par Cans	\N	1500	25	\N	\N	True
+4C9F6665-FCBA-8249-8A3B-79D1A20F23DE	2016-04-06 16:59:55.638172-05	2015-03-24 18:43:34-05	serveradmin	f	Little Bro	Hosa 	Little Bro	Cabling	Audio	Snakes	\N	0	6	\N	\N	True
+D55E296F-311B-454E-9868-73537B9459E7	2016-04-06 16:59:55.71405-05	2015-03-24 18:43:34-05	ben assef	f	Labor: Production Assistant	\N	\N	Labor	\N	\N	\N	19500	1	\N	\N	True
+4C059B6C-DE7A-6F42-9902-0C44A61E6994	2016-04-06 16:59:55.680578-05	2015-03-24 18:43:34-05	ben assef	f	Adjustable Stair Set W/Railing	Staging Concepts	\N	Staging	Steps	Adjustable	\N	10000	1	\N	\N	True
+2B6193A8-D01B-3C44-AC72-12297BE5E325	2016-04-06 16:59:55.648681-05	2015-03-24 18:43:34-05	serveradmin	f	Qu-16	Allen & Heath	Qu-16	Audio	Mixers	\N	\N	15000	2	\N	\N	True
+63D5D1D7-82C8-B84A-9862-C2258B7FB89F	2016-04-06 16:59:55.820458-05	2015-03-24 18:43:34-05	ben assef	f	50 Amp Power Distribution	\N	\N	Power	Distro	50 Amp	\N	4000	0	\N	\N	True
+85ABAA73-224B-C14C-915B-F507C7271854	2016-04-06 16:59:55.744802-05	2015-03-24 18:43:34-05	ben assef	f	K10	QSC	K10	Audio	Speaker	Powered	\N	3500	6	\N	\N	True
+07B8371F-BC81-BB48-B697-392E1518D48B	2016-04-06 16:59:55.691129-05	2015-03-24 18:43:34-05	ben assef	f	Par 56 	\N	\N	Lighting	\N	\N	\N	1000	4	\N	\N	True
+5B81FF17-65E2-E845-AE4B-6699BA0903A0	2016-04-06 16:59:55.721729-05	2015-03-24 18:43:34-05	Sean O'Connell	f	AC 200'	-N/A-	-N/A-	Cabling	Power	Edison	\N	0	2	\N	\N	True
+99629AE2-9955-8B49-9383-2184180B29B1	2016-04-06 16:59:55.933812-05	2015-03-24 18:43:34-05	ben assef	f	Pass Spot 575	\N	\N	Lighting	Lights	Moving	\N	5000	4	\N	\N	True
+ECEAC642-63B7-BF43-880C-8F53B58069C0	2016-04-06 16:59:55.802104-05	2015-03-24 18:43:34-05	ben assef	f	AR2412	\N	\N	Audio	Snake	Stage Box	\N	5000	1	\N	\N	True
+35C2F840-2298-B34F-9F51-406CAE74AB1D	2016-04-06 16:59:55.778984-05	2015-03-24 18:43:34-05	ben assef	f	Source Four - 6 Bar	ETC	Source Four Par	Lighting	Conventional	Par Cans	\N	8000	4	\N	\N	True
+1A09F787-B471-AA42-9368-192D3E33CDC8	2016-04-06 16:59:55.756076-05	2015-03-24 18:43:34-05	ben assef	f	MH2	Martin	Rush MH2	Lighting	Lights	Moving	\N	5000	6	\N	\N	True
+287EA8FC-DB4A-F54A-B587-86A3A3B3582F	2016-04-06 16:59:55.829101-05	2015-09-29 15:20:39-05	ben assef	f	4ch Mixer	\N	\N	Audio	Mixer	Analog	\N	2000	1	\N	\N	True
+4334639E-C0A2-A04C-BC0E-D8E5CCF11CBC	2016-04-06 16:59:55.811647-05	2015-09-29 15:13:48-05	ben assef	f	Microphone Package	\N	\N	Audio	Microphone	\N	\N	7500	2	\N	\N	True
+BAF2A7F1-24B0-A24D-9B61-06D51D4F78A4	2016-04-06 16:59:55.848492-05	2015-09-29 15:14:01-05	ben assef	f	SM57	Shure	SM57	Audio	Microphone	Dynamic	\N	1000	14	\N	\N	True
+F26A5E2A-5353-FA4A-9EE6-3CD42480B89F	2016-04-06 16:59:55.923548-05	2015-03-24 18:43:34-05	ben assef	f	Par 64	\N	\N	Lighting	Conventional	Par Cans	\N	1000	8	\N	\N	True
+690BB4E0-530F-EF4B-9CBE-645EB11E0E22	2016-04-06 16:59:55.894563-05	2015-03-24 18:43:34-05	ben assef	f	Pro1	\N	\N	Audio	Mixer	Digital	\N	25000	1	\N	\N	True
+CF70CFC8-F598-214E-B7B2-0EDA7706BCAF	2016-04-06 16:59:55.914528-05	2015-03-24 18:43:34-05	ben assef	f	ST-132	\N	\N	Rigging	Lifts	\N	\N	3500	2	\N	\N	True
+A287BE94-CC57-1141-AB65-0117BDEE42B9	2016-04-06 16:59:55.975195-05	2015-03-24 18:43:34-05	ben assef	f	250EX Scanner	\N	\N	Lighting	Light	Moving	\N	2500	6	\N	\N	True
+4F6743E1-AEE3-F14A-972C-7D191C6E87EE	2016-04-06 16:59:55.986142-05	2015-03-24 18:43:34-05	ben assef	f	Par 64 LED (RGB)	\N	\N	Lighting	LED	Pars	\N	1000	6	\N	\N	True
+F9327EE1-01E2-E643-B66E-CF2E68F0C5D8	2016-04-06 16:59:55.965562-05	2015-03-24 18:43:34-05	ben assef	f	Mic Stand 8 Pack	\N	\N	Audio	Stands	\N	\N	4000	1	\N	\N	True
+9DE3E693-41BD-9546-A3BA-ACBB0D5544DF	2016-04-06 16:59:56.005526-05	2015-03-24 18:43:34-05	Sean O'Connell	f	AC 100'	-N/A-	-N/A-	Cabling	Power	Edison	\N	0	5	\N	\N	True
+15B139EF-9876-874B-A4EC-456333BC2A22	2016-04-06 16:59:56.017265-05	2015-03-24 18:43:34-05	Sean O'Connell	f	AC 50'	-N/A-	-N/A-	Cabling	Power	Edison	\N	0	1	\N	\N	True
+39924D4F-390C-304C-B7B0-77EDB6077E6C	2016-04-06 16:59:56.028835-05	2015-03-24 18:43:34-05	Sean O'Connell	f	AC 25'	-N/A-	-N/A-	Cabling	Power	Edison	\N	0	1	\N	\N	True
+30CA56C5-65DC-0946-A501-7B3036E60EFE	2016-04-06 16:59:56.040654-05	2015-03-24 18:43:34-05	Sean O'Connell	f	AC 10'	-N/A-	-N/A-	Cabling	Power	Edison	\N	0	1	\N	\N	True
+7B71A681-33B7-B04C-9897-48A3C04F631B	2016-04-06 16:59:56.052481-05	2015-03-24 18:43:34-05	Sean O'Connell	f	AC 5'	-N/A-	-N/A-	Cabling	Power	Edison	\N	0	1	\N	\N	True
+47C1BDE6-E72B-BC40-9E15-FB79362CF76B	2016-04-06 16:59:56.064457-05	2015-03-24 18:43:34-05	Sean O'Connell	f	IEC	-N/A-	-N/A-	Cabling	Power	IEC	\N	0	1	\N	\N	True
+86DBBE2E-6A88-434E-B816-07319F50E9FB	2016-04-06 16:59:56.076276-05	2015-09-29 15:19:48-05	ben assef	f	MTL1-X	\N	\N	Audio	Speaker	Subwoofer	\N	5000	6	\N	\N	True
+A3121DB2-69B0-5749-8ADD-69A152A5828C	2016-04-06 16:59:56.142471-05	2015-03-24 18:43:34-05	ben assef	f	Studio Live 24.4.2	\N	\N	Audio	Mixer	Digital	\N	9500	1	\N	\N	True
+390B28FE-0867-0646-83B5-DDD613A30566	2016-04-06 16:59:56.22751-05	2015-03-24 18:43:34-05	Sean O'Connell	f	DMX 10'	\N	\N	Cabling	Lighting	DMX	\N	0	2	\N	\N	True
+BFE24E59-8243-1E42-9A11-08888D36DD2C	2016-04-06 16:59:56.096365-05	2015-09-29 15:18:36-05	ben assef	f	Performer 3	\N	\N	Audio	Mixer	Digital	\N	20000	2	\N	\N	True
+31A50E7B-D1E6-7E46-A1BD-379AA8666FA3	2016-04-06 16:59:56.190098-05	2015-03-24 18:43:34-05	Sean O'Connell	f	Blizzard AC	\N	\N	Cabling	Bizzard	AC	\N	0	4	\N	\N	True
+68B77C5F-87C2-8045-BAAF-172E82FDC1E1	2016-04-06 16:59:56.348796-05	2015-03-24 18:43:34-05	Sean O'Connell	f	DMX 25'	\N	\N	Cabling	Lighting	\N	\N	0	4	\N	\N	True
+33C2510C-E86E-254B-8717-6BF8B7AF095B	2016-04-06 16:59:56.151843-05	2015-03-24 18:43:34-05	ben assef	f	Par 38	\N	\N	Lighting	Conventional	Par Can	\N	500	4	\N	\N	True
+643F79AB-9BAE-4842-9C73-8E6F9635A375	2016-04-06 16:59:56.105919-05	2015-03-24 18:43:34-05	ben assef	f	32 X 8 Snake 100'	\N	\N	Cabling	Snake	Analog	\N	5000	1	\N	\N	True
+40CBA592-4C13-9241-A46E-E01CA5E4D41A	2016-04-06 16:59:56.265997-05	2015-03-24 18:43:34-05	Sean O'Connell	f	Powercon Jumpers 20'	\N	\N	Cabling	Lighting	Powercon	\N	0	6	\N	\N	True
+D640A703-0D5E-3B40-AEA8-76F7FCFF0E87	2016-04-06 16:59:56.199782-05	2015-03-24 18:43:34-05	Sean O'Connell	f	Blizzard AC Jumper	\N	\N	Cabling	Blizzard	AC	\N	0	2	\N	\N	True
+2AB75B48-3AF0-6645-8293-C9169D122F20	2016-04-06 16:59:56.115609-05	2015-03-24 18:43:34-05	ben assef	f	T-Bar Stand	\N	\N	Rigging	Stand	Lighting	\N	500	2	\N	\N	True
+C7B9EC83-B5EF-DF4C-ACB3-FB9F34929231	2016-04-06 16:59:56.160945-05	2015-03-24 18:43:34-05	Sean O'Connell	f	XLR 20'	-N/A-	-N/A-	Cabling	Amps	\N	\N	0	46	\N	\N	True
+4359F11E-CCCD-7545-ACDE-96C4C1607EFC	2016-04-06 16:59:55.668601-05	2015-03-24 18:43:34-05	ben assef	f	PRX612M	JBL	PRX612M	Audio	Speaker	Powered	\N	3500	6	\N	\N	True
+E5ED050A-C394-1844-A65D-5E04D6FFE3C2	2016-04-06 16:59:56.237136-05	2015-03-24 18:43:34-05	Sean O'Connell	f	DMX 100'	\N	\N	Cabling	Lighting	DMX	\N	0	4	\N	\N	True
+E3F00C41-A1D2-764A-9E9D-97F20A493A14	2016-04-06 16:59:56.125228-05	2015-03-24 18:43:34-05	ben assef	f	DMX Controller - 16ch	\N	\N	Lighting	Control	\N	\N	2500	1	\N	\N	True
+4926D394-F919-4C9D-A9AB-A3F2C20DD890	2015-05-04 13:09:14-05	2015-05-04 13:09:14-05	ben assef	f	Labor	\N	\N	Labor	General	Hourly	\N	3000	6	\N	\N	True
+AFB55D5B-65B7-FF40-B6E4-A8347296BAF4	2016-04-06 16:59:56.372738-05	2015-03-24 18:43:34-05	ben assef	f	2x2 Base Plate	\N	\N	Rigging	Bases	\N	\N	2500	2	\N	\N	True
+5340E23F-602B-724F-AD51-0EA5EC4CFCBD	2016-04-06 16:59:56.171183-05	2015-03-24 18:43:34-05	Sean O'Connell	f	Blizzard DMX M	\N	\N	Cabling	Blizzard	DMX	\N	0	6	\N	\N	True
+7B4D6135-6DE4-3646-8F90-194B51669778	2016-04-06 16:59:56.133694-05	2015-03-24 18:43:34-05	ben assef	f	DMX Controller - 6ch	\N	\N	Lighting	Control	\N	\N	1500	1	\N	\N	True
+0FFE31F0-DDE0-CE4E-8DAC-4C54676D186D	2016-04-06 16:59:56.303428-05	2015-09-07 14:13:51-05	Sean O'Connell	f	AC Quad Box	\N	\N	Cabling	Power	Edison	\N	0	26	\N	\N	True
+579B2479-AC63-F84C-8D94-901C12F96A81	2016-04-06 16:59:56.209086-05	2015-03-24 18:43:34-05	Sean O'Connell	f	Trackball	\N	\N	Misc.	Computing	Mouse	\N	0	1	\N	\N	True
+2B6F5B48-A86F-F14F-BECE-97216A0951B8	2016-04-06 16:59:56.246688-05	2015-03-24 18:43:34-05	Sean O'Connell	f	DMX 50'	\N	\N	Cabling	Lighting	DMX	\N	0	2	\N	\N	True
+300A6AE2-8824-F149-BB31-86BC97688116	2016-04-06 16:59:56.180555-05	2015-03-24 18:43:34-05	Sean O'Connell	f	Blizzard DMX F	\N	\N	Cabling	Blizzard	DMX	\N	0	6	\N	\N	True
+B9D44E7D-C629-6241-A124-81780AD92D1E	2016-04-06 16:59:56.218683-05	2015-03-24 18:43:34-05	Sean O'Connell	f	Elipsoidal	\N	\N	Lighting	Conventional	\N	\N	3500	2	\N	\N	True
+4BD76C87-F949-BB41-9810-E5F851B84CD3	2016-04-06 16:59:56.330203-05	2015-03-24 18:43:34-05	Sean O'Connell	f	Powercon Jumpers Short	\N	\N	Cabling	Power	Powercon	\N	0	3	\N	\N	True
+8E5D3481-85DC-7341-B114-D2BACC9CE509	2016-04-06 16:59:56.285568-05	2015-03-24 18:43:34-05	ben assef	f	Labor: Lighting Designer	\N	\N	Labor	\N	\N	\N	26000	1	\N	\N	True
+EF1985CC-890B-9A4D-8828-D8AA8A6CB9EE	2016-04-06 16:59:56.256425-05	2015-03-24 18:43:34-05	Sean O'Connell	f	Twofers	\N	\N	Cabling	Power	Edison	\N	0	5	\N	\N	True
+25E349AD-8E1F-0E4C-A6BE-E747C982A1A8	2016-04-06 16:59:56.357679-05	2015-03-24 18:43:34-05	ben assef	f	Audio Engineer	\N	\N	Labor	\N	\N	\N	26000	1	\N	\N	True
+93E4A6D3-9960-3C48-991F-126B22096AE0	2016-04-06 16:59:56.313036-05	2015-03-24 18:43:34-05	Sean O'Connell	f	MH2 Mounts	\N	\N	Lighting	Hardware	\N	\N	0	12	\N	\N	True
+8398419C-A555-BC4C-B4D5-C51DAAF4FA80	2016-04-06 16:59:56.293858-05	2015-03-24 18:43:34-05	Sean O'Connell	f	Powercon > Edison	\N	\N	Cabling	Lighting	Powercon	\N	0	16	\N	\N	True
+4F6B33F4-4B18-AE4F-99F3-0AE25E2CC611	2016-04-06 16:59:56.340212-05	2015-03-24 18:43:34-05	Sean O'Connell	f	DMX Splitter	\N	\N	Lighting	Splitter	\N	\N	0	1	\N	\N	True
+0D09E387-4D5F-B14A-9702-75F15E821B8A	2016-04-06 16:59:56.321696-05	2015-03-24 18:43:34-05	Sean O'Connell	f	Safeties	\N	\N	Rigging	Safety	\N	\N	0	2	\N	\N	True
+089F0F1E-9160-4F48-9F28-CAE37AE15169	2015-05-11 13:41:50-05	2015-05-11 13:41:50-05	ben assef	f	Double Distro	\N	\N	Power	Distro	50 amp	\N	0	1	\N	\N	True
+1C3132AD-B07B-644B-8F84-B5D521E01227	2016-04-06 16:59:56.365321-05	2015-03-24 18:43:34-05	ben assef	f	Production Assistant	\N	\N	Labor	\N	\N	\N	20000	1	\N	\N	True
+A8545446-C839-2344-925E-C4179700A538	2016-04-06 16:59:56.381791-05	2015-03-24 18:43:34-05	ben assef	f	Lighting Designer	\N	\N	Labor	\N	\N	\N	26000	1	\N	\N	True
+2DD0DAA3-F1B1-479B-A551-66348D2366FC	2015-05-11 13:11:06-05	2015-09-21 12:50:00-05	ben assef	f	Truss 10'	\N	\N	Rigging	Truss	Global	\N	2500	6	\N	\N	True
+2033FA2D-2403-40D8-A97B-57465FE6E0E8	2015-05-11 12:50:45-05	2015-05-11 12:50:45-05	ben assef	f	DL351	\N	\N	Audio	Stage Box	\N	\N	7500	1	\N	\N	True
+50FBDE5C-3399-4E44-890B-590EE0C8C785	2015-05-11 13:32:41-05	2015-05-11 13:32:41-05	ben assef	f	Main Distro	\N	\N	Power	Distro	50 amp	\N	0	1	\N	\N	True
+0F26E994-A97A-43A1-A0D4-A86C2F29E3F8	2015-05-11 13:12:37-05	2015-09-21 12:50:55-05	ben assef	f	Truss 6'	\N	\N	Rigging	Truss	\N	\N	2500	4	\N	\N	True
+81DB73D3-4DEA-4651-A119-91B09B4FF7F6	2015-05-11 13:12:06-05	2015-09-21 12:50:15-05	ben assef	f	Truss 8'	\N	\N	Rigging	Truss	\N	\N	2500	2	\N	\N	True
+45B53BF9-84DF-40FC-81D3-19787A5A02EF	2015-05-11 13:33:30-05	2015-05-11 13:33:30-05	ben assef	f	Matt James	\N	\N	Power	Distro	50 amp	\N	0	1	\N	\N	True
+77E2DB08-2D30-45AC-83EF-CF33CCE04D1F	2015-05-11 15:51:21-05	2015-05-11 15:51:21-05	Sean O'Connell	f	NL4 Jumper	\N	\N	Cabling	Speaker	4-Conductor	\N	0	2	\N	\N	True
+2E521909-4175-4727-923E-4D4CA4056B40	2015-05-11 13:40:18-05	2015-06-23 23:18:48-05	ben assef	f	Tie-in > Cali (f)	\N	\N	Cabling	Feeder	Adapters	\N	0	2	\N	\N	True
+046F441F-8850-4053-BE25-14C64C23FF4A	2015-05-11 15:48:28-05	2015-09-07 14:16:51-05	Sean O'Connell	f	NL4 50'	\N	\N	Cabling	Speaker	4-Conductor	\N	0	3	\N	\N	True
+B4B3194A-0391-430C-AFF6-1D38307CE422	2015-05-11 15:49:01-05	2015-05-11 15:49:01-05	Sean O'Connell	f	NL2 50'	\N	\N	Cabling	Speaker	2-Conductor	\N	0	6	\N	\N	True
+55228962-8E57-45CC-8279-19638BF6386A	2015-05-11 15:59:39-05	2015-05-11 15:59:39-05	Sean O'Connell	f	NL2 Jumper	\N	\N	Cabling	Speaker	2-Conductor	\N	0	3	\N	\N	True
+58FBD54E-C95F-4715-8C95-F719D77E3809	2015-05-12 10:54:33-05	2015-09-21 12:45:54-05	Sean O'Connell	f	Stage Stringer	\N	\N	Cabling	Power	Edison	\N	0	5	\N	\N	True
+61575A30-962C-4515-A755-188EE6567C2C	2015-05-12 10:55:14-05	2015-05-12 10:55:14-05	Sean O'Connell	f	12 Channel WW	\N	\N	Cabling	Audio	Snake	\N	0	1	\N	\N	True
+8864EF59-FA9E-4F6F-BAA9-65FB79C71159	2015-05-12 10:55:57-05	2015-05-12 10:55:57-05	Sean O'Connell	f	Lil' Bro	\N	\N	Cabling	Audio	Snake	\N	0	2	\N	\N	True
+44AFC7DB-98D8-4B0A-A170-E80267B433F9	2015-05-12 11:08:35-05	2015-05-12 11:08:35-05	Sean O'Connell	f	NL4 25'	\N	\N	Cabling	Audio	Speaker	\N	0	2	\N	\N	True
+D452A831-00C4-4AC0-800C-B98C0F632F97	2015-05-21 10:52:55-05	2015-05-21 10:52:55-05	Sean O'Connell	f	4 Channel Whip	\N	\N	Cabling	Audio	Whips	\N	0	1	\N	\N	True
+ADC1BB0C-3EF5-493D-AA2C-76D4A6D5F941	2015-06-01 11:02:10-05	2015-06-01 11:02:10-05	Sean O'Connell	f	Asus Router	\N	\N	Networking	Routers	\N	\N	0	1	\N	\N	True
+A9944803-E740-4635-818D-BC8A6A57A626	2015-06-03 02:50:56-05	2015-06-03 02:50:56-05	ben assef	f	Ethercon 300'	\N	\N	Cabling	Audio	Snake	\N	0	1	\N	\N	True
+5E4306FF-84BA-4317-8567-01794849A84F	2015-05-29 09:12:15-05	2015-05-29 09:12:15-05	ben assef	f	Stage Skirt	\N	\N	Staging	Skirting	16 - Per Foot	\N	400	64	\N	\N	True
+A018E252-9B05-4597-820C-4A30D43FC64D	2015-06-01 10:55:21-05	2015-06-01 10:55:21-05	Sean O'Connell	f	NL4 Y	\N	\N	Cabling	Speaker	4-Conductor	\N	0	2	\N	\N	True
+DA69121B-0A47-4C78-BF4C-CE0BA2FFBC2A	2015-06-05 12:53:08-05	2015-06-05 12:53:09-05	ben assef	f	Hammer	\N	\N	Misc.	\N	\N	\N	0	1	\N	\N	True
+213E5FFC-C2DB-4385-A97B-FB9A7283741D	2015-06-05 12:51:12-05	2015-06-05 12:51:12-05	ben assef	f	Eyelet Cheeseboro 	\N	\N	Rigging	\N	\N	\N	0	2	\N	\N	True
+25141598-9913-4F2D-8A6D-CE3D780682B9	2015-06-03 02:45:01-05	2015-06-03 02:45:01-05	ben assef	f	ST-180	\N	\N	Rigging	Lift	\N	\N	0	2	\N	\N	True
+A80A19D8-CC87-43DE-96C6-9DF1FF1E51AC	2015-06-02 16:43:28-05	2015-06-02 16:43:28-05	Sean O'Connell	f	30 A 10'	\N	\N	Cabling	Power	220	\N	0	2	\N	\N	True
+6A62D391-1510-4239-ADAF-6904EBB59B50	2015-06-01 10:49:02-05	2015-06-01 10:49:03-05	Sean O'Connell	f	VRX 932 Frames	\N	\N	Rigging	Audio	Speakers	\N	0	2	\N	\N	True
+11AB812C-FD32-462C-ACBB-5EE5563EB68C	2015-06-01 10:56:38-05	2015-06-16 23:33:06-05	Sean O'Connell	f	DL251	\N	\N	Audio	StageBox	\N	\N	6000	1	\N	\N	True
+95C4D218-1A39-4450-BCCF-1639E4F673F7	2015-06-01 10:50:38-05	2015-06-01 10:50:38-05	Sean O'Connell	f	SandBag 75lb	\N	\N	Rigging	Counterweight	Sandbags	\N	0	8	\N	\N	True
+ED264B3C-5110-45F9-A369-260D7DDB3483	2015-06-05 12:48:27-05	2015-06-05 12:48:27-05	ben assef	f	VRXx3 Rain Cover	\N	\N	Misc.	\N	\N	\N	0	2	\N	\N	True
+7BBAAB1C-C772-4649-8838-A25457070FB4	2015-06-03 02:59:48-05	2015-06-03 02:59:48-05	ben assef	f	AR-110	\N	\N	Cases	Audio 	Amps	\N	0	1	\N	\N	True
+949F4C43-5BD0-4088-AED2-6B74C12AAB2C	2015-06-01 10:57:47-05	2015-06-01 10:57:47-05	Sean O'Connell	f	6 Channel Whip	\N	\N	Cabling	Audio	Whips	\N	0	1	\N	\N	True
+D1ED7CB2-776A-4460-B76E-DEECA1504D98	2015-06-01 10:51:09-05	2015-06-01 10:51:09-05	Sean O'Connell	f	Tower ToolBox	\N	\N	Tools	Rigging	\N	\N	0	1	\N	\N	True
+E1B843B4-62FF-4A44-BC7A-5E6D642A5DC5	2015-06-02 17:07:43-05	2015-06-02 17:07:43-05	Sean O'Connell	f	Ethercon 200'	\N	\N	Cabling	Networking	Ethercon	\N	0	1	\N	\N	True
+84730E06-E40B-4B35-9B35-6D5AA0045E6A	2015-06-03 02:46:25-05	2015-06-03 02:46:25-05	ben assef	f	Truss Forks	\N	\N	Rigging	Lift	ST-180	\N	0	2	\N	\N	True
+AF8F9057-75D1-4637-BD7A-A18D5DDA8EEE	2015-06-01 10:54:47-05	2015-06-01 10:54:47-05	Sean O'Connell	f	NL4 100'	\N	\N	Cabling	Speaker	4-Conductor	\N	0	1	\N	\N	True
+D0EE6A66-9A0F-4BC1-8266-FA74E756A6D4	2015-06-01 11:00:32-05	2015-06-01 11:00:32-05	Sean O'Connell	f	Ethercon Snake 200'	\N	\N	Cabling	Snakes	Ethercon	\N	0	1	\N	\N	True
+059C9CC1-FCDF-4F8A-91A3-E0A3D669B0E8	2015-06-05 12:40:17-05	2015-06-05 12:40:18-05	ben assef	f	NL4 Coupler	\N	\N	Cabling	Audio	Speaker	\N	0	5	\N	\N	True
+691F133D-F766-40B5-BA1C-30FF4AF67CA5	2015-06-03 02:43:04-05	2015-06-03 02:43:04-05	ben assef	f	Socapex 75'	\N	\N	Cabling	Lighting	\N	\N	0	2	\N	\N	True
+9532FD51-2AA0-4739-B507-FD0D1CD13CD1	2015-06-05 12:52:19-05	2015-06-05 12:52:19-05	ben assef	f	E-Tape	\N	\N	Misc.	\N	\N	\N	0	2	\N	\N	True
+CDFC9317-EE21-4F55-8360-3C2DEF468BD7	2015-06-03 02:47:41-05	2015-06-03 02:47:41-05	ben assef	f	Truss Pins	\N	\N	Rigging	Truss	\N	\N	0	24	\N	\N	True
+D4C3ED3E-A3F6-40D7-8C16-D15B80DA265D	2015-06-03 02:43:28-05	2015-06-03 02:43:28-05	ben assef	f	Socapex 50'	\N	\N	Cabling	Lighting	\N	\N	0	2	\N	\N	True
+E16CF1C0-3422-4368-AEEA-AA383C2D0821	2015-06-03 11:33:50-05	2015-06-23 23:26:46-05	Sean O'Connell	f	NL4 10'	\N	\N	Cabling	Audio	Speaker	\N	0	12	\N	\N	True
+E11B0DC3-19A8-4004-B804-27D4FEF8B7B8	2015-06-05 12:50:02-05	2015-09-21 11:09:28-05	ben assef	f	Spanset 3'	\N	\N	Rigging	\N	\N	\N	0	2	\N	\N	True
+9C130129-C51F-434F-B67F-ED369CF7C325	2015-06-05 12:47:24-05	2015-06-05 12:47:24-05	ben assef	f	10x10 tent	\N	\N	Misc.	\N	\N	\N	0	1	\N	\N	True
+2535AA63-5994-4ED4-9FE0-FCFC86B81D16	2015-06-08 23:27:04-05	2015-06-08 23:27:04-05	ben assef	f	Top Hat - Single	\N	\N	Staging	\N	\N	\N	0	8	\N	\N	True
+971B1444-95FE-49E1-95C8-B7B3C83B5BCC	2015-06-05 12:51:43-05	2015-06-05 12:51:43-05	ben assef	f	Tie Line	\N	\N	Misc.	\N	\N	\N	0	1	\N	\N	True
+61263F16-961C-4FEA-9C8D-C88CAB9C3C0A	2015-06-03 11:47:06-05	2015-06-03 11:47:06-05	Sean O'Connell	f	SandBag 25lb	\N	\N	Rigging	Counterweight	SandBags	\N	0	2	\N	\N	True
+562237D4-09B2-4E0E-9707-332E5F08B1A4	2015-06-05 12:47:51-05	2015-06-05 12:47:51-05	ben assef	f	PRX Rain Cover	\N	\N	Misc.	\N	\N	\N	0	2	\N	\N	True
+B3DB24D2-CB71-46FC-847F-D97390107AD4	2015-06-08 23:30:07-05	2015-06-08 23:30:07-05	ben assef	f	Large C-Wrench	\N	\N	Staging	Stairs	\N	\N	0	2	\N	\N	True
+F1BFA263-C0C1-4C04-B83D-72F7191B890D	2015-06-05 12:50:30-05	2015-09-21 11:07:22-05	ben assef	f	Spanset 4'	\N	\N	Rigging	\N	\N	\N	0	2	\N	\N	True
+91BFCFBD-DB74-451B-82DF-529793C84213	2015-06-08 23:28:22-05	2015-06-08 23:28:22-05	ben assef	f	Stair Railing	\N	\N	Staging	\N	\N	\N	0	2	\N	\N	True
+8A703182-2643-4AE9-8AA6-832D5B411710	2015-06-05 12:56:09-05	2015-06-05 12:56:09-05	ben assef	f	Tarp Case	\N	\N	Misc.	\N	\N	\N	0	1	\N	\N	True
+DED8E4B1-212C-4670-952D-1981C8EE3E40	2015-06-05 12:52:36-05	2015-06-05 12:52:36-05	ben assef	f	Spike Tape	\N	\N	Misc.	\N	\N	\N	0	1	\N	\N	True
+AF16D717-EAB8-46A7-ADC6-F98408D943EC	2015-06-05 12:52:01-05	2015-06-05 12:52:01-05	ben assef	f	Gaff Tape	\N	\N	Misc.	\N	\N	\N	0	1	\N	\N	True
+2DAADC04-D1B0-4D41-84DE-C11288E070BD	2015-06-08 23:22:19-05	2015-06-08 23:22:19-05	ben assef	f	Diagonal Frame Brace	\N	\N	Staging	\N	\N	\N	0	12	\N	\N	True
+00FDE7BC-A472-4E52-9F94-A9E50CCAD90D	2015-06-08 23:27:41-05	2015-06-08 23:27:41-05	ben assef	f	Top Hat - Quad	\N	\N	Staging	\N	\N	\N	0	4	\N	\N	True
+2F0612A6-F78B-4814-9567-0C1DF57F19FC	2015-06-08 23:21:52-05	2015-06-08 23:21:53-05	ben assef	f	Horizontal Frame Brace	\N	\N	Staging	\N	\N	\N	0	12	\N	\N	True
+1FACFB24-A855-466F-B778-0B4FCD2078EF	2015-06-08 23:27:22-05	2015-06-08 23:27:22-05	ben assef	f	Top Hat - Double	\N	\N	Staging	\N	\N	\N	0	12	\N	\N	True
+4B6FBED9-100E-469D-9CBF-68498E2F4EFF	2015-06-08 23:57:17-05	2015-06-08 23:57:17-05	ben assef	f	Blizzard DMX Jumper	\N	\N	Cabling	Lighting	Blizzard	\N	0	6	\N	\N	True
+C959C68F-477A-4420-B5ED-16F2511F3596	2015-06-08 23:36:30-05	2015-06-08 23:36:30-05	ben assef	f	Truss Coupler	\N	\N	Rigging	Truss	Hardware	\N	0	12	\N	\N	True
+AD9FBFEA-E817-41AF-8B8F-BE8132F501EE	2015-06-08 23:41:11-05	2015-06-08 23:41:11-05	ben assef	f	Gels	\N	\N	Lighting	\N	\N	\N	0	1	\N	\N	True
+DD274825-F3FF-40E9-814A-D47F3B3F2519	2015-06-08 23:31:21-05	2015-06-08 23:31:21-05	ben assef	f	Level - 4'	\N	\N	Staging	\N	\N	\N	0	2	\N	\N	True
+CDC922CE-E949-4BB4-AEEE-ACE79B83103A	2015-06-08 23:40:47-05	2015-06-08 23:40:47-05	ben assef	f	Gel Frames	\N	\N	Lighting	\N	\N	\N	0	12	\N	\N	True
+75BC4427-CB68-4DD9-AD2C-A6A235DEEA3A	2015-06-09 00:02:02-05	2015-06-09 00:02:02-05	ben assef	f	Hazer	\N	\N	Lighting	\N	\N	\N	0	2	\N	\N	True
+68A7F14C-0058-4B23-94C5-3061F299C0FD	2015-06-09 00:02:57-05	2015-08-31 13:59:31-05	ben assef	f	FOH Computer	SDO Enterprises	NSP-D1	Computers	Desktop	Audio	\N	0	1	\N	\N	True
+5EA920FB-CEDE-4016-82F7-8A1D400BB87E	2015-06-09 00:03:42-05	2015-06-09 00:03:42-05	ben assef	f	NSP L2	\N	\N	Lighting	computer	\N	\N	0	1	\N	\N	True
+08759286-AD8D-4725-A0AB-E1E1A1E572A1	2015-06-09 00:12:37-05	2015-06-09 00:12:37-05	ben assef	f	30 Amp Break-out	\N	\N	Cabling	\N	\N	\N	0	1	\N	\N	True
+875562C9-BD8B-493E-8D47-564245409BCE	2015-06-09 00:21:49-05	2015-08-31 14:00:24-05	ben assef	f	Speaker Pole	JBL	\N	Rigging	Stands	Legless	\N	0	2	\N	\N	True
+55AC4C9E-F713-41B0-A20B-70B00FF0E0A6	2015-06-09 00:26:36-05	2015-06-09 00:26:36-05	ben assef	f	Ethercon 100'	\N	\N	Cabling	\N	\N	\N	0	1	\N	\N	True
+9B559AC6-9426-4FC7-8C91-F04AA1EF94A7	2015-06-09 00:32:01-05	2015-06-09 00:32:01-05	ben assef	f	Tarp	\N	\N	Misc.	\N	\N	\N	0	5	\N	\N	True
+3734B1C3-DDA0-4EF9-912C-EB58AE1660E0	2015-06-09 12:21:34-05	2015-06-09 12:21:35-05	ben assef	f	My Gaff Tape	\N	\N	Misc.	\N	\N	\N	0	1	\N	\N	True
+1C545945-8CA0-46F6-93FF-A168137501BF	2015-06-23 21:53:41-05	2015-06-23 22:09:16-05	Sean O'Connell	f	Cali (f)>Range (m)	SDO Enterprises	10'	Cabling	Feeder	50 A 220	\N	0	4	\N	\N	True
+B93E6E32-F820-4627-BC5A-93006E36B553	2015-06-09 00:32:43-05	2015-06-09 00:32:43-05	ben assef	f	Gaff Tape	\N	\N	Misc.	\N	\N	\N	0	1	\N	\N	True
+B9A6E4BF-5D3E-4E9E-B3E2-BC11A2143D6C	2015-09-21 11:25:50-05	2015-09-21 11:26:18-05	Sean O'Connell	f	NL8 Breakout	\N	\N	Audio	Cabling	Adapters	\N	0	2	\N	\N	True
+2172AFE2-28F9-4C62-BEF8-8A525A2C2B61	2015-09-21 11:17:08-05	2015-09-21 11:17:31-05	Sean O'Connell	f	Ethercon Snake 100'	\N	\N	Rigging	Audio	Digital Snakes	\N	0	1	\N	\N	True
+F6FA260E-203F-4BE1-8D61-7540F7608EF9	2015-09-21 11:09:28-05	2015-09-21 11:10:03-05	Sean O'Connell	f	Shackel Large	\N	\N	Rigging	Shackels	\N	\N	0	8	\N	\N	True
+F19FCE46-324B-4C7E-B7AC-EAF6DF84A297	2015-06-09 00:45:17-05	2015-06-09 00:45:18-05	ben assef	f	Dimmer Pack 6ch	\N	\N	Lighting	\N	\N	\N	0	1	\N	\N	True
+43545AF2-822F-4541-A094-7F6F0720F06A	2015-06-23 21:55:59-05	2015-06-23 22:09:40-05	Sean O'Connell	f	Feeder 40'	SDO Enterprises	Range > Range	Cabling	Feeder	50 A 220	\N	0	1	\N	\N	True
+CAAEFDE4-1E29-4D95-88E7-62941B60F3F3	2015-09-21 12:31:16-05	2015-09-21 12:31:38-05	Sean O'Connell	f	Stool	\N	\N	Misc.	Stools	\N	\N	0	3	\N	\N	True
+83152381-2519-4585-9DB9-BD52180ECB05	2015-06-09 12:15:31-05	2015-06-09 12:15:31-05	ben assef	f	Split Snake	\N	\N	Cabling	Analog Snake	32x8	\N	0	1	\N	\N	True
+4AE4ABF9-6411-4F4A-97A1-FA447D8805FD	2015-09-21 11:10:05-05	2015-09-21 11:10:32-05	Sean O'Connell	f	Shackel Medium	\N	\N	Rigging	Shackels	\N	\N	0	2	\N	\N	True
+3FF9AB07-833D-4CB1-BB68-3429EDD378AC	2015-06-23 23:21:20-05	2015-06-23 23:21:55-05	Sean O'Connell	f	NL8 100'	EWI	\N	Cabling	Speaker	8-Conductor	\N	0	2	\N	\N	True
+A0CDF886-321E-4C4F-B896-6AD6D04AEDBF	2015-09-21 12:18:52-05	2015-09-21 12:19:14-05	Sean O'Connell	f	Stairs 3 Step	\N	\N	Staging	Stairs	\N	\N	0	1	\N	\N	True
+C9249EF8-7645-46EB-B1AB-22F0C9241A58	2015-09-21 12:13:58-05	2015-09-21 12:14:24-05	Sean O'Connell	f	Anti-Fatigue Mat	\N	\N	Misc.	Fatigue Control	\N	\N	0	6	\N	\N	True
+DF8C1F14-1960-4518-A177-F3C1B14B9E96	2015-06-09 13:17:39-05	2015-06-09 13:17:39-05	ben assef	f	Bridge Cable w/coupler	\N	\N	Cabling	\N	\N	\N	0	1	\N	\N	True
+6553E170-5D29-481F-90A9-9CDEE48E3CEE	2015-09-21 11:18:14-05	2015-09-21 11:18:48-05	Sean O'Connell	f	8 Channel Whip 6'	\N	\N	Cabling	Audio	Whips	\N	0	3	\N	\N	True
+DC6F0FB1-9D8A-47EE-B446-ED3E86AA40B3	2015-09-07 14:24:44-05	2015-09-07 14:24:44-05	Ben Assef	f	Cali (f) > Tails	\N	\N	Cabling	\N	\N	\N	0	1	\N	\N	True
+0C2B391F-D297-41A2-99D3-C59E9F0C8A3E	2015-09-21 11:10:32-05	2015-09-21 11:11:01-05	Sean O'Connell	f	Shackel Small	\N	\N	Rigging	Shackels	\N	\N	0	8	\N	\N	True
+1268BF48-161A-47E0-A03B-21B44852E579	2015-09-21 11:05:15-05	2015-09-21 11:07:15-05	Sean O'Connell	f	Spanset 8'	\N	\N	Rigging	\N	\N	\N	0	4	\N	\N	True
+2503AF62-AC0B-4722-BA83-38A5F3058556	2015-09-21 12:25:49-05	2015-09-21 12:26:40-05	Sean O'Connell	f	Ratchet Strap Normal	\N	\N	Misc.	Ratchet Straps	\N	\N	0	4	\N	\N	True
+218E3C11-30F2-4834-BD75-5B9931561BA1	2016-03-22 00:52:37-05	2016-03-22 00:53:23-05	Ben Assef	f	DVA S30	dBt echnologies`	S30	Audio	Speaker	Subwoofer	\N	20000	12	\N	\N	True
+B4FBE921-B8F0-4509-BF98-CE97712E9350	2015-09-21 11:21:10-05	2015-09-21 11:21:30-05	Sean O'Connell	f	16 Channel Whip 16'	\N	\N	Cabling	Audio	Whips	\N	0	1	\N	\N	True
+8165F893-5615-4677-BBC3-4BEF2667E781	2015-09-21 11:16:11-05	2015-09-21 11:16:48-05	Sean O'Connell	f	Ethercon Snake 15'	\N	\N	Cabling	Audio	Digital Snakes	\N	0	2	\N	\N	True
+E3197698-8378-4F46-B2D6-4BE67F7B5A23	2015-09-21 12:14:27-05	2015-09-21 12:14:44-05	Sean O'Connell	f	Rug	\N	\N	Misc.	Fatigue Control	\N	\N	0	4	\N	\N	True
+6E28D5C3-AF2C-4C52-955D-0C833EE25442	2015-09-21 12:35:17-05	2015-09-21 12:35:29-05	Sean O'Connell	f	Channel Locks	\N	\N	Tools	\N	\N	\N	0	1	\N	\N	True
+4B7017EF-A824-4146-B0BC-D19F4B0CC19B	2015-09-21 12:23:59-05	2015-09-21 12:24:30-05	Sean O'Connell	f	Rope Ratchets	\N	\N	Rigging	Audio	\N	\N	0	4	\N	\N	True
+7916D753-89CE-4D09-A0AD-2B4CC0631710	2015-09-21 12:31:41-05	2015-09-21 12:32:00-05	Sean O'Connell	f	Swivel Backrest Stool	\N	\N	Misc.	Stools	\N	\N	0	1	\N	\N	True
+DB069C69-89F8-49C0-AADE-9DD31A20A798	2015-09-21 12:18:17-05	2015-09-21 12:18:49-05	Sean O'Connell	f	Stairs 2 Step	\N	\N	Staging	Stairs	\N	\N	0	2	\N	\N	True
+972811B5-5876-46B8-BDB2-BFF46C626C90	2015-09-21 12:30:12-05	2015-09-21 12:30:34-05	Sean O'Connell	f	Barricade	\N	\N	Misc.	Barricade	\N	\N	0	4	\N	\N	True
+B1FBEAB4-3B1E-4C70-B542-22CC02145167	2015-09-21 12:25:07-05	2015-09-21 12:25:30-05	Sean O'Connell	f	Stake Large	\N	\N	Misc.	Stakes	\N	\N	0	4	\N	\N	True
+94F78D7E-4BDE-4E85-92BC-BC1BC2A33912	2015-09-21 12:50:55-05	2015-09-21 12:51:28-05	Sean O'Connell	f	Truss Hardware	\N	\N	Rigging	Truss	Hardware	\N	0	1	\N	\N	True
+A9F6B71E-C54D-4F65-A36C-EEB16127E593	2015-09-29 15:17:33-05	2015-09-29 15:18:14-05	Sean O'Connell	f	D6	Audix	D6	Audio	Microphone	Dynamic	\N	0	2	\N	\N	True
+DD05377A-FFF4-417E-9752-9972B98B17B5	2015-09-21 12:33:03-05	2015-09-21 12:33:19-05	Sean O'Connell	f	C-Wrench	\N	\N	Tools	\N	\N	\N	0	4	\N	\N	True
+4DBDFDC5-7AD2-493C-A155-C8792A1073F2	2015-09-29 15:16:51-05	2015-09-29 15:17:33-05	Sean O'Connell	f	609	Sennheiser	609	Audio	Microphone	Dynamic	\N	0	2	\N	\N	True
+34E7D75E-E3C7-4A38-B3D5-CCB2D5BF0C40	2015-09-21 12:47:30-05	2015-09-21 12:47:51-05	Sean O'Connell	f	Old Dimmer Rack	\N	\N	Lighting	Conventional	Dimmer	\N	0	1	\N	\N	True
+DB582775-3F4F-44A7-9B36-97E79AD63CA2	2015-09-21 13:39:53-05	2015-09-21 13:40:09-05	Sean O'Connell	f	Sub Riser	\N	\N	Misc.	Risers	\N	\N	0	6	\N	\N	True
+0F0B1C15-D816-47F4-B212-1961D90BB779	2016-03-22 00:50:02-05	2016-03-22 00:52:27-05	Ben Assef	f	DVA T12	dB Technologies	T12	Audio	Speaker	Array	\N	17500	8	\N	\N	True
+AA853FAF-7940-4901-B31E-53B101EB4020	2016-03-22 00:51:10-05	2016-03-22 00:51:59-05	Ben Assef	f	DVA T8	dB Technologies	T8	Audio	Speaker	Array	\N	10000	20	\N	\N	True
+91F17A04-86EF-4B92-BBA2-46102E15DD2E	2015-09-29 15:14:41-05	2015-09-29 15:15:21-05	Sean O'Connell	f	OM5	Audix	OM5	Audio	Microphone	Dynamic		1200	7	\N	\N	True
+59EBF635-AA70-CB44-9A84-7FD1BCA9A65E	2016-04-06 16:59:55.325242-05	2015-08-31 14:00:53-05	serveradmin	f	I-Tech 12000HD	Crown	I-Tech 12000HD	Audio	Amps	Single	\N	2500	4	\N	\N	False
+66B84716-230C-DB49-8F79-8C89ED7AD57C	2016-04-06 16:59:56.275897-05	2015-03-24 18:43:34-05	ben assef	f	Pro2C	\N	\N	Audio	Mixer	Digital	\N	30000	1	\N	\N	True
+7E2E7F10-4BCB-8845-83E6-33263231560F	2016-04-06 16:59:55.8599-05	2015-09-29 15:16:00-05	ben assef	f	SM58	Shure	SM58	Audio	Microphones	Dynamic	\N	1000	14	\N	\N	True
+cebf558d-3ff5-44e4-af0f-44dbe5e1e64f	2016-06-14 15:27:03.270405-05	2016-06-14 15:27:03.270405-05	serveradmin	f	AR-120	\N	\N	Cases	Audio 	Amps	\N	0	0	\N	\N	False
+0d0dfaa5-df41-47e8-9b43-e3e7ab88d33f	2016-06-14 16:17:07.385474-05	2016-06-14 16:17:07.385474-05	serveradmin	f	Cali (f) > 3 prong	SDO Enterprises	-N/A-	Cabling	Power	Adapters	\N	0	0	\N	\N	False
+8171fa98-580f-45fb-89e6-45e91a43d0ae	2016-06-14 16:59:05.307644-05	2016-06-14 16:59:05.307644-05	serveradmin	f	Black Lighting Stand	--	--	Rigging	Stands	\N	\N	0	0	\N	\N	False
+f8f5bfc3-5348-4da0-826a-615349072fdd	2016-06-14 19:24:00.529599-05	2016-06-14 19:24:00.529599-05	serveradmin	f	AC 4 Ch	\N	\N	Cabling	Lighting	AC	\N	0	0	\N	\N	False
+\.
+
+
+--
+-- TOC entry 2597 (class 0 OID 19586)
+-- Dependencies: 180
+-- Data for Name: itemdescriptors; Type: TABLE DATA; Schema: public; Owner: serveradmin
+--
+
+COPY itemdescriptors (pkid, row_created, row_modified, row_username, row_in_use, name_, manufacturer, model, department, category, subcategory, description, price, quantity_) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2603 (class 0 OID 19742)
+-- Dependencies: 186
+-- Data for Name: lineitems; Type: TABLE DATA; Schema: public; Owner: serveradmin
+--
+
+COPY lineitems (pkid, row_created, row_modified, row_username, row_in_use, name_, manufacturer, model, department, category, subcategory, description, price, quantity_, fkeipl, fkinventory, type_, note_, rate_, discounttype_, total_, time_, discount_, discountperc_, discountamount_, taxable_, taxtotal_, quantity) FROM stdin;
+e8f0c01b-b4c4-4281-b3b2-868279af60ed	2016-06-14 16:09:13.560597-05	2016-06-14 16:09:13.560597-05	serveradmin	f	Feeder 50'	-N/A-	-N/A-	Cabling	Power	Feeder	\N	0	1	48c7d3e4-aad8-44bf-b34f-960640ef0605	\N	\N	\N	Daily	amount	0	1	0	\N	\N	\N	\N	\N
+fe5fa71f-823d-44e3-ac2d-8816a8c42c9b	2016-06-14 16:07:34.082627-05	2016-06-14 16:07:34.082627-05	serveradmin	f	NL4 10'	\N	\N	Cabling	Audio	Speaker	\N	0	2	48c7d3e4-aad8-44bf-b34f-960640ef0605	\N	\N	\N	Daily	amount	0	1	0	\N	\N	\N	\N	\N
+fc01ac71-82de-49e5-8b7f-e60a7f61e58b	2016-06-14 16:18:27.878744-05	2016-06-14 16:18:27.878744-05	serveradmin	f	Matt James Distro	\N	\N	Power	Distro	50 amp	\N	0	1	48c7d3e4-aad8-44bf-b34f-960640ef0605	\N	\N	\N	Daily	amount	0	1	0	\N	\N	\N	\N	\N
+01925f7d-c6f1-4279-93f1-a4d385153460	2016-06-14 16:05:49.67867-05	2016-06-14 16:05:49.67867-05	serveradmin	f	Speaker Pole	JBL	\N	Rigging	Stands	Legless	\N	0	2	48c7d3e4-aad8-44bf-b34f-960640ef0605	\N	\N	\N	Daily	amount	0	1	0	\N	\N	\N	\N	\N
+e19bca6e-ed9f-4dc3-8d4a-0357a97eeda6	2016-06-14 16:07:07.835408-05	2016-06-14 16:07:07.835408-05	serveradmin	f	NL4 25'	\N	\N	Cabling	Audio	Speaker	\N	0	1	48c7d3e4-aad8-44bf-b34f-960640ef0605	\N	\N	\N	Daily	amount	0	1	0	\N	\N	\N	\N	\N
+f768750d-be63-46d9-9b65-a4b71827a467	2016-06-14 19:23:31.513174-05	2016-06-14 19:23:31.513174-05	serveradmin	f	AC 4 Ch	\N	\N	Cabling	Lighting	AC	\N	0	3	48c7d3e4-aad8-44bf-b34f-960640ef0605	\N	\N	\N	Daily	amount	0	1	0	\N	\N	\N	\N	\N
+f6eb482d-a016-47a5-8f4d-363832105fb1	2016-06-14 15:29:21.074964-05	2016-06-14 15:29:21.074964-05	serveradmin	f	AC Quad Box	\N	\N	Cabling	Power	Edison	\N	0	8	48c7d3e4-aad8-44bf-b34f-960640ef0605	\N	\N	\N	Daily	amount	0	1	0	\N	\N	\N	\N	\N
+1c045fe0-f572-4d1a-95f9-6fab22b40948	2016-06-14 16:07:10.598837-05	2016-06-14 16:07:10.598837-05	serveradmin	f	NL4 50'	\N	\N	Cabling	Speaker	4-Conductor	\N	0	1	48c7d3e4-aad8-44bf-b34f-960640ef0605	\N	\N	\N	Daily	amount	0	1	0	\N	\N	\N	\N	\N
+1624eac9-0a1f-4767-b6e4-4a69e79ecb92	2016-06-14 16:49:48.290462-05	2016-06-14 16:49:48.290462-05	serveradmin	f	Dimmer Pack 4ch	\N	\N	Lighting	\N	\N	\N	1500	2	48c7d3e4-aad8-44bf-b34f-960640ef0605	\N	\N	\N	Daily	amount	3000	1	0	\N	\N	\N	\N	\N
+d6987257-5e9c-4edb-a880-1983e15eeb1d	2016-06-14 15:28:22.572231-05	2016-06-14 15:28:22.572231-05	serveradmin	f	VRX 932	JBL	VRX 932	Audio	Speakers	Array	\N	6000	2	48c7d3e4-aad8-44bf-b34f-960640ef0605	\N	\N	\N	Daily	amount	12000	1	0	\N	\N	\N	\N	\N
+3feb7733-6b85-4a52-89aa-7c7a64363aa7	2016-06-14 16:56:59.045265-05	2016-06-14 16:56:59.045265-05	serveradmin	f	8 Channel Whip 6'	\N	\N	Cabling	Audio	Whips	\N	0	1	48c7d3e4-aad8-44bf-b34f-960640ef0605	\N	\N	\N	Daily	amount	0	1	0	\N	\N	\N	\N	\N
+1313eea9-3e8d-464d-8254-7a2df122e8db	2016-06-14 16:56:31.663487-05	2016-06-14 16:56:31.663487-05	serveradmin	f	DMX 100'	\N	\N	Cabling	Lighting	DMX	\N	0	1	48c7d3e4-aad8-44bf-b34f-960640ef0605	\N	\N	\N	Daily	amount	0	1	0	\N	\N	\N	\N	\N
+4522ac64-cbdb-4b44-b335-1a4afd7f3ca8	2016-06-14 15:26:37.384797-05	2016-06-14 15:26:37.384797-05	serveradmin	f	AR-120	\N	\N	Cases	Audio 	Amps	\N	0	1	48c7d3e4-aad8-44bf-b34f-960640ef0605	\N	\N	\N	Daily	amount	0	1	0	\N	\N	\N	\N	\N
+0f3f6ae8-0d53-4605-a213-967c3e17fe47	2016-06-14 16:07:21.391289-05	2016-06-14 16:07:21.391289-05	serveradmin	f	NL4 Jumper	\N	\N	Cabling	Speaker	4-Conductor	\N	0	2	48c7d3e4-aad8-44bf-b34f-960640ef0605	\N	\N	\N	Daily	amount	0	1	0	\N	\N	\N	\N	\N
+70ffa6c5-be3a-478a-9f21-bda06612cd50	2016-06-14 16:16:47.764128-05	2016-06-14 16:16:47.764128-05	serveradmin	f	Cali (f) > 3 prong	SDO Enterprises	-N/A-	Cabling	Power	Adapters	\N	0	1	48c7d3e4-aad8-44bf-b34f-960640ef0605	\N	\N	\N	Daily	amount	0	1	0	\N	\N	\N	\N	\N
+a926e7d3-5a0f-4493-b91f-40abd41cffcf	2016-06-14 15:29:08.595187-05	2016-06-14 15:29:08.595187-05	serveradmin	f	VRX 918	JBL	VRX 918	Audio	Speakers	Subwoofer	\N	5000	4	48c7d3e4-aad8-44bf-b34f-960640ef0605	\N	\N	Without Wheels	Daily	amount	20000	1	0	\N	\N	\N	\N	\N
+2bb6ce1d-9adb-406d-ad5b-dafc11c22328	2016-06-14 16:23:41.525402-05	2016-06-14 16:23:41.525402-05	serveradmin	f	30 Amp Break-out	\N	\N	Cabling	\N	\N	\N	0	1	48c7d3e4-aad8-44bf-b34f-960640ef0605	\N	\N	\N	Daily	amount	0	1	0	\N	\N	\N	\N	\N
+c4948c46-3057-4c83-b7ca-c3f5e8d17dc9	2016-06-14 17:00:30.160389-05	2016-06-14 17:00:30.160389-05	serveradmin	f	AC 25'	-N/A-	-N/A-	Cabling	Power	Edison	\N	0	2	48c7d3e4-aad8-44bf-b34f-960640ef0605	\N	\N	\N	Daily	amount	0	1	0	\N	\N	\N	\N	\N
+63f5f414-f682-49f6-b0c9-19ca9d81a34d	2016-06-14 17:00:52.508162-05	2016-06-14 17:00:52.508162-05	serveradmin	f	Gaff Tape	\N	\N	Misc.	\N	\N	\N	0	1	48c7d3e4-aad8-44bf-b34f-960640ef0605	\N	\N	\N	Daily	amount	0	1	0	\N	\N	\N	\N	\N
+72da0b27-fc88-48f7-8a8f-b32b9376c2e7	2016-06-14 16:56:35.996111-05	2016-06-14 16:56:35.996111-05	serveradmin	f	DMX 10'	\N	\N	Cabling	Lighting	DMX	\N	0	1	48c7d3e4-aad8-44bf-b34f-960640ef0605	\N	\N	\N	Daily	amount	0	1	0	\N	\N	\N	\N	\N
+0c36ab81-53c4-4bec-9172-5edc9fdfde22	2016-06-14 16:49:40.108917-05	2016-06-14 16:49:40.108917-05	serveradmin	f	Par 64	\N	\N	Lighting	Conventional	Par Cans	\N	1000	8	48c7d3e4-aad8-44bf-b34f-960640ef0605	\N	\N	\N	Daily	amount	8000	1	0	\N	\N	\N	\N	\N
+b9ab9549-0f60-49d5-aed2-845c5e7b9164	2016-06-14 16:59:36.80622-05	2016-06-14 16:59:36.80622-05	serveradmin	f	T-Bar Stand	\N	\N	Rigging	Stand	Lighting	\N	500	2	48c7d3e4-aad8-44bf-b34f-960640ef0605	\N	\N	\N	Daily	amount	1000	1	0	\N	\N	\N	\N	\N
+1daa3130-5b66-446b-8371-bd1b7fc5caef	2016-06-14 16:56:41.305998-05	2016-06-14 16:56:41.305998-05	serveradmin	f	DMX 25'	\N	\N	Cabling	Lighting	\N	\N	0	1	48c7d3e4-aad8-44bf-b34f-960640ef0605	\N	\N	\N	Daily	amount	0	1	0	\N	\N	\N	\N	\N
+db7e3c72-7467-4852-9720-3eeb6d584a66	2016-06-14 16:58:27.971921-05	2016-06-14 16:58:27.971921-05	serveradmin	f	Black Lighting Stand	--	--	Rigging	Stands	\N	\N	0	2	48c7d3e4-aad8-44bf-b34f-960640ef0605	\N	\N	\N	Daily	amount	0	1	0	\N	\N	\N	\N	\N
+503ece05-d839-426f-ba64-049a85a78882	2016-06-14 17:00:49.678878-05	2016-06-14 17:00:49.678878-05	serveradmin	f	E-Tape	\N	\N	Misc.	\N	\N	\N	0	1	48c7d3e4-aad8-44bf-b34f-960640ef0605	\N	\N	\N	Daily	amount	0	1	0	\N	\N	\N	\N	\N
+8393c59a-ba6a-4871-859c-3c9633a7f16b	2016-06-14 16:49:54.829019-05	2016-06-14 16:49:54.829019-05	serveradmin	f	DMX Controller - 6ch	\N	\N	Lighting	Control	\N	\N	1500	1	48c7d3e4-aad8-44bf-b34f-960640ef0605	\N	\N	\N	Daily	amount	1500	1	0	\N	\N	\N	\N	\N
+88e3354a-4f31-4528-acc6-0d4d37af1bc8	2016-06-14 17:24:15.265925-05	2016-06-14 17:24:15.265925-05	serveradmin	f	Stage Deck 4' x 8'	Staging Concepts	4' x 8'	Staging	Deck	\N	\N	5000	2	48c7d3e4-aad8-44bf-b34f-960640ef0605	\N	\N	\N	Daily	amount	10000	1	0	\N	\N	\N	\N	\N
+91e7d89c-de54-4547-ab14-c39363203632	2016-06-14 17:00:27.74096-05	2016-06-14 17:00:27.74096-05	serveradmin	f	AC 50'	-N/A-	-N/A-	Cabling	Power	Edison	\N	0	4	48c7d3e4-aad8-44bf-b34f-960640ef0605	\N	\N	\N	Daily	amount	0	1	0	\N	\N	\N	\N	\N
+a1f52f27-030a-417c-bd9f-703c4be9cceb	2016-06-14 17:01:49.30587-05	2016-06-14 17:01:49.30587-05	serveradmin	f	AC 100'	-N/A-	-N/A-	Cabling	Power	Edison	\N	0	1	48c7d3e4-aad8-44bf-b34f-960640ef0605	\N	\N	\N	Daily	amount	0	1	0	\N	\N	\N	\N	\N
+114e19b4-8b29-4955-804d-e4e9c8d8f8ad	2016-06-14 17:00:55.204583-05	2016-06-14 17:00:55.204583-05	serveradmin	f	Tie Line	\N	\N	Misc.	\N	\N	\N	0	1	48c7d3e4-aad8-44bf-b34f-960640ef0605	\N	\N	\N	Daily	amount	0	1	0	\N	\N	\N	\N	\N
+9b66cd80-a11e-4435-9c0a-6522bf72d849	2016-06-14 17:24:48.777047-05	2016-06-14 17:24:48.777047-05	serveradmin	f	Small Staging Key	Staging Concepts	Small Staging Key	Staging	Tools	\N	\N	0	1	48c7d3e4-aad8-44bf-b34f-960640ef0605	\N	\N	\N	Daily	amount	0	1	0	\N	\N	\N	\N	\N
+cadb5ee0-f329-4054-bc92-5591db8c77a9	2016-06-14 17:24:26.511392-05	2016-06-14 17:24:26.511392-05	serveradmin	f	Legs 16	Staging Concepts	16	Staging	Legs	\N	\N	300	8	48c7d3e4-aad8-44bf-b34f-960640ef0605	\N	\N	\N	Daily	amount	2400	1	0	\N	\N	\N	\N	\N
+3ea401ad-286f-4d60-8b4f-cd5c863f3f75	2016-06-14 16:23:34.081772-05	2016-06-14 16:23:34.081772-05	serveradmin	f	30 A 10'	\N	\N	Cabling	Power	220	\N	0	1	48c7d3e4-aad8-44bf-b34f-960640ef0605	\N	\N	\N	Daily	amount	0	1	0	\N	\N	\N	\N	\N
+b8b6f210-b042-4dc2-acc6-350c75d58de5	2016-06-21 21:00:16.149115-05	2016-06-21 21:00:16.149115-05	ben assef	f	I-Tech 12000HD	Crown	I-Tech 12000HD	Audio	Amps	Single	\N	15000	2	367b737a-7d2f-4066-af6e-b6410faf5952	\N	\N	\N	Daily	amount	30000	1	0	\N	\N	\N	\N	\N
+ab7c3926-7a33-4aa9-84fb-03e861315edb	2016-06-21 15:52:02.455898-05	2016-06-21 15:52:02.455898-05	serveradmin	f	DL351	\N	\N	Audio	Stage Box	\N	\N	7500	1	2a3521cc-2c87-49e1-b5fd-1f61d6c8929c	\N	\N	\N	Daily	amount	7500	1	0	\N	\N	\N	\N	\N
+78bb728c-199b-4461-a15b-e656de2c4c55	2016-06-21 16:24:53.406437-05	2016-06-21 16:24:53.406437-05	serveradmin	f	DL351	\N	\N	Audio	Stage Box	\N	\N	7500	1	0fee01ab-2fbd-49b5-b7bc-ae5be2b7d334	\N	\N	\N	Daily	amount	7500	1	0	\N	\N	\N	\N	\N
+36540147-7fc9-473c-8ff0-d32d05c7c231	2016-06-21 15:52:03.242164-05	2016-06-21 15:52:03.242164-05	serveradmin	f	I-Tech 12000HD	Crown	I-Tech 12000HD	Audio	Amps	Single	\N	2500	1	2a3521cc-2c87-49e1-b5fd-1f61d6c8929c	\N	\N	\N	Daily	amount	2500	1	0	\N	\N	\N	\N	\N
+5d533e26-7e54-45f8-bb05-cd61090bf410	2016-06-21 20:53:59.224859-05	2016-06-21 20:53:59.224859-05	ben assef	f	VRX 918	JBL	VRX 918	Audio	Speakers	Subwoofer	\N	5000	4	e68165e8-73cd-498f-a778-1d9126122e16	\N	\N	\N	Daily	amount	20000	1	0	\N	\N	\N	\N	\N
+2430b537-b532-44ed-bf19-faf3dcf5ec19	2016-06-21 16:24:53.406437-05	2016-06-21 16:24:53.406437-05	serveradmin	f	I-Tech 12000HD	Crown	I-Tech 12000HD	Audio	Amps	Single	\N	2500	1	0fee01ab-2fbd-49b5-b7bc-ae5be2b7d334	\N	\N	\N	Daily	amount	2500	1	0	\N	\N	\N	\N	\N
+51334b9b-9bc3-471b-92c9-8c2f0839be11	2016-06-21 15:52:26.962334-05	2016-06-21 15:52:26.962334-05	serveradmin	f	609	Sennheiser	609	Audio	Microphone	Dynamic	\N	0	1	a5a1109e-c5c7-4764-a564-96a819f15dbc	\N	\N	\n	Daily	amount	0	1	0	\N	\N	\N	\N	\N
+6db791d7-58e7-4a12-83bc-76c1308b28c6	2016-06-21 15:52:04.739471-05	2016-06-21 15:52:04.739471-05	serveradmin	f	609	Sennheiser	609	Audio	Microphone	Dynamic	\N	0	1	2a3521cc-2c87-49e1-b5fd-1f61d6c8929c	\N	\N	\N	Daily	amount	0	1	0	\N	\N	\N	\N	\N
+df962271-01d1-4b90-ab67-d9e6a32f7e24	2016-06-21 16:24:53.406437-05	2016-06-21 16:24:53.406437-05	serveradmin	f	DL251	\N	\N	Audio	StageBox	\N	\N	6000	1	0fee01ab-2fbd-49b5-b7bc-ae5be2b7d334	\N	\N	\N	Daily	amount	6000	1	0	\N	\N	\N	\N	\N
+e39dfd1e-c044-4c9b-a27a-74a10c8eb701	2016-06-21 20:54:10.895786-05	2016-06-21 20:54:10.895786-05	ben assef	f	I-Tech 12000HD	Crown	I-Tech 12000HD	Audio	Amps	Single	\N	15000	2	e68165e8-73cd-498f-a778-1d9126122e16	\N	\N	\N	Daily	amount	30000	1	0	\N	\N	\N	\N	\N
+d5f04a89-f905-41ea-8e1d-1b4023f6e306	2016-06-21 15:52:26.962334-05	2016-06-21 15:52:26.962334-05	serveradmin	f	DL351	\N	\N	Audio	Stage Box	\N	\N	7500	1	a5a1109e-c5c7-4764-a564-96a819f15dbc	\N	\N	\N	Daily	amount	7500	1	0	\N	\N	\N	\N	\N
+5ded2c56-ed45-47b5-9208-3a477e8a1480	2016-06-21 15:52:26.962334-05	2016-06-21 15:52:26.962334-05	serveradmin	f	I-Tech 12000HD	Crown	I-Tech 12000HD	Audio	Amps	Single	\N	2500	1	a5a1109e-c5c7-4764-a564-96a819f15dbc	\N	\N	\N	Daily	amount	2500	1	0	\N	\N	\N	\N	\N
+1ade1073-3b84-4145-bf78-b3bc8fd63277	2016-06-21 20:55:39.677563-05	2016-06-21 20:55:39.677563-05	ben assef	f	System Tech	\N	\N	Labor	\N	\N	\N	30000	1	e68165e8-73cd-498f-a778-1d9126122e16	\N	\N	\N	Daily	amount	30000	1	0	\N	\N	\N	\N	\N
+6402e12b-6f37-4de2-8d35-4bf8483f2e28	2016-06-21 15:52:26.962334-05	2016-06-21 15:52:26.962334-05	serveradmin	f	DL251	\N	\N	Audio	StageBox	\N	\N	6000	1	a5a1109e-c5c7-4764-a564-96a819f15dbc	\N	\N	\N	Daily	amount	6000	1	0	\N	\N	\N	\N	\N
+e5d7d7d6-1096-48fc-9a90-ca1c097eed35	2016-06-21 20:56:21.490302-05	2016-06-21 20:56:21.490302-05	ben assef	f	Production Assistant	\N	\N	Labor	\N	\N	\N	12500	3	e68165e8-73cd-498f-a778-1d9126122e16	\N	\N	\N	Daily	amount	37500	1	0	\N	\N	\N	\N	\N
+f0ca4925-1af9-438e-a45a-70507445d89e	2016-06-21 16:24:53.406437-05	2016-06-21 16:24:53.406437-05	serveradmin	f	D6	Audix	D6	Audio	Microphone	Dynamic	\N	0	1	0fee01ab-2fbd-49b5-b7bc-ae5be2b7d334	\N	\N	\N	Daily	amount	0	1	0	\N	\N	\N	\N	\N
+d6b71fed-e09b-4d1d-aef0-e68f5e55cf00	2016-06-21 16:24:53.406437-05	2016-06-21 16:24:53.406437-05	serveradmin	f	609	Sennheiser	609	Audio	Microphone	Dynamic	\N	0	1	0fee01ab-2fbd-49b5-b7bc-ae5be2b7d334	\N	\N	\n	Daily	amount	0	1	0	\N	\N	\N	\N	\N
+748f7f20-3937-4ae4-9acb-1486879b8214	2016-06-21 15:52:01.2888-05	2016-06-21 15:52:01.2888-05	serveradmin	f	D12	Audix	D6	Audio	Microphone	Dynamic	\N	50000	1	2a3521cc-2c87-49e1-b5fd-1f61d6c8929c	\N	\N	\N	Daily	amount	50000	1	0	\N	\N	\N	\N	\N
+fb49273a-dfd9-4946-ac5e-1b10dfaaac4b	2016-06-21 15:52:26.962334-05	2016-06-21 15:52:26.962334-05	serveradmin	f	D12	Audix	D6	Audio	Microphone	Dynamic	\N	0	1	a5a1109e-c5c7-4764-a564-96a819f15dbc	\N	\N	\N	Daily	amount	0	1	0	\N	\N	\N	\N	\N
+e02965a6-2815-4e2b-8d22-5eeb3a1f5783	2016-06-21 15:52:03.990728-05	2016-06-21 15:52:03.990728-05	serveradmin	f	DL251	\N	\N	Audio	StageBox	\N	\N	6000	1	2a3521cc-2c87-49e1-b5fd-1f61d6c8929c	\N	\N	\N	Daily	amount	6000	1	0	\N	\N	\N	\N	\N
+3bc6313f-6e1d-4837-bab4-23bddf995037	2016-06-21 20:57:12.386798-05	2016-06-21 20:57:12.386798-05	ben assef	f	Par 64	\N	\N	Lighting	Conventional	Par Cans	\N	1500	8	e68165e8-73cd-498f-a778-1d9126122e16	\N	\N	\N	Daily	amount	12000	1	0	\N	\N	\N	\N	\N
+65957b45-f2a0-42e4-9262-562197a6dde2	2016-06-21 20:53:53.528999-05	2016-06-21 20:53:53.528999-05	ben assef	f	VRX 932	JBL	VRX 932	Audio	Speakers	Array	\N	6000	2	e68165e8-73cd-498f-a778-1d9126122e16	\N	\N	\N	Daily	amount	12000	1	0	\N	\N	\N	\N	\N
+4906cc01-d0ae-4005-9102-9e899a179237	2016-06-21 20:59:42.054377-05	2016-06-21 20:59:42.054377-05	ben assef	f	DMX Controller - 16ch	\N	\N	Lighting	Control	\N	\N	2000	1	e68165e8-73cd-498f-a778-1d9126122e16	\N	\N	\N	Daily	amount	2000	1	0	\N	\N	\N	\N	\N
+b99d875d-ac03-4490-b9da-982f21004c7c	2016-06-21 21:00:16.149115-05	2016-06-21 21:00:16.149115-05	ben assef	f	VRX 918	JBL	VRX 918	Audio	Speakers	Subwoofer	\N	5000	4	367b737a-7d2f-4066-af6e-b6410faf5952	\N	\N	\N	Daily	amount	20000	1	0	\N	\N	\N	\N	\N
+796a0b0b-daf8-4b3d-b1cc-3dab153c1622	2016-06-21 20:57:27.734731-05	2016-06-21 20:57:27.734731-05	ben assef	f	Dimmer Pack 4ch	\N	\N	Lighting	\N	\N	\N	2500	2	e68165e8-73cd-498f-a778-1d9126122e16	\N	\N	\N	Daily	amount	5000	1	0	\N	\N	\N	\N	\N
+5e0cb5b1-0d60-4e59-9c67-42619bc60f81	2016-06-21 21:00:16.149115-05	2016-06-21 21:00:16.149115-05	ben assef	f	System Tech	\N	\N	Labor	\N	\N	\N	30000	1	367b737a-7d2f-4066-af6e-b6410faf5952	\N	\N	\N	Daily	amount	30000	1	0	\N	\N	\N	\N	\N
+fded1cd3-ad79-4ede-a3d3-3922ae101638	2016-06-21 20:57:46.388113-05	2016-06-21 20:57:46.388113-05	ben assef	f	Lighting Stands	\N	\N	Lighting	\N	\N	\N	750	2	e68165e8-73cd-498f-a778-1d9126122e16	\N	\N	\N	Daily	amount	1500	1	0	\N	\N	\N	\N	\N
+b2698f5e-77ef-4a45-9246-ef696b7a178c	2016-06-21 21:00:16.149115-05	2016-06-21 21:00:16.149115-05	ben assef	f	Production Assistant	\N	\N	Labor	\N	\N	\N	12500	3	367b737a-7d2f-4066-af6e-b6410faf5952	\N	\N	\N	Daily	amount	37500	1	0	\N	\N	\N	\N	\N
+0bf0dc19-4922-4a0f-849a-ff5fdee32e1a	2016-06-21 21:00:16.149115-05	2016-06-21 21:00:16.149115-05	ben assef	f	Par 64	\N	\N	Lighting	Conventional	Par Cans	\N	1500	8	367b737a-7d2f-4066-af6e-b6410faf5952	\N	\N	\N	Daily	amount	12000	1	0	\N	\N	\N	\N	\N
+5ae9484c-6e3b-4b23-bd8d-9b024c2194e7	2016-06-21 21:00:16.149115-05	2016-06-21 21:00:16.149115-05	ben assef	f	VRX 932	JBL	VRX 932	Audio	Speakers	Array	\N	6000	2	367b737a-7d2f-4066-af6e-b6410faf5952	\N	\N	\N	Daily	amount	12000	1	0	\N	\N	\N	\N	\N
+04094a91-da33-482f-a8d4-97c92e4ad5ef	2016-06-22 17:02:56.926299-05	2016-06-22 17:02:56.926299-05	serveradmin	f	PRX612M	JBL	PRX612M	Audio	Speaker	Powered	\N	3500	4	46039717-6b0f-453a-bb9c-4b417346d9d9	\N	\N	\N	Daily	amount	14000	1	0	\N	\N	\N	\N	\N
+2562b230-3464-4007-ad74-6dc31dd552f6	2016-06-21 21:00:16.149115-05	2016-06-21 21:00:16.149115-05	ben assef	f	DMX Controller - 16ch	\N	\N	Lighting	Control	\N	\N	2000	1	367b737a-7d2f-4066-af6e-b6410faf5952	\N	\N	\N	Daily	amount	2000	1	0	\N	\N	\N	\N	\N
+8d08306e-5bbe-4af2-9ba8-fd6e6db6fe19	2016-06-21 21:00:16.149115-05	2016-06-21 21:00:16.149115-05	ben assef	f	Dimmer Pack 4ch	\N	\N	Lighting	\N	\N	\N	2500	2	367b737a-7d2f-4066-af6e-b6410faf5952	\N	\N	\N	Daily	amount	5000	1	0	\N	\N	\N	\N	\N
+c4f259f8-7b12-4c2d-aa42-669fd9afce81	2016-06-22 17:12:04.229107-05	2016-06-22 17:12:04.229107-05	serveradmin	f	SandBag 75lb	\N	\N	Rigging	Counterweight	Sandbags	\N	0	8	46039717-6b0f-453a-bb9c-4b417346d9d9	\N	\N	\N	Daily	amount	0	1	0	\N	\N	\N	\N	\N
+040ab489-1b78-48de-aabf-bb463f87e358	2016-06-21 21:00:16.149115-05	2016-06-21 21:00:16.149115-05	ben assef	f	Lighting Stands	\N	\N	Lighting	\N	\N	\N	750	2	367b737a-7d2f-4066-af6e-b6410faf5952	\N	\N	\N	Daily	amount	1500	1	0	\N	\N	\N	\N	\N
+467989b5-0d8f-4d7c-ab80-2526611bfe10	2016-06-22 02:18:34.340265-05	2016-06-22 02:18:34.340265-05	serveradmin	f	I-Tech 8000	Crown	I-Tech 8000	Audio	Amps	Single	\N	7500	1	A9DC72D2-556E-B947-8487-932A5291297B	\N	\N	\N	Daily	amount	7500	1	0	\N	\N	\N	\N	\N
+00c9f0fa-b1fe-4d4a-9d2d-4877f11083a6	2016-06-22 02:18:35.002624-05	2016-06-22 02:18:35.002624-05	serveradmin	f	NL8 Breakout	\N	\N	Audio	Cabling	Adapters	\N	0	1	B9A6E4BF-5D3E-4E9E-B3E2-BC11A2143D6C	\N	\N	\N	Daily	amount	0	1	0	\N	\N	\N	\N	\N
+b4b7f142-5b86-4bac-aef2-6b60facb1c96	2016-06-22 02:18:35.719567-05	2016-06-22 02:18:35.719567-05	serveradmin	f	I-Tech 8000	Crown	I-Tech 8000	Audio	Amps	Single	\N	7500	1	A9DC72D2-556E-B947-8487-932A5291297B	\N	\N	\N	Daily	amount	7500	1	0	\N	\N	\N	\N	\N
+f5ee42bc-f30f-4103-a4f8-be8409c24999	2016-06-22 02:18:36.461837-05	2016-06-22 02:18:36.461837-05	serveradmin	f	CM15V	Yamaha	CM15V	Audio	Speakers	Monitors	\N	2500	1	DAEE0F91-EDDD-7948-A08F-24F7698B09BD	\N	\N	\N	Daily	amount	2500	1	0	\N	\N	\N	\N	\N
+46073cfc-9e6f-4f06-adc1-264e5906f6d0	2016-06-22 02:18:37.248736-05	2016-06-22 02:18:37.248736-05	serveradmin	f	MTL1-X	\N	\N	Audio	Speaker	Subwoofer	\N	5000	1	86DBBE2E-6A88-434E-B816-07319F50E9FB	\N	\N	\N	Daily	amount	5000	1	0	\N	\N	\N	\N	\N
+bb765960-84d2-4983-b20c-a6f0c53055ce	2016-06-22 02:18:45.047349-05	2016-06-22 02:18:45.047349-05	serveradmin	f	MTL1-X	\N	\N	Audio	Speaker	Subwoofer	\N	5000	1	86DBBE2E-6A88-434E-B816-07319F50E9FB	\N	\N	\N	Daily	amount	5000	1	0	\N	\N	\N	\N	\N
+99285984-594e-4297-883d-01ffcd1a928a	2016-06-22 17:02:05.75064-05	2016-06-22 17:02:05.75064-05	serveradmin	f	PRX612M	JBL	PRX612M	Audio	Speaker	Powered	\N	3500	1	4359F11E-CCCD-7545-ACDE-96C4C1607EFC	\N	\N	\N	Daily	amount	3500	1	0	\N	\N	\N	\N	\N
+04d50599-2071-411c-abcd-fe3db718b16d	2016-06-22 17:02:08.09655-05	2016-06-22 17:02:08.09655-05	serveradmin	f	PRX612M	JBL	PRX612M	Audio	Speaker	Powered	\N	3500	1	4359F11E-CCCD-7545-ACDE-96C4C1607EFC	\N	\N	\N	Daily	amount	3500	1	0	\N	\N	\N	\N	\N
+206a3086-423b-4eeb-ab7a-35886c24c4f7	2016-06-22 17:02:14.575341-05	2016-06-22 17:02:14.575341-05	serveradmin	f	DVA T12	dB Technologies	T12	Audio	Speaker	Array	\N	17500	1	0F0B1C15-D816-47F4-B212-1961D90BB779	\N	\N	\N	Daily	amount	17500	1	0	\N	\N	\N	\N	\N
+ad061f07-8428-49b0-bb48-1195db049b31	2016-06-22 17:02:26.371151-05	2016-06-22 17:02:26.371151-05	serveradmin	f	I-Tech 12000HD	Crown	I-Tech 12000HD	Audio	Amps	Single	\N	2500	1	59EBF635-AA70-CB44-9A84-7FD1BCA9A65E	\N	\N	\N	Daily	amount	2500	1	0	\N	\N	\N	\N	\N
+53acf507-d616-4f42-afe6-4884d4008889	2016-06-22 17:03:51.843999-05	2016-06-22 17:03:51.843999-05	serveradmin	f	Qu-16	Allen & Heath	Qu-16	Audio	Mixers	\N	\N	15000	1	46039717-6b0f-453a-bb9c-4b417346d9d9	\N	\N	\N	Daily	amount	15000	1	0	\N	\N	\N	\N	\N
+cf2a42e9-6b78-4482-8dfa-5aa914a35a9e	2016-06-22 17:14:02.169261-05	2016-06-22 17:14:02.169261-05	serveradmin	f	AC 50'	-N/A-	-N/A-	Cabling	Power	Edison	\N	0	2	46039717-6b0f-453a-bb9c-4b417346d9d9	\N	\N	\N	Daily	amount	0	1	0	\N	\N	\N	\N	\N
+7ddcaa99-d358-41f8-9ac7-d0daecb8981b	2016-06-22 17:10:11.146569-05	2016-06-22 17:10:11.146569-05	serveradmin	f	SM57	Shure	SM57	Audio	Microphone	Dynamic	\N	1000	4	46039717-6b0f-453a-bb9c-4b417346d9d9	\N	\N	\N	Daily	amount	4000	1	0	\N	\N	\N	\N	\N
+29ac8c91-bf57-4175-acab-b6e104d0e0df	2016-06-22 17:13:51.555575-05	2016-06-22 17:13:51.555575-05	serveradmin	f	AC 25'	-N/A-	-N/A-	Cabling	Power	Edison	\N	0	3	46039717-6b0f-453a-bb9c-4b417346d9d9	\N	\N	\N	Daily	amount	0	1	0	\N	\N	\N	\N	\N
+a93c7d96-7615-4eb4-b496-2c0d94c651b2	2016-06-22 17:12:48.974291-05	2016-06-22 17:12:48.974291-05	serveradmin	f	XLR 25'	-N/A-	-N/A-	Cabling	Audio	\N	\N	0	20	46039717-6b0f-453a-bb9c-4b417346d9d9	\N	\N	\N	Daily	amount	0	1	0	\N	\N	\N	\N	\N
+6d1d8e8c-e495-41ba-b29b-cf17512856bd	2016-06-22 17:12:26.733758-05	2016-06-22 17:12:26.733758-05	serveradmin	f	Speaker Stand	\N	\N	Rigging	Stands	Speaker	\N	500	4	46039717-6b0f-453a-bb9c-4b417346d9d9	\N	\N	\N	Daily	amount	2000	1	0	\N	\N	\N	\N	\N
+bc540d30-f4ef-4dcd-a416-b444982314fc	2016-06-22 17:10:23.853369-05	2016-06-22 17:10:23.853369-05	serveradmin	f	SM58	Shure	SM58	Audio	Microphones	Dynamic	\N	1000	1	46039717-6b0f-453a-bb9c-4b417346d9d9	\N	\N	\N	Daily	amount	1000	1	0	\N	\N	\N	\N	\N
+f1002ee0-3df2-4da3-950d-5df7e6afe123	2016-06-22 17:14:16.591462-05	2016-06-22 17:14:16.591462-05	serveradmin	f	AC Quad Box	\N	\N	Cabling	Power	Edison	\N	0	2	46039717-6b0f-453a-bb9c-4b417346d9d9	\N	\N	\N	Daily	amount	0	1	0	\N	\N	\N	\N	\N
+49ec02bb-eeab-4d5b-bca2-41f7002ed9c6	2016-06-22 17:15:22.015545-05	2016-06-22 17:15:22.015545-05	serveradmin	f	E-Tape	\N	\N	Misc.	\N	\N	\N	0	0	46039717-6b0f-453a-bb9c-4b417346d9d9	\N	\N	\N	Daily	amount	0	1	0	\N	\N	\N	\N	\N
+1e3c9395-9bed-4cf3-a84a-ad3c8d22068b	2016-06-22 17:12:44.307506-05	2016-06-22 17:12:44.307506-05	serveradmin	f	XLR 50'	-N/A-	-N/A-	Cabling	Audio	\N	\N	0	5	46039717-6b0f-453a-bb9c-4b417346d9d9	\N	\N	\N	Daily	amount	0	1	0	\N	\N	\N	\N	\N
+f735c3a4-6ef9-45ab-abf1-0b234632e337	2016-06-22 17:15:33.112715-05	2016-06-22 17:15:33.112715-05	serveradmin	f	Gaff Tape	\N	\N	Misc.	\N	\N	\N	0	0	46039717-6b0f-453a-bb9c-4b417346d9d9	\N	\N	\N	Daily	amount	0	1	0	\N	\N	\N	\N	\N
+eddbaead-9c27-4f2c-b791-589d4e15b05d	2016-06-22 17:15:41.027412-05	2016-06-22 17:15:41.027412-05	serveradmin	f	Tie Line	\N	\N	Misc.	\N	\N	\N	0	0	46039717-6b0f-453a-bb9c-4b417346d9d9	\N	\N	\N	Daily	amount	0	1	0	\N	\N	\N	\N	\N
+69fb7879-c8f6-43e1-aa7f-0fb8c1596357	2016-06-22 17:15:49.721267-05	2016-06-22 17:15:49.721267-05	serveradmin	f	Asus Router	\N	\N	Networking	Routers	\N	\N	0	1	46039717-6b0f-453a-bb9c-4b417346d9d9	\N	\N	\N	Daily	amount	0	1	0	\N	\N	\N	\N	\N
+77ee8c91-a96f-436c-b43f-df2b7d345149	2016-06-23 04:41:15.309577-05	2016-06-23 04:41:15.309577-05	serveradmin	f	Laptop	\N	\N	Video	\N	\N	\N	0	1	46039717-6b0f-453a-bb9c-4b417346d9d9	\N	\N	\N	Daily	amount	0	1	0	\N	\N	\N	\N	\N
+d2faa29b-c880-4477-a07b-a625c98f55a5	2016-06-24 19:02:28.885537-05	2016-06-24 19:02:28.885537-05	serveradmin	f	I-Tech 12000HD	Crown	I-Tech 12000HD	Audio	Amps	Single	\N	2500	1	d48e6e3a-2b56-49e4-843a-121f0bfbd23a	\N	\N	\N	Daily	amount	2500	1	0	\N	\N	\N	\N	\N
+3120496b-044d-4bdb-abb8-811f330e2e3e	2016-06-23 04:37:18.912945-05	2016-06-23 04:37:18.912945-05	serveradmin	f	Direct Box	DBX	\N	Audio	Direct Boxes	Passive	\N	0	2	46039717-6b0f-453a-bb9c-4b417346d9d9	\N	\N	\N	Daily	amount	0	1	0	\N	\N	\N	\N	\N
+c20a9c57-31df-4b63-9e37-7104f5a406a4	2016-06-23 04:41:40.583235-05	2016-06-23 04:41:40.583235-05	serveradmin	f	Table	\N	\N	Video	\N	\N	\N	0	1	46039717-6b0f-453a-bb9c-4b417346d9d9	\N	\N	\N	Daily	amount	0	1	0	\N	\N	\N	\N	\N
+3904877f-6c92-4256-853c-7739fa1d204a	2016-06-22 17:17:51.019346-05	2016-06-22 17:17:51.019346-05	serveradmin	f	Mic Clips	\N	\N	Audio	Misc	Clips	\N	0	12	46039717-6b0f-453a-bb9c-4b417346d9d9	\N	\N	\N	Daily	amount	0	1	0	\N	\N	\N	\N	\N
+ead88fd3-d207-47f2-b9b8-fb7e6e29766b	2016-06-23 04:33:52.01637-05	2016-06-23 04:33:52.01637-05	serveradmin	f	Board Stand	\N	\N	Misc.	\N	\N	\N	0	1	46039717-6b0f-453a-bb9c-4b417346d9d9	\N	\N	\N	Daily	amount	0	1	0	\N	\N	\N	\N	\N
+9b7fd50c-7a95-465d-a096-5551e6b068af	2016-06-24 19:02:36.450682-05	2016-06-24 19:02:36.450682-05	serveradmin	f	DVA T8	dB Technologies	T8	Audio	Speaker	Array	\N	10000	1	d48e6e3a-2b56-49e4-843a-121f0bfbd23a	\N	\N	\N	Daily	amount	10000	1	0	\N	\N	\N	\N	\N
+3d8c9b8d-2fd0-4260-8c88-5798d0742194	2016-06-24 19:02:26.062915-05	2016-06-24 19:02:26.062915-05	serveradmin	f	DVA T8	dB Technologies	T8	Audio	Speaker	Array	\N	10000	1	d48e6e3a-2b56-49e4-843a-121f0bfbd23a	\N	\N	\N	Daily	amount	10000	1	0	\N	\N	\N	\N	\N
+b882cdea-fe40-4d79-b8f2-f4031254d800	2016-06-22 21:36:02.344089-05	2016-06-22 21:36:02.344089-05	serveradmin	f	DL351	\N	\N	Audio	Stage Box	\N	\N	7500	1	2033FA2D-2403-40D8-A97B-57465FE6E0E8	\N	\N	\N	Daily	amount	7500	1	0	\N	\N	\N	\N	\N
+b0f03fd9-505c-4e7b-a276-d9e73ec635b0	2016-06-22 21:36:07.55054-05	2016-06-22 21:36:07.55054-05	serveradmin	f	Mic Stand 12 Pack	\N	\N	Audio	Stands	\N	\N	2500	1	4860067A-2482-6A40-BF76-5264447A07FA	\N	\N	\N	Daily	amount	2500	1	0	\N	\N	\N	\N	\N
+7b3d1222-99a9-45a4-94fe-4653beb672b3	2016-06-22 21:36:27.905801-05	2016-06-22 21:36:27.905801-05	serveradmin	f	Mic Stand 12 Pack	\N	\N	Audio	Stands	\N	\N	2500	1	4860067A-2482-6A40-BF76-5264447A07FA	\N	\N	\N	Daily	amount	2500	1	0	\N	\N	\N	\N	\N
+dc87d61b-a28b-43bd-995f-8f9dd2e6aa38	2016-06-22 21:37:20.401859-05	2016-06-22 21:37:20.401859-05	serveradmin	f	I-Tech 12000HD	Crown	I-Tech 12000HD	Audio	Amps	Single	\N	2500	1	59EBF635-AA70-CB44-9A84-7FD1BCA9A65E	\N	\N	\N	Daily	amount	2500	1	0	\N	\N	\N	\N	\N
+dbcf5c62-58a3-440c-ad7a-6894a93599b2	2016-06-23 04:40:15.850671-05	2016-06-23 04:40:15.850671-05	serveradmin	f	XLR 10'	-N/A-	-N/A-	Cabling	Audio	\N	\N	0	5	46039717-6b0f-453a-bb9c-4b417346d9d9	\N	\N	\N	Daily	amount	0	1	0	\N	\N	\N	\N	\N
+f48b04d4-ac0c-4fe8-9570-e05df91868f6	2016-06-24 19:02:29.583627-05	2016-06-24 19:02:29.583627-05	serveradmin	f	NL8 Breakout	\N	\N	Audio	Cabling	Adapters	\N	0	1	d48e6e3a-2b56-49e4-843a-121f0bfbd23a	\N	\N	\N	Daily	amount	0	1	0	\N	\N	\N	\N	\N
+bede22a5-e8e8-496f-99fa-46ad1d3c13b4	2016-06-23 04:40:42.353015-05	2016-06-23 04:40:42.353015-05	serveradmin	f	iPad	\N	\N	Networking	\N	\N	\N	0	1	46039717-6b0f-453a-bb9c-4b417346d9d9	\N	\N	\N	Daily	amount	0	1	0	\N	\N	\N	\N	\N
+a42c5901-c1ac-496f-84a3-57b163ea44c0	2016-06-23 04:35:27.562759-05	2016-06-23 04:35:27.562759-05	serveradmin	f	Condensers	\N	\N	Audio	\N	\N	\N	0	7	46039717-6b0f-453a-bb9c-4b417346d9d9	\N	\N	\N	Daily	amount	0	1	0	\N	\N	\N	\N	\N
+90039cfb-ce8e-4936-a631-6dd558c70290	2016-06-24 19:02:26.760934-05	2016-06-24 19:02:26.760934-05	serveradmin	f	Mic Stand 12 Pack	\N	\N	Audio	Stands	\N	\N	2500	1	d48e6e3a-2b56-49e4-843a-121f0bfbd23a	\N	\N	\N	Daily	amount	2500	1	0	\N	\N	\N	\N	\N
+4060352b-e18b-4ef4-83b1-60b246e45402	2016-06-23 04:40:59.860759-05	2016-06-23 04:40:59.860759-05	serveradmin	f	Projector	\N	\N	Video	\N	\N	\N	0	1	46039717-6b0f-453a-bb9c-4b417346d9d9	\N	\N	\N	Daily	amount	0	1	0	\N	\N	\N	\N	\N
+d5dbaffe-a05f-4595-b11a-be786c25de88	2016-06-24 19:02:38.731783-05	2016-06-24 19:02:38.731783-05	serveradmin	f	Mic Stand 12 Pack	\N	\N	Audio	Stands	\N	\N	2500	1	d48e6e3a-2b56-49e4-843a-121f0bfbd23a	\N	\N	\N	Daily	amount	2500	1	0	\N	\N	\N	\N	\N
+d667f19c-f2a4-492f-8809-8fcb2ee4dce5	2016-06-24 19:02:27.443317-05	2016-06-24 19:02:27.443317-05	serveradmin	f	DL251	\N	\N	Audio	StageBox	\N	\N	6000	1	d48e6e3a-2b56-49e4-843a-121f0bfbd23a	\N	\N	\N	Daily	amount	6000	1	0	\N	\N	\N	\N	\N
+40bc931e-2eca-4c54-b3c8-690a6483223d	2016-06-24 19:02:34.956235-05	2016-06-24 19:02:34.956235-05	serveradmin	f	K10	QSC	K10	Audio	Speaker	Powered	\N	3500	1	d48e6e3a-2b56-49e4-843a-121f0bfbd23a	\N	\N	\N	Daily	amount	3500	1	0	\N	\N	\N	\N	\N
+543c0764-6936-4fde-9505-55b7b26a021e	2016-06-24 19:02:37.177457-05	2016-06-24 19:02:37.177457-05	serveradmin	f	Mic Stand 8 Pack	\N	\N	Audio	Stands	\N	\N	4000	1	d48e6e3a-2b56-49e4-843a-121f0bfbd23a	\N	\N	\N	Daily	amount	4000	1	0	\N	\N	\N	\N	\N
+e7a2a078-1868-48f4-abfe-cf9c6d616c59	2016-06-24 19:02:28.178357-05	2016-06-24 19:02:28.178357-05	serveradmin	f	4ch Mixer	\N	\N	Audio	Mixer	Analog	\N	2000	1	d48e6e3a-2b56-49e4-843a-121f0bfbd23a	\N	\N	\N	Daily	amount	2000	1	0	\N	\N	\N	\N	\N
+f7774826-708a-4ab3-ba46-9dd5ef98474d	2016-06-24 19:02:40.242557-05	2016-06-24 19:02:40.242557-05	serveradmin	f	CM15V	Yamaha	CM15V	Audio	Speakers	Monitors	\N	2500	1	d48e6e3a-2b56-49e4-843a-121f0bfbd23a	\N	\N	\N	Daily	amount	2500	1	0	\N	\N	\N	\N	\N
+2264207e-e685-4656-8b7b-8e0f965166ec	2016-06-24 19:02:35.712293-05	2016-06-24 19:02:35.712293-05	serveradmin	f	Microphone Package	\N	\N	Audio	Microphone	\N	\N	7500	1	d48e6e3a-2b56-49e4-843a-121f0bfbd23a	\N	\N	\N	Daily	amount	7500	1	0	\N	\N	\N	\N	\N
+15bb9a8e-733f-4d6a-a1c3-6fb5ce1749f6	2016-06-24 19:02:39.502888-05	2016-06-24 19:02:39.502888-05	serveradmin	f	DVA T12	dB Technologies	T12	Audio	Speaker	Array	\N	17500	1	d48e6e3a-2b56-49e4-843a-121f0bfbd23a	\N	\N	\N	Daily	amount	17500	1	0	\N	\N	\N	\N	\N
+d82f2274-0403-4b7d-9e6f-0f78b4333ae5	2016-06-24 19:02:37.960174-05	2016-06-24 19:02:37.960174-05	serveradmin	f	I-Tech 12000HD	Crown	I-Tech 12000HD	Audio	Amps	Single	\N	2500	1	d48e6e3a-2b56-49e4-843a-121f0bfbd23a	\N	\N	\N	Daily	amount	2500	1	0	\N	\N	\N	\N	\N
+20879912-2c32-47a1-bae1-6b0211b79ba4	2016-06-24 19:02:41.702894-05	2016-06-24 19:02:41.702894-05	serveradmin	f	D6	Audix	D6	Audio	Microphone	Dynamic	\N	0	1	d48e6e3a-2b56-49e4-843a-121f0bfbd23a	\N	\N	\N	Daily	amount	0	1	0	\N	\N	\N	\N	\N
+145501ab-bee8-4119-a495-653a593a953b	2016-06-24 19:02:43.157761-05	2016-06-24 19:02:43.157761-05	serveradmin	f	I-Tech 8000	Crown	I-Tech 8000	Audio	Amps	Single	\N	7500	1	d48e6e3a-2b56-49e4-843a-121f0bfbd23a	\N	\N	\N	Daily	amount	7500	1	0	\N	\N	\N	\N	\N
+af0f0291-c9bf-4628-ad68-f22dd8e2b0ec	2016-06-24 19:02:40.980966-05	2016-06-24 19:02:40.980966-05	serveradmin	f	609	Sennheiser	609	Audio	Microphone	Dynamic	\N	0	1	d48e6e3a-2b56-49e4-843a-121f0bfbd23a	\N	\N	\N	Daily	amount	0	1	0	\N	\N	\N	\N	\N
+1c469bdc-9e6d-44f2-98dc-dd6762e3e670	2016-06-24 19:02:42.396756-05	2016-06-24 19:02:42.396756-05	serveradmin	f	DVA T12	dB Technologies	T12	Audio	Speaker	Array	\N	17500	1	d48e6e3a-2b56-49e4-843a-121f0bfbd23a	\N	\N	\N	Daily	amount	17500	1	0	\N	\N	\N	\N	\N
+feb2b3a2-a28a-4a29-b2af-b4fd0d19d571	2016-06-24 19:02:43.944004-05	2016-06-24 19:02:43.944004-05	serveradmin	f	Mic Stand 12 Pack	\N	\N	Audio	Stands	\N	\N	2500	1	d48e6e3a-2b56-49e4-843a-121f0bfbd23a	\N	\N	\N	Daily	amount	2500	1	0	\N	\N	\N	\N	\N
+62d30308-8ec2-4b8c-adf7-46ac192093c2	2016-06-24 19:02:45.423749-05	2016-06-24 19:02:45.423749-05	serveradmin	f	Microphone Package	\N	\N	Audio	Microphone	\N	\N	7500	1	d48e6e3a-2b56-49e4-843a-121f0bfbd23a	\N	\N	\N	Daily	amount	7500	1	0	\N	\N	\N	\N	\N
+67f99f8b-3d13-43f2-b0c0-c491b41f9b86	2016-06-24 19:02:46.191094-05	2016-06-24 19:02:46.191094-05	serveradmin	f	PRX612M	JBL	PRX612M	Audio	Speaker	Powered	\N	3500	1	d48e6e3a-2b56-49e4-843a-121f0bfbd23a	\N	\N	\N	Daily	amount	3500	1	0	\N	\N	\N	\N	\N
+c41dc792-f1a8-49a5-899e-a95de4375c44	2016-06-24 19:02:46.954419-05	2016-06-24 19:02:46.954419-05	serveradmin	f	Microphone Package	\N	\N	Audio	Microphone	\N	\N	7500	1	d48e6e3a-2b56-49e4-843a-121f0bfbd23a	\N	\N	\N	Daily	amount	7500	1	0	\N	\N	\N	\N	\N
+a91bf289-5253-4353-8677-18797e451925	2016-06-24 19:02:47.723438-05	2016-06-24 19:02:47.723438-05	serveradmin	f	Mic Stand 12 Pack	\N	\N	Audio	Stands	\N	\N	2500	1	d48e6e3a-2b56-49e4-843a-121f0bfbd23a	\N	\N	\N	Daily	amount	2500	1	0	\N	\N	\N	\N	\N
+9088b87b-71a4-4186-8d05-46a0992408e5	2016-06-24 19:02:56.818936-05	2016-06-24 19:02:56.818936-05	serveradmin	f	AR2412	\N	\N	Audio	Snake	Stage Box	\N	5000	1	d48e6e3a-2b56-49e4-843a-121f0bfbd23a	\N	\N	\N	Daily	amount	5000	1	0	\N	\N	\N	\N	\N
+42aec9c0-feee-496c-b93e-885dbef78be0	2016-06-24 19:02:57.636547-05	2016-06-24 19:02:57.636547-05	serveradmin	f	I-Tech 12000HD	Crown	I-Tech 12000HD	Audio	Amps	Single	\N	2500	1	d48e6e3a-2b56-49e4-843a-121f0bfbd23a	\N	\N	\N	Daily	amount	2500	1	0	\N	\N	\N	\N	\N
+4578563f-0ba4-4ed1-afb1-adba58588e2e	2016-06-24 19:02:58.388391-05	2016-06-24 19:02:58.388391-05	serveradmin	f	DL251	\N	\N	Audio	StageBox	\N	\N	6000	1	d48e6e3a-2b56-49e4-843a-121f0bfbd23a	\N	\N	\N	Daily	amount	6000	1	0	\N	\N	\N	\N	\N
+\.
+
+
+--
+-- TOC entry 2593 (class 0 OID 19510)
+-- Dependencies: 176
+-- Data for Name: mGlobal; Type: TABLE DATA; Schema: public; Owner: serveradmin
+--
+
+COPY "mGlobal" (pkid, row_created, row_modified, row_username, row_in_use) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2604 (class 0 OID 19761)
+-- Dependencies: 187
+-- Data for Name: payments_; Type: TABLE DATA; Schema: public; Owner: serveradmin
+--
+
+COPY payments_ (pkid, row_created, row_modified, row_username, row_in_use, date_, memo_, amount_, paymenttype_, fkeipl) FROM stdin;
+b76c3b80-e6ab-4404-898e-872ec96e0626	2016-06-21 16:20:49.35787-05	2016-06-21 16:20:49.35787-05	serveradmin	f	2016-06-21	\N	0	\N	a5a1109e-c5c7-4764-a564-96a819f15dbc
+5fdbc7c5-58a2-47a0-a43a-8eff1aa49325	2016-06-21 16:24:53.406437-05	2016-06-21 16:24:53.406437-05	serveradmin	f	2016-06-21	\N	0	\N	0fee01ab-2fbd-49b5-b7bc-ae5be2b7d334
+\.
+
+
+--
+-- TOC entry 2605 (class 0 OID 19774)
+-- Dependencies: 188
+-- Data for Name: result; Type: TABLE DATA; Schema: public; Owner: serveradmin
+--
+
+COPY result (inventory_to_lineitem) FROM stdin;
+\N
+\.
+
+
+--
+-- TOC entry 2606 (class 0 OID 19787)
+-- Dependencies: 189
+-- Data for Name: venues; Type: TABLE DATA; Schema: public; Owner: serveradmin
+--
+
+COPY venues (pkid, row_created, row_modified, row_username, row_in_use, email, phonecountry, phoneareacode, phonemain, addressline1, addressline2, addresscity, addressstate, addresszip, addresscountry, fkconven, company, "primary", name, type) FROM stdin;
+04C3AE17-B343-F744-A22B-FF0BA3F5E435	2016-06-07 15:11:36.265118-05	2015-12-04 21:29:45-06	ben assef	f	\N	\N	\N	\N	\N	\N	Winona	MN	\N	\N	\N	\N	\N	Ed's	\N
+AFCCEEBA-2F86-1D47-887A-7ABA1873109E	2015-05-06 18:52:28-05	2015-05-06 18:52:32-05	Sean O'Connell	f	\N	\N	\N	\N	\N	\N	\N	MN	\N	\N	\N	\N	\N	Test Venue	\N
+32F77F44-6FE9-3143-B599-C342918D9435	2016-06-07 15:11:36.294427-05	2015-03-24 00:54:02-05	ben assef	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	Winona	\N
+E610EE81-3174-554B-A928-1A84F7A444C9	2016-06-07 15:11:36.23304-05	2015-03-24 00:54:02-05	ben assef	f	\N	\N	\N	\N	\N	\N	Winona	MN	\N	\N	\N	\N	\N	Broken World Records	\N
+EF5582F1-8B6D-4B5A-AD09-AE8CF379112E	2015-05-29 09:06:24-05	2015-05-29 09:07:51-05	ben assef	f	\N	\N	\N	507-282-8629	40 Civic Center Drive SE	\N	Rochester	MN	55904	\N	\N	\N	\N	Rochester Art Center	\N
+B0CC260B-6AD5-0143-9A9E-121360665860	2016-06-07 15:11:36.269646-05	2015-12-04 21:28:28-06	ben assef	f	\N	\N	\N	\N	\N	\N	Winona	MN	\N	\N	\N	\N	\N	Tent	\N
+E4C06AF2-DADB-0B47-B8FB-556B2BAB295A	2016-06-07 15:11:36.237909-05	2015-03-24 00:54:02-05	ben assef	f	\N	\N	\N	\N	\N	\N	Winona	MN	\N	\N	\N	\N	\N	Acoustic Cafe	\N
+36CB6510-F813-E742-B1FA-4565BDA3ABD0	2016-06-07 15:11:36.201098-05	2015-03-24 00:54:02-05	serveradmin	f	\N	\N	\N	\N	\N	\N	Rochester	MN	55901	\N	\N	\N	\N	Peace Plaza	\N
+DB987C46-3F78-42CB-AA66-429A14081991	2015-03-31 16:27:40-05	2015-03-31 16:27:58-05	ben assef	f	\N	\N	\N	\N	\N	\N	Winona	MN	\N	\N	\N	\N	\N	WSU Gymnasium 	\N
+89B218DA-BAF8-4A7A-96D7-BCAF5A185C97	2015-05-19 21:35:25-05	2015-05-19 21:35:58-05	ben assef	f	\N	\N	\N	\N	1026 East Center St	\N	Rochester	MN	55904	\N	\N	\N	\N	Boys & Girls Club	\N
+A00C2224-BE65-D94C-896C-8D2BA722D3E8	2016-06-07 15:11:36.297691-05	2015-03-24 00:54:02-05	iPhone	f	\N	\N	\N	\N	\N	\N	St. Paul	MN	\N	\N	\N	\N	\N	MN State Faigrounds	\N
+8B23C8E7-AC99-A043-B580-45690547F435	2016-06-07 15:11:36.242482-05	2015-03-24 00:54:02-05	ben assef	f	\N	\N	\N	\N	\N	\N	Winona	MN	\N	\N	\N	\N	\N	Winona Arts Center	\N
+B446220D-9649-1941-80DE-495645C4CF2B	2016-06-07 15:11:36.21215-05	2015-03-24 00:54:02-05	serveradmin	f	test@yup.com	\N	\N	456-789-0123	12345 45th st NW	\N	Rochester 	Minnesota	55901	\N	\N	\N	\N	Test Venue	\N
+9F3B4408-1A29-5445-AB77-9DB8CD377FA8	2016-06-07 15:11:36.274906-05	2015-03-24 00:54:02-05	ben assef	f	\N	\N	\N	\N	1103 Washington Ave S	\N	Minneapolis	MN	\N	\N	\N	\N	\N	Day Block Brewing	\N
+111DE97A-2D0F-4CB8-A695-DD38C057ADF0	2015-05-05 23:04:14-05	2015-05-05 23:05:12-05	ben assef	f	\N	\N	\N	\N	28041 South Elevator RD	\N	Manhattan 	IL	60442	\N	\N	\N	\N	The Farm	\N
+9D1638EC-2A85-3645-AF8B-18550974E44B	2016-06-07 15:11:36.247028-05	2015-12-04 21:32:22-06	ben assef	f	\N	\N	\N	\N	\N	\N	La Crosse	Wi	\N	\N	\N	\N	\N	Charmant	\N
+DFA1E4CC-E66B-E846-B57A-62B0EFB4BD3C	2016-06-07 15:11:36.218901-05	2015-03-24 00:54:02-05	serveradmin	f	mbauer@graveshospitalitystp.com	\N	\N	651-605-6950	\N	\N	St. Paul	MN	\N	\N	\N	\N	\N	Crown Plaza Hotel	\N
+08BE45DD-0194-47A4-A2B1-1DA29295090A	2015-06-08 14:10:52-05	2015-06-08 14:10:56-05	Sean O'Connell	f	\N	\N	\N	\N	\N	\N	\N	MN	\N	\N	\N	\N	\N	2cesz	\N
+1D4C0847-A8F1-D446-8ADF-F7E13C212026	2016-06-07 15:11:36.302089-05	2015-03-24 00:54:02-05	ben assef	f	\N	\N	\N	\N	\N	\N	Rochester	MN	\N	\N	\N	\N	\N	Lourdes High School Auditorium 	\N
+D9CAA5B2-F7C8-CC41-97F1-FE6284440D2A	2016-06-07 15:11:36.27994-05	2015-03-24 00:54:02-05	ben assef	f	\N	\N	\N	\N	\N	\N	Stewartville	MN	\N	\N	\N	\N	\N	Stewartville High School	\N
+24A0BA4A-6D25-9E49-B9C0-0B8AD9C2A532	2016-06-07 15:11:36.223967-05	2015-03-24 00:54:02-05	ben assef	f	\N	\N	\N	\N	\N	\N	Mantorville	MN	\N	\N	\N	\N	\N	Restoration House	\N
+83D39277-49F4-8349-A928-FE3260206856	2016-06-07 15:11:36.251592-05	2015-12-04 21:31:41-06	ben assef	f	\N	\N	\N	\N	\N	\N	La Crosse	WI	\N	\N	\N	\N	\N	Cavalier	\N
+2D5143A4-7A6A-419C-AA6D-53D71390D98E	2015-04-19 23:53:52-05	2015-04-19 23:54:10-05	ben assef	f	\N	\N	\N	\N	\N	\N	Rochester	MN	\N	\N	\N	\N	\N	Peace Plaza	\N
+3C5A8D4A-7CCB-384A-A353-CD01B1BCD325	2016-06-07 15:11:36.228528-05	2015-03-24 00:54:02-05	ben assef	f	\N	\N	\N	\N	\N	\N	Winona	MN	\N	\N	\N	\N	\N	Masonic Temple	\N
+CEFEE855-B43A-4BF2-8DA1-C55DFCFF81C9	2015-05-11 12:39:53-05	2015-05-11 12:40:13-05	ben assef	f	\N	\N	\N	\N	\N	\N	Sullivan	WI	\N	\N	\N	\N	\N	Concord House	\N
+821E78C8-38AC-D74C-82C0-8D53B898A121	2016-06-07 15:11:36.25613-05	2015-12-04 21:30:56-06	ben assef	f	\N	\N	\N	\N	\N	\N	La Crosse	WI	\N	\N	\N	\N	\N	Court On Main	\N
+D83FB981-4FE9-934C-93B5-CCAF273E2FE2	2016-06-07 15:11:36.306645-05	2015-03-24 00:54:02-05	ben assef	f	\N	\N	\N	\N	\N	\N	Rochester	MN	\N	\N	\N	\N	\N	Silver Lake Park	\N
+B54EFF2A-12F9-F345-A762-643375D5E75D	2016-06-07 15:11:36.28437-05	2015-03-24 00:54:02-05	ben assef	f	\N	\N	\N	\N	319 Wittig Rd	\N	Tomah	WI	54660	\N	\N	\N	\N	Cranberry Country Lodge	\N
+4F026501-6DF2-4464-A9EB-C58C59B5342D	2015-06-09 00:38:46-05	2015-06-09 00:39:03-05	ben assef	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	Redeemer Lutheran Church	\N
+03D2C399-7649-404E-B780-B42338EA321C	2016-06-07 15:11:36.260615-05	2015-12-04 21:27:45-06	ben assef	f	\N	\N	\N	\N	\N	\N	Winona	MN	\N	\N	\N	\N	\N	Eagles Club	\N
+D80C7FAE-7468-4861-B175-A517C32AEE50	2015-05-19 23:05:35-05	2015-05-19 23:05:44-05	ben assef	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	Peace Plaza	\N
+0E0AA498-AD6C-49D6-A862-42B18CAE4AEF	2015-05-01 11:39:40-05	2016-02-28 15:36:45-06	ben assef	f	\N	\N	\N	\N	\N	\N	Rochester	MN	\N	\N	\N	\N	\N	Mayo Civic Center	\N
+5F4C3CCD-9478-384B-8E90-045A7A1C9965	2016-06-07 15:11:36.28994-05	2015-03-24 00:54:02-05	ben assef	f	\N	\N	\N	\N	\N	\N	Lanesboro	MN	\N	\N	\N	\N	\N	Good-I-Nuff Campsites	\N
+C05A45D4-BF21-463F-9A43-E69E80675143	2015-06-08 14:07:27-05	2015-06-08 14:07:30-05	Sean O'Connell	f	\N	\N	\N	\N	\N	\N	\N	MN	\N	\N	\N	\N	\N	oiwv	\N
+BEF2BDC5-50D4-407C-9D62-FFCBE6CEBA8A	2015-05-06 01:22:26-05	2015-05-06 01:24:56-05	ben assef	f	\N	\N	\N	\N	5024 Crescent Ave	\N	Eau Claire	WI	54703	\N	\N	\N	\N	Whispering Pines Campground	\N
+20142085-E051-4A4F-8037-A92DFB920BCF	2016-06-07 15:11:36.311188-05	2015-03-24 00:54:02-05	ben assef	f	\N	\N	\N	\N	318 1st Ave SW	\N	Rochester	MN	55902	\N	\N	\N	\N	1st Ave Stage	\N
+E26A8BD1-3FF0-4D30-92C6-15726155E203	2015-05-19 20:03:51-05	2015-05-19 20:04:12-05	ben assef	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	Parkway Theater	\N
+D5CA4AD2-9268-6446-9663-C42FC10335CE	2015-06-07 18:45:01-05	2015-06-07 18:45:05-05	Sean O'Connell	f	\N	\N	\N	\N	\N	\N	\N	MN	\N	\N	\N	\N	\N	dfbebrbwer	\N
+213C2D15-E986-414C-B375-C63B80238D20	2015-05-03 18:33:21-05	2015-05-03 18:33:55-05	ben assef	f	\N	\N	\N	\N	\N	\N	Rochester	MN	\N	\N	\N	\N	\N	Soldier's Field Park	\N
+C91A96C9-4168-4801-BCDB-403398B24F70	2015-06-17 00:02:41-05	2015-06-17 00:03:13-05	ben assef	f	\N	\N	\N	\N	\N	\N	La Crosse	WI	\N	\N	\N	\N	\N	Copeland Park	\N
+6FA363BF-1BC9-4466-A307-A020E3642AD0	2015-06-09 13:11:31-05	2015-06-09 13:11:55-05	ben assef	f	\N	\N	\N	\N	615 6th Ave NW	\N	Rochester	MN	55901	\N	\N	\N	\N	Fox and the Fern	\N
+3BCEEB86-3669-46FA-8791-A633B3CEA7DF	2015-06-08 14:09:33-05	2015-06-08 14:09:43-05	Sean O'Connell	f	\N	\N	\N	\N	\N	\N	\N	MN	\N	\N	\N	\N	\N	\N	\N
+8D4DBB68-1DCA-4439-80C8-C28527055F81	2015-06-08 14:05:34-05	2015-06-08 14:05:38-05	Sean O'Connell	f	\N	\N	\N	\N	\N	\N	\N	MN	\N	\N	\N	\N	\N	cwcw	\N
+CF79E6FA-018D-4E21-A4F8-8261C3AEFD39	2015-06-08 14:14:10-05	2015-06-08 14:14:13-05	Sean O'Connell	f	\N	\N	\N	\N	\N	\N	\N	MN	\N	\N	\N	\N	\N	saeve	\N
+4B9C21F0-AA77-4CE2-AF87-6A15D5D1FCE2	2015-06-23 20:51:09-05	2015-06-23 20:51:28-05	ben assef	f	\N	\N	\N	\N	\N	\N	Morristown	MN	\N	\N	\N	\N	\N	Camp Maiden Rock	\N
+77350C9A-CE31-429A-9DE7-C85522CAC97D	2015-08-03 22:34:29-05	2015-08-03 22:34:48-05	Ben Assef	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	Olmsted County Fairgrounds	\N
+77EC1B18-EF28-4F61-B549-EA094AF243F8	2015-07-03 09:30:43-05	2015-07-03 09:31:09-05	ben assef	f	\N	\N	\N	\N	7th St. NE	\N	Rochester	MN	\N	\N	\N	\N	\N	Silver Lake	\N
+5AC2094B-2C2B-407C-8ABB-5D31BBB52230	2015-06-17 00:35:49-05	2015-06-17 00:36:17-05	ben assef	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	Forager Brewing	\N
+DFCD80F1-695E-4EDA-9532-9715DBB0177B	2015-08-04 10:13:31-05	2015-08-04 10:14:10-05	Ben Assef	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	Sioux Falls Convention Center	\N
+1C0819AB-6D74-4809-9E08-56825EF1EC3B	2015-07-01 08:46:09-05	2015-07-01 08:46:23-05	ben assef	f	\N	\N	\N	\N	\N	\N	Rushford	MN	\N	\N	\N	\N	\N	Rushford Days	\N
+2D959D83-B89F-465B-A933-3F53C1FF7C2C	2015-07-06 13:46:28-05	2015-07-06 13:47:28-05	ben assef	f	\N	\N	\N	\N	150 S. Broadway	\N	Rochester	MN	\N	\N	\N	\N	\N	Doubletree	\N
+307FA94E-D259-4988-A932-9A9136BFE9A7	2015-08-12 08:46:44-05	2015-08-12 08:47:09-05	Ben Assef	f	\N	\N	\N	\N	\N	\N	La Crosse	WI	\N	\N	\N	\N	\N	Pearl Street Brewery	\N
+518BDE5D-1B57-4169-84EC-B720A3F4DA5D	2015-08-14 13:06:51-05	2015-08-14 13:07:03-05	Ben Assef	f	\N	\N	\N	\N	\N	\N	Rochester	MN	\N	\N	\N	\N	\N	Coyote Creek	\N
+FC1AAB2D-D7A8-45BA-9D8E-1BF0F890D006	2015-08-14 14:47:52-05	2015-08-14 14:48:02-05	Ben Assef	f	\N	\N	\N	\N	\N	\N	Rochester	MN	\N	\N	\N	\N	\N	Cooke Park	\N
+22ABAF30-D3A3-4CA3-8E37-740C1B4E0094	2015-08-16 19:32:37-05	2015-08-16 19:32:48-05	Ben Assef	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	Downtown Rochester	\N
+19DFD86A-3EE7-4BCB-913C-A775AA2B97E1	2016-03-02 16:38:32-06	2016-03-02 16:38:42-06	Ben Assef	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	River Falls, WI	\N
+8A50A3FA-01DD-45ED-9936-B5BFEF1E8320	2015-10-15 23:16:00-05	2015-10-15 23:16:12-05	Ben Assef	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	Central Park	\N
+9FA79971-3E27-4280-A611-83D06D306CC5	2015-08-17 09:48:15-05	2015-08-17 09:48:26-05	Ben Assef	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	Harmony Park	\N
+C34E6A3B-E80E-4E9F-942F-F708DF908BCD	2016-01-19 13:06:40-06	2016-01-19 13:07:07-06	Ben Assef	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	Berne Pizza Farm	\N
+57DB2748-1DEE-4D1E-8F96-21EFB865C4B8	2015-12-14 15:18:19-06	2015-12-14 15:26:48-06	Ben Assef	f	\N	\N	\N	\N	N50W35016 Wisconsin Ave	\N	Okauchee	wi	53069	\N	\N	\N	\N	Bucky's Lakeside Pub	\N
+EB319B41-8E58-4973-A3F7-A0C08A564843	2015-10-27 22:53:03-05	2015-10-27 22:53:11-05	Ben Assef	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	Legends	\N
+166C6154-A8B2-4BD8-8049-1E24B42B6F1E	2015-08-17 12:15:40-05	2015-08-17 12:15:51-05	Ben Assef	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	Old City Hall	\N
+64DADB30-9C6C-4B0F-96AE-0DE7BBA835DF	2016-03-09 10:28:13-06	2016-03-09 10:28:36-06	Ben Assef	f	\N	\N	\N	\N	5200 Members Pkwy NW	\N	Rochester	MN	\N	\N	\N	\N	\N	Think Mutual Bank	\N
+0FC81E59-CB49-4F3A-A8C2-354953AADE71	2015-11-09 09:03:47-06	2015-11-09 09:04:00-06	Ben Assef	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	Fitzgerald Theatre	\N
+283A4EBF-49BB-478A-9D84-67AC37FC56BC	2015-08-18 09:16:32-05	2015-08-18 09:16:46-05	Ben Assef	f	\N	\N	\N	\N	\N	\N	Rochester	MN	\N	\N	\N	\N	\N	Kahler Hotel	\N
+9F6B44F9-4B39-4531-8926-D454265F6B6E	2016-03-03 13:57:55-06	2016-03-03 13:58:03-06	Ben Assef	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	Somerby	\N
+EF5CB870-7195-4961-A784-206B873356BA	2016-02-10 16:03:36-06	2016-02-10 16:03:53-06	Ben Assef	f	\N	\N	\N	\N	\N	\N	\N	MN	\N	\N	\N	\N	\N	John Marshall High School	\N
+738F53B4-0ADA-4D9A-BBB8-D388ADCA0DB6	2015-08-19 14:19:32-05	2015-08-19 14:19:46-05	Ben Assef	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	Downtown Minneapolis	\N
+3BCFD17C-2757-46E2-9227-96F2E707DD42	2015-12-17 09:22:17-06	2015-12-17 09:22:52-06	Ben Assef	f	\N	\N	\N	\N	\N	\N	Rochester	MN	\N	\N	\N	\N	\N	La Vetta	\N
+50FF03D4-2D84-4B21-BDD3-34626B45CCF4	2015-11-16 16:09:28-06	2015-11-16 16:09:38-06	Ben Assef	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	Webster, MN	\N
+E5EB76E7-FE0B-430E-8CE9-6B6AAA0CB6D2	2015-08-20 14:45:20-05	2015-08-20 14:45:42-05	Ben Assef	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	Cooke Park Design District	\N
+41486F52-C07E-476C-B837-701DAD80A738	2015-11-25 13:36:29-06	2015-11-25 13:36:38-06	Ben Assef	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	Savage MN	\N
+6F872EBB-AF4D-4C27-8C5F-FB81ABF03E75	2015-08-31 07:43:54-05	2015-08-31 07:44:09-05	Ben Assef	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	Rochester International Event Center	\N
+DE7F4C6C-6601-461D-8276-D65CB8443A83	2016-05-27 10:46:30-05	2016-05-27 10:47:40-05	Ben Assef	f	\N	\N	\N	\N	1991 Commerce Drive NW	\N	Rochester	MN	55901	\N	\N	\N	\N	Five West	\N
+73D4A26D-3AA3-454A-9B25-45BD0F7FF214	2016-05-11 12:47:44-05	2016-05-11 12:48:02-05	Ben Assef	f	\N	\N	\N	\N	\N	\N	Pine Island	MN	\N	\N	\N	\N	\N	Pine Island Liquor Store	\N
+61D8AE05-17B4-4D84-8A9B-2883CB99F05F	2016-03-16 00:45:18-05	2016-03-16 00:45:29-05	Ben Assef	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	Fountain, MN	\N
+0D1FF440-4792-435D-8006-1B7179F7D763	2015-09-02 08:16:28-05	2015-09-02 08:16:53-05	Ben Assef	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	Prairie Island Campground 	\N
+7A0756E7-448F-44F5-B070-3533E90A97C0	2015-12-18 12:15:11-06	2015-12-18 12:15:35-06	Ben Assef	f	\N	\N	\N	\N	\N	\N	Mankato	MN	\N	\N	\N	\N	\N	Verison Wireless Center	\N
+AA08098F-8ECC-4533-A9C7-7DC0B48A4A78	2015-12-03 15:53:45-06	2015-12-03 15:54:00-06	Ben Assef	f	\N	\N	\N	\N	\N	\N	Winona	MN	\N	\N	\N	\N	\N	Holzinger Lodge	\N
+EFE9B525-1922-447C-B075-ECCD0B74E6F7	2016-02-29 00:21:47-06	2016-02-29 00:22:12-06	Ben Assef	f	\N	\N	\N	\N	\N	\N	Rochester	MN	\N	\N	\N	\N	\N	Thyme	\N
+56D2A021-83EF-464F-8C3A-0604E595CE7D	2015-10-15 10:46:43-05	2015-10-15 10:46:55-05	Ben Assef	f	\N	\N	\N	\N	\N	\N	Rochester	MN	\N	\N	\N	\N	\N	Ashland Place	\N
+EB82D3F3-08A6-4D3B-B4F3-713339D5721F	2016-03-07 11:28:44-06	2016-03-07 12:51:20-06	Ben Assef	f	\N	\N	\N	\N	\N	\N	Rochester	MN	\N	\N	\N	\N	\N	Rochester, MN	\N
+36376BAB-60D6-4F25-9AD1-158CD3BDB3A5	2015-12-04 21:25:54-06	2015-12-04 21:26:05-06	Ben Assef	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	Tent	\N
+74B18D44-2B38-413E-BD77-6403E9096CCF	2015-10-15 11:08:37-05	2015-10-15 11:08:51-05	Ben Assef	f	\N	\N	\N	\N	\N	\N	Mankato	MN	\N	\N	\N	\N	\N	Kato Ballroom	\N
+837C10FD-737A-4576-862C-E3907619A114	2015-12-29 23:27:54-06	2015-12-29 23:28:09-06	Ben Assef	f	\N	\N	\N	\N	\N	\N	Rochester	MN	\N	\N	\N	\N	\N	Historic 3rd St	\N
+4BBE750A-07E7-4096-A7C3-270E6EBAA11D	2016-04-01 17:04:45-05	2016-04-01 17:26:07-05	Ben Assef	f	\N	\N	\N	\N	28269 Highway 67	\N	Morgan	MN	\N	\N	\N	\N	\N	Gilfillan Estate	\N
+8702F9B5-6188-4682-963C-52065B6D67EE	2016-03-02 15:53:29-06	2016-03-02 15:53:37-06	Ben Assef	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	Winona, MN	\N
+A0529C0C-1190-4E7A-AEF5-F34B30F55306	2015-12-08 23:21:33-06	2015-12-08 23:21:52-06	Ben Assef	f	\N	\N	\N	\N	\N	\N	Hillsboro	wi	\N	\N	\N	\N	\N	Driftless Music Garden	\N
+B4051AC5-D8FC-42D1-AE11-EF3B426AFCA2	2016-01-12 22:18:24-06	2016-01-12 22:18:44-06	Ben Assef	f	\N	\N	\N	\N	\N	\N	Albert Lea	MN	\N	\N	\N	\N	\N	Americas Best Value Inn	\N
+C4C8FD7D-7D2B-4DAB-A57B-C56FF8353691	2016-03-16 23:18:00-05	2016-03-16 23:18:20-05	Ben Assef	f	\N	\N	\N	\N	\N	\N	Rochester	MN	\N	\N	\N	\N	\N	Mayo Civic Center Presentation Hall	\N
+6DC892A5-57B3-4551-9387-E3BE812BE3B6	2016-03-08 11:00:45-06	2016-03-08 11:01:08-06	Ben Assef	f	\N	\N	\N	\N	\N	\N	Stewartville	MN	\N	\N	\N	\N	\N	Riverview Greens	\N
+FBB2E302-21F3-43FD-A0D4-5D3FB2A02670	2016-03-02 16:25:08-06	2016-03-02 16:25:27-06	Ben Assef	f	\N	\N	\N	\N	\N	\N	Rochester	MN	\N	\N	\N	\N	\N	Garahm Arena	\N
+6B6ACABB-744A-4AA5-932B-B0CC62AA5B94	2016-04-11 00:47:13-05	2016-04-11 00:47:57-05	Ben Assef	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	Decorah, IA	\N
+7F4F8DBD-C089-48B0-B64A-64E47689AE59	2016-05-17 22:07:07-05	2016-05-17 22:07:18-05	Ben Assef	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	Spring Grove, MN	\N
+7704FB4A-3F00-4E20-8E4B-495C06546811	2016-03-18 14:05:07-05	2016-03-18 14:05:23-05	Ben Assef	f	\N	\N	\N	\N	\N	\N	Elba	MN	\N	\N	\N	\N	\N	Johnny's Saloon	\N
+FB7092B5-B88A-49D9-AB71-3114F4748D3B	2016-04-19 13:35:37-05	2016-04-19 13:35:43-05	Ben Assef	f	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	\N	RCTC	\N
+A1D6AF42-1132-419D-9DB6-DA50733227B4	2016-05-31 21:16:02-05	2016-05-31 21:16:19-05	Ben Assef	f	\N	\N	\N	\N	\N	\N	Mabel 	MN	\N	\N	\N	\N	\N	Hwy 44 Bar and Grill	\N
+\.
+
+
+--
+-- TOC entry 2648 (class 0 OID 0)
+-- Dependencies: 199
+-- Name: year_sequence; Type: SEQUENCE SET; Schema: public; Owner: serveradmin
+--
+
+SELECT pg_catalog.setval('year_sequence', 20, true);
+
+
+SET search_path = update, pg_catalog;
+
+--
+-- TOC entry 2607 (class 0 OID 19798)
+-- Dependencies: 190
+-- Data for Name: Version; Type: TABLE DATA; Schema: update; Owner: serveradmin
+--
+
+COPY "Version" (row_created, major_version, minor_version, bug_version, nonrelease_version) FROM stdin;
+\.
+
+
+SET search_path = users, pg_catalog;
+
+--
+-- TOC entry 2608 (class 0 OID 19806)
+-- Dependencies: 191
+-- Data for Name: activity; Type: TABLE DATA; Schema: users; Owner: serveradmin
+--
+
+COPY activity (pkid, row_created, row_modified, row_username, row_in_use, notify_table_number, active_status, user_name, pertinent_tables, pertinent_id) FROM stdin;
+7552805d-33ce-41a5-a018-05692304c47d	2015-11-05 20:33:47.390863-06	2015-11-05 20:33:47.390863-06	serveradmin	f	2	t	serveradmin	{Events_}	\N
+030ffd58-8651-40a8-8bb0-dab1c34e7f18	2015-11-05 17:52:50.666401-06	2015-11-05 17:52:50.666401-06	serveradmin	f	1	t	testuser1	\N	\N
+d03a9608-de38-4bb2-b53e-01e3edf42eb7	2015-11-05 18:00:53.178481-06	2015-11-05 18:00:53.178481-06	serveradmin	f	0	f	testuser2	\N	\N
+\.
+
+
+--
+-- TOC entry 2610 (class 0 OID 19830)
+-- Dependencies: 193
+-- Data for Name: con1; Type: TABLE DATA; Schema: users; Owner: serveradmin
+--
+
+COPY con1 ("pkID", row_created, row_modified, row_username, row_in_use, effected_row_id, effected_row_username, effected_table, status, pertinent_tables, pertinent_id) FROM stdin;
+c06ff4e2-c00b-47c7-b502-7aa1d8d37f58	2015-11-10 19:40:59.076951-06	2015-11-10 19:40:59.076951-06	serveradmin	f	\N	\N	\N	pending	\N	\N
+\.
+
+
+--
+-- TOC entry 2611 (class 0 OID 19841)
+-- Dependencies: 194
+-- Data for Name: con2; Type: TABLE DATA; Schema: users; Owner: serveradmin
+--
+
+COPY con2 ("pkID", row_created, row_modified, row_username, row_in_use, effected_row_id, effected_row_username, effected_table, status, pertinent_tables, pertinent_id) FROM stdin;
+290bd367-0652-4f0d-bacb-3b6385ff0196	2015-11-18 21:35:23.706766-06	2015-11-18 21:35:23.706766-06	serveradmin	f	\N	\N	\N	pending	\N	\N
+\.
+
+
+--
+-- TOC entry 2609 (class 0 OID 19819)
+-- Dependencies: 192
+-- Data for Name: con_template; Type: TABLE DATA; Schema: users; Owner: serveradmin
+--
+
+COPY con_template ("pkID", row_created, row_modified, row_username, row_in_use, effected_row_id, effected_row_username, effected_table, status, pertinent_tables, pertinent_id) FROM stdin;
+\.
+
+
+--
+-- TOC entry 2612 (class 0 OID 19852)
+-- Dependencies: 195
+-- Data for Name: testtable; Type: TABLE DATA; Schema: users; Owner: serveradmin
+--
+
+COPY testtable (test) FROM stdin;
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+\.
+
+
+SET search_path = public, pg_catalog;
+
+--
+-- TOC entry 2469 (class 2606 OID 20099)
+-- Name: contracts_pkid; Type: CONSTRAINT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY contracts_
+    ADD CONSTRAINT contracts_pkid PRIMARY KEY (pkid);
+
+
+--
+-- TOC entry 2430 (class 2606 OID 19978)
+-- Name: pkID_ContactDetails; Type: CONSTRAINT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY "ContactDetails"
+    ADD CONSTRAINT "pkID_ContactDetails" PRIMARY KEY (pkid);
+
+
+--
+-- TOC entry 2448 (class 2606 OID 19980)
+-- Name: pkID_Contacts; Type: CONSTRAINT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY contacts
+    ADD CONSTRAINT "pkID_Contacts" PRIMARY KEY (pkid);
+
+
+--
+-- TOC entry 2451 (class 2606 OID 19982)
+-- Name: pkID_Discounts; Type: CONSTRAINT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY discounts_
+    ADD CONSTRAINT "pkID_Discounts" PRIMARY KEY (pkid);
+
+
+--
+-- TOC entry 2434 (class 2606 OID 19984)
+-- Name: pkID_EIPL; Type: CONSTRAINT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY eipl
+    ADD CONSTRAINT "pkID_EIPL" PRIMARY KEY (pkid);
+
+
+--
+-- TOC entry 2453 (class 2606 OID 19990)
+-- Name: pkID_Events; Type: CONSTRAINT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY events_
+    ADD CONSTRAINT "pkID_Events" PRIMARY KEY (pkid);
+
+
+--
+-- TOC entry 2426 (class 2606 OID 19992)
+-- Name: pkID_Global; Type: CONSTRAINT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY "mGlobal"
+    ADD CONSTRAINT "pkID_Global" PRIMARY KEY (pkid);
+
+
+--
+-- TOC entry 2439 (class 2606 OID 19998)
+-- Name: pkID_Inventory; Type: CONSTRAINT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY inventory
+    ADD CONSTRAINT "pkID_Inventory" PRIMARY KEY (pkid);
+
+
+--
+-- TOC entry 2455 (class 2606 OID 20004)
+-- Name: pkID_LineItems; Type: CONSTRAINT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY lineitems
+    ADD CONSTRAINT "pkID_LineItems" PRIMARY KEY (pkid);
+
+
+--
+-- TOC entry 2457 (class 2606 OID 20010)
+-- Name: pkID_Payments; Type: CONSTRAINT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY payments_
+    ADD CONSTRAINT "pkID_Payments" PRIMARY KEY (pkid);
+
+
+--
+-- TOC entry 2459 (class 2606 OID 20014)
+-- Name: pkID_Venues; Type: CONSTRAINT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY venues
+    ADD CONSTRAINT "pkID_Venues" PRIMARY KEY (pkid);
+
+
+--
+-- TOC entry 2446 (class 2606 OID 20016)
+-- Name: pkID_contact_venue_data; Type: CONSTRAINT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY contact_venue_data
+    ADD CONSTRAINT "pkID_contact_venue_data" PRIMARY KEY (pkid);
+
+
+--
+-- TOC entry 2471 (class 2606 OID 20083)
+-- Name: pk_contract_sections; Type: CONSTRAINT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY contract_sections_
+    ADD CONSTRAINT pk_contract_sections PRIMARY KEY (pkid);
+
+
+--
+-- TOC entry 2436 (class 2606 OID 20018)
+-- Name: pkid_itemdescriptors; Type: CONSTRAINT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY itemdescriptors
+    ADD CONSTRAINT pkid_itemdescriptors PRIMARY KEY (pkid);
+
+
+SET search_path = users, pg_catalog;
+
+--
+-- TOC entry 2461 (class 2606 OID 20020)
+-- Name: pkID_activity; Type: CONSTRAINT; Schema: users; Owner: serveradmin
+--
+
+ALTER TABLE ONLY activity
+    ADD CONSTRAINT "pkID_activity" PRIMARY KEY (pkid);
+
+
+--
+-- TOC entry 2465 (class 2606 OID 20022)
+-- Name: pkID_con1; Type: CONSTRAINT; Schema: users; Owner: serveradmin
+--
+
+ALTER TABLE ONLY con1
+    ADD CONSTRAINT "pkID_con1" PRIMARY KEY ("pkID");
+
+
+--
+-- TOC entry 2467 (class 2606 OID 20024)
+-- Name: pkID_con2; Type: CONSTRAINT; Schema: users; Owner: serveradmin
+--
+
+ALTER TABLE ONLY con2
+    ADD CONSTRAINT "pkID_con2" PRIMARY KEY ("pkID");
+
+
+--
+-- TOC entry 2463 (class 2606 OID 20026)
+-- Name: pkID_user_template; Type: CONSTRAINT; Schema: users; Owner: serveradmin
+--
+
+ALTER TABLE ONLY con_template
+    ADD CONSTRAINT "pkID_user_template" PRIMARY KEY ("pkID");
+
+
+SET search_path = public, pg_catalog;
+
+--
+-- TOC entry 2427 (class 1259 OID 20027)
+-- Name: fki_fkConVen_Contacts; Type: INDEX; Schema: public; Owner: serveradmin
+--
+
+CREATE INDEX "fki_fkConVen_Contacts" ON "ContactDetails" USING btree (fkconven);
+
+
+--
+-- TOC entry 2428 (class 1259 OID 20028)
+-- Name: fki_fkConVen_Venues; Type: INDEX; Schema: public; Owner: serveradmin
+--
+
+CREATE INDEX "fki_fkConVen_Venues" ON "ContactDetails" USING btree (fkconven);
+
+
+--
+-- TOC entry 2431 (class 1259 OID 20029)
+-- Name: fki_fkDiscounts_EIPL; Type: INDEX; Schema: public; Owner: serveradmin
+--
+
+CREATE INDEX "fki_fkDiscounts_EIPL" ON eipl USING btree (fkdiscounts);
+
+
+--
+-- TOC entry 2449 (class 1259 OID 20030)
+-- Name: fki_fkEIPL_Discounts; Type: INDEX; Schema: public; Owner: serveradmin
+--
+
+CREATE INDEX "fki_fkEIPL_Discounts" ON discounts_ USING btree (fkeipl);
+
+
+--
+-- TOC entry 2432 (class 1259 OID 20031)
+-- Name: fki_fkEvents_EIPL; Type: INDEX; Schema: public; Owner: serveradmin
+--
+
+CREATE INDEX "fki_fkEvents_EIPL" ON eipl USING btree (fkevents_);
+
+
+--
+-- TOC entry 2437 (class 1259 OID 20034)
+-- Name: fki_fkItemTypes_Inventory; Type: INDEX; Schema: public; Owner: serveradmin
+--
+
+CREATE INDEX "fki_fkItemTypes_Inventory" ON inventory USING btree ("fkItemTypes");
+
+
+--
+-- TOC entry 2440 (class 1259 OID 20035)
+-- Name: fki_fkcontacts_contact_venue_data; Type: INDEX; Schema: public; Owner: serveradmin
+--
+
+CREATE INDEX fki_fkcontacts_contact_venue_data ON contact_venue_data USING btree (fkcontacts);
+
+
+--
+-- TOC entry 2441 (class 1259 OID 20036)
+-- Name: fki_fkeipl_contact_venue_data; Type: INDEX; Schema: public; Owner: serveradmin
+--
+
+CREATE INDEX fki_fkeipl_contact_venue_data ON contact_venue_data USING btree (fkeipl);
+
+
+--
+-- TOC entry 2442 (class 1259 OID 20037)
+-- Name: fki_fkevents_contact_venue_data; Type: INDEX; Schema: public; Owner: serveradmin
+--
+
+CREATE INDEX fki_fkevents_contact_venue_data ON contact_venue_data USING btree (fkevents_);
+
+
+--
+-- TOC entry 2443 (class 1259 OID 20038)
+-- Name: fki_fkvenues_contact_venue_data; Type: INDEX; Schema: public; Owner: serveradmin
+--
+
+CREATE INDEX fki_fkvenues_contact_venue_data ON contact_venue_data USING btree (fkvenues);
+
+
+--
+-- TOC entry 2444 (class 1259 OID 20039)
+-- Name: fki_venues_contact_venue_data; Type: INDEX; Schema: public; Owner: serveradmin
+--
+
+CREATE INDEX fki_venues_contact_venue_data ON contact_venue_data USING btree (fkvenues);
+
+
+--
+-- TOC entry 2481 (class 2620 OID 20040)
+-- Name: calc_amountpaid_trigg; Type: TRIGGER; Schema: public; Owner: serveradmin
+--
+
+CREATE TRIGGER calc_amountpaid_trigg AFTER INSERT OR DELETE OR UPDATE OF amount_ ON payments_ FOR EACH ROW EXECUTE PROCEDURE calc_amountpaid_triggfunc();
+
+
+--
+-- TOC entry 2476 (class 2620 OID 20041)
+-- Name: calc_dept_grandtotal_trigg; Type: TRIGGER; Schema: public; Owner: serveradmin
+--
+
+CREATE TRIGGER calc_dept_grandtotal_trigg AFTER INSERT OR UPDATE OF subtotal_, discountperc_, discountamount_ ON discounts_ FOR EACH ROW EXECUTE PROCEDURE calc_dept_grandtotal_triggfunc();
+
+
+--
+-- TOC entry 2479 (class 2620 OID 20042)
+-- Name: calc_dept_totals_trigg; Type: TRIGGER; Schema: public; Owner: serveradmin
+--
+
+CREATE TRIGGER calc_dept_totals_trigg AFTER INSERT OR DELETE OR UPDATE OF total_ ON lineitems FOR EACH ROW EXECUTE PROCEDURE calc_dept_totals_triggfunc();
+
+
+--
+-- TOC entry 2477 (class 2620 OID 20043)
+-- Name: calc_eipl_subtotal_trigg; Type: TRIGGER; Schema: public; Owner: serveradmin
+--
+
+CREATE TRIGGER calc_eipl_subtotal_trigg AFTER INSERT OR DELETE OR UPDATE OF grandtotal_ ON discounts_ FOR EACH ROW EXECUTE PROCEDURE calc_eipl_subtotal_triggfunc();
+
+
+--
+-- TOC entry 2472 (class 2620 OID 20044)
+-- Name: calc_eipl_totals_trigg; Type: TRIGGER; Schema: public; Owner: serveradmin
+--
+
+CREATE TRIGGER calc_eipl_totals_trigg AFTER INSERT OR UPDATE OF totalpaid_, tax_, discountperc_, discountamount_, subtotal_ ON eipl FOR EACH ROW EXECUTE PROCEDURE calc_eipl_totals_triggfunc();
+
+
+--
+-- TOC entry 2480 (class 2620 OID 20045)
+-- Name: calc_lineitem_total_trigg; Type: TRIGGER; Schema: public; Owner: serveradmin
+--
+
+CREATE TRIGGER calc_lineitem_total_trigg AFTER INSERT OR UPDATE OF discountperc_, discountamount_, time_, price, quantity_, rate_ ON lineitems FOR EACH ROW EXECUTE PROCEDURE calc_lineitem_total_triggfunc();
+
+
+--
+-- TOC entry 2474 (class 2620 OID 20046)
+-- Name: fkeipl_update_trigger; Type: TRIGGER; Schema: public; Owner: serveradmin
+--
+
+CREATE TRIGGER fkeipl_update_trigger AFTER UPDATE OF fkeipl ON contact_venue_data FOR EACH ROW EXECUTE PROCEDURE cvd_update_function();
+
+
+--
+-- TOC entry 2478 (class 2620 OID 20047)
+-- Name: my_table_insert; Type: TRIGGER; Schema: public; Owner: serveradmin
+--
+
+CREATE TRIGGER my_table_insert AFTER INSERT OR DELETE OR UPDATE ON events_ FOR EACH ROW EXECUTE PROCEDURE notify_table_change();
+
+
+--
+-- TOC entry 2473 (class 2620 OID 20048)
+-- Name: new_eipl_trigger; Type: TRIGGER; Schema: public; Owner: serveradmin
+--
+
+CREATE TRIGGER new_eipl_trigger AFTER INSERT ON eipl FOR EACH ROW EXECUTE PROCEDURE new_eipl_function();
+
+
+--
+-- TOC entry 2475 (class 2620 OID 20049)
+-- Name: primary_update_trigger; Type: TRIGGER; Schema: public; Owner: serveradmin
+--
+
+CREATE TRIGGER primary_update_trigger AFTER UPDATE OF primary_ ON contact_venue_data FOR EACH ROW EXECUTE PROCEDURE primary_update_function();
+
+
+SET search_path = users, pg_catalog;
+
+--
+-- TOC entry 2482 (class 2620 OID 20050)
+-- Name: active_status_modify_trigger; Type: TRIGGER; Schema: users; Owner: serveradmin
+--
+
+CREATE TRIGGER active_status_modify_trigger AFTER UPDATE ON activity FOR EACH ROW EXECUTE PROCEDURE activity_status_modify_after();
+
+
+--
+-- TOC entry 2483 (class 2620 OID 20051)
+-- Name: con2_insert_trigger_after; Type: TRIGGER; Schema: users; Owner: serveradmin
+--
+
+CREATE TRIGGER con2_insert_trigger_after AFTER INSERT ON con2 FOR EACH ROW EXECUTE PROCEDURE con_insert_trigger_fuction();
+
+
+--
+-- TOC entry 2623 (class 0 OID 0)
 -- Dependencies: 10
 -- Name: public; Type: ACL; Schema: -; Owner: sean
 --
@@ -3186,7 +4109,7 @@ GRANT ALL ON SCHEMA public TO sean;
 GRANT ALL ON SCHEMA public TO PUBLIC;
 
 
--- Completed on 2016-06-25 01:41:28 CDT
+-- Completed on 2016-06-25 01:44:44 CDT
 
 --
 -- PostgreSQL database dump complete
