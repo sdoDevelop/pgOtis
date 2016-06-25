@@ -1,0 +1,3194 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 9.4.5
+-- Dumped by pg_dump version 9.5.1
+
+-- Started on 2016-06-25 01:41:14 CDT
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+SET row_security = off;
+
+--
+-- TOC entry 9 (class 2615 OID 18726)
+-- Name: update; Type: SCHEMA; Schema: -; Owner: serveradmin
+--
+
+CREATE SCHEMA update;
+
+
+ALTER SCHEMA update OWNER TO serveradmin;
+
+--
+-- TOC entry 8 (class 2615 OID 18114)
+-- Name: users; Type: SCHEMA; Schema: -; Owner: serveradmin
+--
+
+CREATE SCHEMA users;
+
+
+ALTER SCHEMA users OWNER TO serveradmin;
+
+--
+-- TOC entry 1 (class 3079 OID 12123)
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- TOC entry 2720 (class 0 OID 0)
+-- Dependencies: 1
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
+--
+-- TOC entry 2 (class 3079 OID 18115)
+-- Name: uuid-ossp; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp" WITH SCHEMA public;
+
+
+--
+-- TOC entry 2721 (class 0 OID 0)
+-- Dependencies: 2
+-- Name: EXTENSION "uuid-ossp"; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION "uuid-ossp" IS 'generate universally unique identifiers (UUIDs)';
+
+
+SET search_path = public, pg_catalog;
+
+--
+-- TOC entry 228 (class 1255 OID 18126)
+-- Name: calc_amountpaid(text); Type: FUNCTION; Schema: public; Owner: serveradmin
+--
+
+CREATE FUNCTION calc_amountpaid(param1 text) RETURNS text
+    LANGUAGE plpgsql
+    AS $$-- calculate_amount_paid
+	-- Triggerd From calculate_amount_paid_trigger in payments_
+	-- Triggered on Insert, Update, and Delete of amount_
+	-- Purpose is to 
+		-- update the amount paid for eipl
+
+Declare
+    v_eiplpkid			Text;
+    v_total			Integer;
+
+    v_percent			Float;
+    v_numvalue			Float;
+    v_x				Float;
+    v_100			Float;
+
+Begin
+    -- Grab the line item pkid
+	v_eiplpkid = param1;
+
+    -- Grab field values from payments
+	Select 	Sum( amount_ ) 
+	Into 	v_total 
+	From	payments_
+	Where	fkeipl = v_eiplpkid;
+
+    -- Update amountpaid field in eipl
+	Update 	eipl
+	Set 	totalpaid_ = v_total
+	Where	pkid = v_eiplpkid;
+
+Return '';
+End
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+$$;
+
+
+ALTER FUNCTION public.calc_amountpaid(param1 text) OWNER TO serveradmin;
+
+--
+-- TOC entry 229 (class 1255 OID 18127)
+-- Name: calc_amountpaid_triggfunc(); Type: FUNCTION; Schema: public; Owner: serveradmin
+--
+
+CREATE FUNCTION calc_amountpaid_triggfunc() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$Declare
+	v_pkid 		Text;
+Begin
+	
+	If TG_OP = 'INSERT' Then
+		v_pkid = New.fkeipl;
+	ElsIf TG_OP = 'UPDATE' Then
+		v_pkid = New.fkeipl;
+	ElsIf TG_OP = 'DELETE' Then
+		v_pkid = Old.fkeipl;
+	End If;
+
+	Perform * From calc_amountpaid( v_pkid );
+
+	Return New;
+
+End;$$;
+
+
+ALTER FUNCTION public.calc_amountpaid_triggfunc() OWNER TO serveradmin;
+
+--
+-- TOC entry 250 (class 1255 OID 18128)
+-- Name: calc_dept_grandtotal(text); Type: FUNCTION; Schema: public; Owner: serveradmin
+--
+
+CREATE FUNCTION calc_dept_grandtotal(param1 text) RETURNS text
+    LANGUAGE plpgsql
+    AS $$-- calculate_department_grandtotal
+	-- Triggerd From calculate_department_grandtotal_trigger in discounts_
+	-- Triggered on Insert, Update of amount_, type_, subtotal_
+	-- Purpose is to 
+		-- update the specified department total
+
+Declare
+    v_deptpkid			Text;
+    v_discounttype		Text;
+    v_discount			Integer;
+    v_discountamount		Integer;
+    v_discountperc		Integer;
+    v_subtotal			Integer;
+    v_amount 			Integer;
+    v_total			Integer;
+
+    v_percent			Float;
+    v_numvalue			Float;
+    v_x				Float;
+    v_100			Float;
+    n1				Float;
+    n2				Float;
+    n3				Float;
+    n4				Float;
+
+Begin
+    -- Grab the line item pkid
+    v_deptpkid = param1;
+
+    -- Grab field values from discounts_
+	Select 	amount_, type_, discountamount_, discountperc_, subtotal_
+	Into 	v_discount, v_discounttype, v_discountamount, v_discountperc, v_subtotal 
+	From	discounts_
+	Where	pkid = v_deptpkid;
+
+    -- Calculating
+    v_100 = 100;
+    If v_discountamount > 0 Then
+    Else
+	v_discountamount = 0;
+    End If;
+    If v_discountperc > 0 Then
+	n1 = v_discountperc / 1000.000;
+	v_percent = n1 / v_100;
+	v_numvalue = v_percent * v_subtotal;
+	v_discountperc = floor(v_numvalue);
+    Else
+	v_discountperc = 0;
+    End If;
+
+	v_amount = v_discountamount + v_discountperc;
+	v_total = v_subtotal - v_discountamount - v_discountperc;
+
+    -- Updating discounts_ grandtotal
+	Update 	discounts_
+	Set	grandtotal_ = v_total, amount_ = v_amount
+	Where	pkid = v_deptpkid;
+
+
+Return '';
+End
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+$$;
+
+
+ALTER FUNCTION public.calc_dept_grandtotal(param1 text) OWNER TO serveradmin;
+
+--
+-- TOC entry 230 (class 1255 OID 18129)
+-- Name: calc_dept_grandtotal_triggfunc(); Type: FUNCTION; Schema: public; Owner: serveradmin
+--
+
+CREATE FUNCTION calc_dept_grandtotal_triggfunc() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$Declare
+	v_pkid 		Text;
+Begin
+	
+	v_pkid = New.pkid;
+
+	Perform * From calc_dept_grandtotal( v_pkid );
+
+	Return New;
+
+End;$$;
+
+
+ALTER FUNCTION public.calc_dept_grandtotal_triggfunc() OWNER TO serveradmin;
+
+--
+-- TOC entry 231 (class 1255 OID 18130)
+-- Name: calc_dept_totals(text); Type: FUNCTION; Schema: public; Owner: serveradmin
+--
+
+CREATE FUNCTION calc_dept_totals(param1 text) RETURNS text
+    LANGUAGE plpgsql
+    AS $$-- calculate_department_totals
+	-- Triggerd From calculate_department_totals_trigger in lineitems
+	-- Triggered on Insert, Update, and Delete of total_
+	-- Purpose is to 
+		-- ensure that all departments are represented in the discounts_ table
+		-- delete any departments no longer on eipl
+		-- calculate the totals for all departments
+
+Declare
+    v_eiplpkid			Text;
+    v_lidepartment		Text;
+    v_rowcount			Integer;
+    v_discdepartment		Text;
+    v_departmenttotal		Integer;
+
+Begin
+    -- Grab the eipl pkid
+    v_eiplpkid = param1;
+
+    -- Loop through all line items in eipl to add unknown departments
+    For v_lidepartment In
+	Select 	department
+	From 	lineitems
+	Where	fkeipl = v_eiplpkid
+    Loop
+	-- Count the number of rows in discounts_ that have the same department name as our line item
+	Select Count(*) Into v_rowcount From discounts_ Where fkeipl = v_eiplpkid And department_ = v_lidepartment;
+
+	-- If no rows were found we will add a row for the department
+	If v_rowcount = 0 And v_lidepartment <> '' Then
+	    Insert Into discounts_ ( fkeipl, department_ ) Values ( v_eiplpkid, v_lidepartment );
+	End If;
+    End Loop;
+
+
+    -- Loop through all the records in discounts_ to find ones that don't belong and delete them
+    For v_discdepartment In
+	Select	department_
+	From 	discounts_
+	Where 	fkeipl = v_eiplpkid
+	And 	department_ <> 'All'
+    Loop
+	-- Count the number of rows in lineitems that have the same department name as our discount row
+	Select Count(*) Into v_rowcount From lineitems Where fkeipl = v_eiplpkid And department = v_discdepartment;
+
+	-- Delete the rows that don't have matches 
+	If v_rowcount = 0 And v_discdepartment <> '' Then
+	    Delete From discounts_ Where fkeipl = v_eiplpkid And department_ = v_discdepartment;
+	End If;
+    End Loop;
+
+    -- Loop through the records in discounts_ to update subtotals
+    For v_discdepartment In
+	Select	department_
+	From 	discounts_
+	Where 	fkeipl = v_eiplpkid
+	And 	department_ <> 'All'
+    Loop
+	-- Get Sum of all line items totals in the department
+	Select 	Sum( total_ ) 
+	Into 	v_departmenttotal 
+	From 	lineitems 
+	Where 	fkeipl = v_eiplpkid
+	And 	department = v_discdepartment;
+
+	-- Set the subtotal in discounts_ to v_departmenttotal
+	Update 	discounts_
+	Set	subtotal_   = v_departmenttotal
+	Where	fkeipl     = v_eiplpkid
+	And 	department_ = v_discdepartment;
+    End Loop;
+
+
+Return '';
+End
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+$$;
+
+
+ALTER FUNCTION public.calc_dept_totals(param1 text) OWNER TO serveradmin;
+
+--
+-- TOC entry 232 (class 1255 OID 18131)
+-- Name: calc_dept_totals_triggfunc(); Type: FUNCTION; Schema: public; Owner: serveradmin
+--
+
+CREATE FUNCTION calc_dept_totals_triggfunc() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$Declare
+	v_pkid 		Text;
+Begin
+	
+	If TG_OP = 'INSERT' Or TG_OP = 'UPDATE' Then
+		v_pkid = New.fkeipl;
+	Else
+		v_pkid = Old.fkeipl;
+	End If;
+
+	Perform * From calc_dept_totals( v_pkid );
+
+	Return New;
+
+End;$$;
+
+
+ALTER FUNCTION public.calc_dept_totals_triggfunc() OWNER TO serveradmin;
+
+--
+-- TOC entry 233 (class 1255 OID 18132)
+-- Name: calc_eipl_subtotal(text); Type: FUNCTION; Schema: public; Owner: serveradmin
+--
+
+CREATE FUNCTION calc_eipl_subtotal(param1 text) RETURNS text
+    LANGUAGE plpgsql
+    AS $$-- calculate_eipl_subtotal
+	-- Triggerd From calculate_eipl_subtotal_trigg in discounts_
+	-- Triggered on Insert, Update, and Delete of grandtotal_
+	-- Purpose is to 
+		-- update the subtotal for eipl
+
+Declare
+    v_eiplpkid			Text;
+    v_grandtotal		Integer;
+    v_taxtotal			Integer;
+
+Begin
+    -- Grab the line item pkid
+	v_eiplpkid = param1;
+
+    -- Grab field values from eipl
+	Select 	Sum( grandtotal_ )
+	Into 	v_grandtotal
+	From	discounts_
+	Where	fkeipl = v_eiplpkid;
+
+	Select 	Sum( taxtotal_ )
+	Into 	v_taxtotal
+	From	lineitems
+	Where	fkeipl = v_eiplpkid;
+
+    -- Updating eipl fields
+	Update	eipl
+	Set	subtotal_ = v_grandtotal, taxtotal_ = v_taxtotal
+	Where	pkid = v_eiplpkid;
+
+Return '';
+End
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+$$;
+
+
+ALTER FUNCTION public.calc_eipl_subtotal(param1 text) OWNER TO serveradmin;
+
+--
+-- TOC entry 234 (class 1255 OID 18133)
+-- Name: calc_eipl_subtotal_triggfunc(); Type: FUNCTION; Schema: public; Owner: serveradmin
+--
+
+CREATE FUNCTION calc_eipl_subtotal_triggfunc() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$Declare
+	v_pkid 		Text;
+Begin
+	
+	If TG_OP = 'INSERT' Then
+		v_pkid = New.fkeipl;
+	ElsIf TG_OP = 'UPDATE' Then
+		v_pkid = New.fkeipl;
+	ElsIf TG_OP = 'DELETE' Then
+		v_pkid = Old.fkeipl;
+	End If;
+
+	Perform * From calc_eipl_subtotal( v_pkid );
+
+	Return New;
+
+End;$$;
+
+
+ALTER FUNCTION public.calc_eipl_subtotal_triggfunc() OWNER TO serveradmin;
+
+--
+-- TOC entry 251 (class 1255 OID 18134)
+-- Name: calc_eipl_totals(text); Type: FUNCTION; Schema: public; Owner: serveradmin
+--
+
+CREATE FUNCTION calc_eipl_totals(param1 text) RETURNS text
+    LANGUAGE plpgsql
+    AS $$-- calculate_eipl_totals
+	-- Triggerd From calculate_eipl_totals in eipl
+	-- Triggered on Insert, Update, and Delete of subtotal_, tax_, totalpaid_
+	-- Purpose is to 
+		-- update the grandtotal_ and balancedue_ for eipl
+
+-- double percent field status
+	-- working ***
+	-- trigger not updated
+
+Declare
+    v_eiplpkid			Text;
+    v_subtotal			Integer;
+    v_taxrate			Integer;
+    v_taxtotal			Integer;
+    v_totalpaid			Integer;
+    v_grandtotal		Integer;
+    v_balancedue		Integer;
+    v_discountperc		Integer;
+    v_discountamount		Integer;
+    v_discounttype		Text;
+    v_amount			Integer;
+
+    v_percent			Float;
+    v_numvalue			Float;
+    v_x				Float;
+    v_100			Float;
+    v_thistest			Float;
+    n1				Float;
+
+Begin
+    -- Grab the line item pkid
+	v_eiplpkid = param1;
+
+    -- Grab field values from eipl
+	Select 	subtotal_, tax_, totalpaid_, discountperc_, discountamount_, discounttype_
+	Into 	v_subtotal, v_taxrate, v_totalpaid, v_discountperc, v_discountamount, v_discounttype
+	From	eipl
+	Where	pkid = v_eiplpkid;
+
+    -- discount type things
+	v_100 = 100;
+	If v_discountamount > 0 Then
+	Else
+		v_discountamount = 0;
+	End If;
+	If v_discountperc > 0 Then
+		n1 = v_discountperc / 1000.000;
+		v_percent = n1 / v_100;
+		v_numvalue = v_percent * v_subtotal;
+		v_discountperc = floor(v_numvalue);
+	Else
+		v_discountperc = 0;
+	End If;
+
+
+    -- Calculating
+       v_amount = v_discountamount + v_discountperc ;
+	v_x = v_subtotal - v_discountamount - v_discountperc;
+    
+    -- Calculating
+	v_grandtotal = v_x;
+
+    -- Balance Due
+	v_balancedue = v_grandtotal - v_totalpaid;
+
+    -- Updating eipl fields
+	Update	eipl
+	Set	grandtotal_ = v_grandtotal, balance_ = v_balancedue, discount_ = v_amount
+	Where	pkid = v_eiplpkid;
+
+Return v_grandtotal;
+End
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+$$;
+
+
+ALTER FUNCTION public.calc_eipl_totals(param1 text) OWNER TO serveradmin;
+
+--
+-- TOC entry 236 (class 1255 OID 18135)
+-- Name: calc_eipl_totals_triggfunc(); Type: FUNCTION; Schema: public; Owner: serveradmin
+--
+
+CREATE FUNCTION calc_eipl_totals_triggfunc() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$Declare
+	v_pkid 		Text;
+Begin
+	
+	v_pkid = New.pkid;
+
+	Perform * From calc_eipl_totals( v_pkid );
+
+	Return New;
+
+End;$$;
+
+
+ALTER FUNCTION public.calc_eipl_totals_triggfunc() OWNER TO serveradmin;
+
+--
+-- TOC entry 243 (class 1255 OID 18136)
+-- Name: calc_lineitem_total(text); Type: FUNCTION; Schema: public; Owner: serveradmin
+--
+
+CREATE FUNCTION calc_lineitem_total(param1 text) RETURNS text
+    LANGUAGE plpgsql
+    AS $$-- calculate_lineitem_totals
+	-- Triggerd From calculate_lineitems_totals_trigger in lineitems
+	-- Triggered on Insert, Update, and Delete of price, quantity_, discounttype_, time_, discount_
+	-- Purpose is to 
+		-- update the specified line item total
+
+Declare
+    v_lipkid			Text;
+    v_price			Integer;
+    v_quantity			Integer;
+    v_discounttype		Text;
+    v_time			Double Precision;
+    v_discount			Integer;
+    v_discountamount		Integer;
+    v_discountperc		Integer;
+    v_total			Integer;
+    v_taxtotal			Integer;
+    v_taxable			Boolean;
+    v_taxrate			Integer;
+    v_eiplpkid			Text;
+
+    v_percent			Float;
+    v_numvalue			Float;
+    v_x				Float;
+    v_100			Float;
+    v_floattotal		Float;
+    n1				Float;
+
+Begin
+    -- Grab the line item pkid
+    v_lipkid = param1;
+
+    -- Grabbing all the info from field
+    Select	price, quantity_, discounttype_, time_, discountperc_, discountamount_, taxable_, fkeipl
+    Into 	v_price, v_quantity, v_discounttype, v_time, v_discountperc, v_discountamount, v_taxable, v_eiplpkid
+    From 	lineitems
+    Where	pkid = v_lipkid;
+
+    -- Get the Tax rate from the eipl
+    Select	tax_
+    Into	v_taxrate
+    From	eipl
+    Where	pkid = v_eiplpkid;
+
+    -- Calculating
+    v_x = v_price * v_quantity;
+    v_x = v_x * v_time;
+    
+    v_100 = 100;
+    v_total = v_x;
+    If v_discountamount > 0 Then
+    Else
+	v_discountamount = 0;
+    End If;
+    If v_discountperc > 0 Then
+	n1 = v_discountperc / 1000.000;
+	v_percent = n1 / v_100;
+	v_numvalue = v_percent * v_total;
+	v_discountperc = floor(v_numvalue);
+    Else
+	v_discountperc = 0;
+    End If;
+
+
+    v_x = v_x - v_discountamount - v_discountperc;
+    If v_taxable = True Then
+	v_100 = 1000;
+	v_percent = v_taxrate / v_100;
+	v_taxtotal = v_x * v_percent;
+	v_x = v_taxtotal + v_x;
+    End If;
+
+    v_total = v_x;
+
+    -- Update the record
+    Update 	lineitems 
+    Set 	total_ = v_total, taxtotal_ = v_taxtotal
+    Where	pkid = v_lipkid;
+
+
+
+Return '';
+End
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+$$;
+
+
+ALTER FUNCTION public.calc_lineitem_total(param1 text) OWNER TO serveradmin;
+
+--
+-- TOC entry 237 (class 1255 OID 18137)
+-- Name: calc_lineitem_total_triggfunc(); Type: FUNCTION; Schema: public; Owner: serveradmin
+--
+
+CREATE FUNCTION calc_lineitem_total_triggfunc() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$Declare
+	v_pkid 		Text;
+Begin
+	
+	v_pkid = New.pkid;
+
+	Perform * From calc_lineitem_total( v_pkid );
+
+	Return New;
+
+End;$$;
+
+
+ALTER FUNCTION public.calc_lineitem_total_triggfunc() OWNER TO serveradmin;
+
+--
+-- TOC entry 238 (class 1255 OID 18138)
+-- Name: cvd_update_function(); Type: FUNCTION; Schema: public; Owner: serveradmin
+--
+
+CREATE FUNCTION cvd_update_function() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+DECLARE
+    v_test TEXT;
+
+BEGIN
+
+    If New.fkeipl = Null Then
+	Return new;
+    End If;
+
+    If New.fkcontacts NotNull Then  --Is linked to a contact
+	Delete From contact_venue_data Where New.pkid <> pkid And fkcontacts NotNull And New.fkeipl = fkeipl;
+	
+    ElsIf New.fkvenues NotNull Then  --Is linked to a venue
+	Delete From contact_venue_data Where New.pkid <> pkid And fkvenues NotNull And New.fkeipl = fkeipl;
+
+    End If;
+
+    Return New;
+END;
+   $$;
+
+
+ALTER FUNCTION public.cvd_update_function() OWNER TO serveradmin;
+
+--
+-- TOC entry 239 (class 1255 OID 18139)
+-- Name: deleterecord(text, text, text); Type: FUNCTION; Schema: public; Owner: serveradmin
+--
+
+CREATE FUNCTION deleterecord(p_options text, p_pkid text DEFAULT 'none'::text, p_table text DEFAULT 'none'::text) RETURNS text
+    LANGUAGE plpgsql
+    AS $_$-- Saved for general commenting
+
+Declare
+    -- Input Variables
+    v_options		Text;
+    v_pkid		Text;
+    v_table 		Text;
+
+    v_fkname   		Text;
+    v_sql		Text;
+    v_tablename 	Text;
+
+    v_return		Text;
+
+Begin
+    -- Saving parameters to input variables
+    v_options = p_options;
+    v_pkid    = p_pkid;
+    v_table   = p_table;
+
+    v_fkname  = 'fk' || v_table;
+
+
+    -- Generate our sql to delete the parent record
+    v_sql = $$Delete From $$ || v_table || $$ Where pkid = '$$ || v_pkid || $$'$$ ;
+
+    Execute v_sql;
+
+
+    -- Delete Recursively 
+    If v_options = '-r' Then
+
+	-- Loop through all tables in public SCHEMA that have a fktable column
+	For v_tablename In
+	    Select table_name
+	    From   information_schema.columns
+	    Where  column_name = v_fkname
+	    And    table_schema = 'public'
+	Loop
+
+	    -- Preparing sql to delete all the children of the parent from this table
+	    v_sql = $$Delete From $$ || v_tablename || $$ Where $$ || v_fkname || $$ = '$$ || v_pkid || $$'$$;
+
+	    -- Executing
+	    Execute v_sql;
+
+	    v_return = 'Deleted';
+
+	End Loop;
+
+    End if;
+
+
+Return v_return;
+End;$_$;
+
+
+ALTER FUNCTION public.deleterecord(p_options text, p_pkid text, p_table text) OWNER TO serveradmin;
+
+--
+-- TOC entry 240 (class 1255 OID 18140)
+-- Name: inventory_to_lineitem(text, text); Type: FUNCTION; Schema: public; Owner: serveradmin
+--
+
+CREATE FUNCTION inventory_to_lineitem(inventoryid text DEFAULT 0, eiplid text DEFAULT 0) RETURNS text
+    LANGUAGE plpgsql
+    AS $$DECLARE
+    result TEXT;
+BEGIN
+    INSERT INTO lineitems ( name_, manufacturer, model, department, category, subcategory, description, price, fkeipl )
+    SELECT name_, manufacturer, model, department, category, subcategory, description, price, eiplid
+    FROM inventory
+    WHERE pkid = inventoryid
+    RETURNING pkid INTO result;
+  RETURN result;
+END;$$;
+
+
+ALTER FUNCTION public.inventory_to_lineitem(inventoryid text, eiplid text) OWNER TO serveradmin;
+
+--
+-- TOC entry 241 (class 1255 OID 18714)
+-- Name: lineitem_to_inventory(text); Type: FUNCTION; Schema: public; Owner: serveradmin
+--
+
+CREATE FUNCTION lineitem_to_inventory(lineitem_id text) RETURNS text
+    LANGUAGE plpgsql
+    AS $$DECLARE
+    result TEXT;
+BEGIN
+    INSERT INTO inventory ( name_, manufacturer, model, department, category, subcategory, description, price )
+    SELECT name_, manufacturer, model, department, category, subcategory, description, price
+    FROM lineitems
+    WHERE pkid = lineitem_id
+    RETURNING pkid INTO result;
+  RETURN result;
+END;$$;
+
+
+ALTER FUNCTION public.lineitem_to_inventory(lineitem_id text) OWNER TO serveradmin;
+
+--
+-- TOC entry 244 (class 1255 OID 18141)
+-- Name: mknexteipl(text, integer); Type: FUNCTION; Schema: public; Owner: serveradmin
+--
+
+CREATE FUNCTION mknexteipl(p_pkid text DEFAULT 'none'::text, p_mode integer DEFAULT (-1)) RETURNS text
+    LANGUAGE plpgsql
+    AS $_$-- Modes
+    -- 0	Duplicate
+    -- 1	Duplicate and advance eipl type
+
+
+Declare
+
+v_testvar Text;
+
+    v_ogpkid 		Text;
+    v_newpkid		Text;
+    v_childpkid		Text;
+    v_newchildpkid      Text;
+
+    v_tablename 	Text;
+    v_tablenamearray 	Text;
+    v_executesql  	Text;
+    v_columnnamearray  	Text;
+    v_eipltype		Text;
+    
+Begin
+
+    -- Exiting Script if no pkid was specified
+    If p_pkid = 'none' Then
+	Return 'nopkid';
+    End if;
+
+
+    -- Variables
+    v_ogpkid = p_pkid;
+
+
+    -- Duplicating EIPL
+    Select 	string_agg( column_name, ', ' ) 
+    Into 	v_columnnamearray 
+    From 	information_schema.columns 
+    Where 	table_name = 'eipl'
+    And		column_name <> 'pkid'
+    And 	column_name <> 'row_created'
+    And 	column_name <> 'row_modified'
+    And 	column_name <> 'row_username'
+    And 	column_name <> 'eipl_nmbr'
+    And		column_name <> 'row_in_use';
+
+    v_executesql = $$ Insert Into eipl ( $$ || v_columnnamearray || $$ ) ( ( Select $$ || v_columnnamearray || $$ From eipl Where pkid = '$$ || v_ogpkid || $$' ) ) Returning pkid $$ ;
+    Execute v_executesql Into v_newpkid;
+
+    Select type_ Into v_eipltype From eipl Where pkid = v_newpkid;
+    If p_mode = 1 then
+	-- Determining the type of the new EIPL
+	If v_eipltype = 'Estimate' Then
+	    v_eipltype = 'Invoice'; 
+	Elsif v_eipltype = 'Invoice' Then
+	    v_eipltype = 'Pack List';
+	Elsif v_eipltype = 'Pack List' Then
+	    Return 'Nowhere to go from Pack List';
+	Else 
+	    Return 'No EIPL type Specified';
+	End if;
+    End if;
+
+    Update eipl set type_ = v_eipltype Where pkid = v_newpkid;
+
+    -- Loop through all tables in public SCHEMA that have a fkeipl column
+    For v_tablename In
+	Select table_name
+	From   information_schema.columns
+	Where  column_name = 'fkeipl'
+	And    table_schema = 'public'
+    Loop
+	
+	-- Find all the columns in the table except pkid and fkeipl
+	v_executesql = $$
+			Select	 string_agg( column_name, ', ' ) 
+			From 	information_schema.columns 
+			Where 	table_name = $1
+			And 	column_name <> 'pkid' 
+			And 	column_name <> 'fkeipl' 
+			And	column_name <> 'pkid'
+			And 	column_name <> 'row_created'
+			And 	column_name <> 'row_modified'
+			And 	column_name <> 'row_username'
+		       $$;
+	Execute v_executesql Into v_columnnamearray Using v_tablename ;
+
+	-- prepare our sql string for execute
+	v_executesql = 'Select pkid From public.' || v_tablename || ' Where fkeipl = $1 ';
+
+	-- Loop through all of the records in current table that have 
+	For v_childpkid In
+	    Execute  v_executesql Using v_ogpkid
+	Loop
+
+	    -- Duplicate Record and change fkeipl to v_newpkid
+	    v_executesql = $$Insert Into $$ || v_tablename || $$ ( $$ || v_columnnamearray || $$ ) ( ( Select $$ || v_columnnamearray || $$ From $$ || v_tablename || $$ Where pkid = '$$ || v_childpkid || $$' ) ) Returning pkid $$;
+
+	    Execute v_executesql Into v_newchildpkid ;
+
+	    v_executesql = $$Update $$ || v_tablename || $$ Set fkeipl = '$$ || v_newpkid || $$' Where pkid = '$$ || v_newchildpkid || $$' $$;
+	    Execute v_executesql;
+
+	End loop;
+
+    End Loop;
+
+
+
+Return v_newpkid ;
+End;
+$_$;
+
+
+ALTER FUNCTION public.mknexteipl(p_pkid text, p_mode integer) OWNER TO serveradmin;
+
+--
+-- TOC entry 245 (class 1255 OID 18142)
+-- Name: new_eipl_function(); Type: FUNCTION; Schema: public; Owner: serveradmin
+--
+
+CREATE FUNCTION new_eipl_function() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $_$
+DECLARE
+    v_eipl_pkid TEXT;
+    v_event_pkid TEXT;
+    v_return_record contact_venue_data;
+BEGIN
+    v_eipl_pkid = NEW.pkid;
+    v_event_pkid = NEW.fkevents_;
+
+    FOR v_return_record IN
+	SELECT *
+	FROM public.contact_venue_data cvd
+	WHERE cvd.fkevents_ = v_event_pkid
+	AND cvd.primary_ = True
+    LOOP
+	EXECUTE(FORMAT($f$
+	    INSERT INTO contact_venue_data ( fkeipl, fkcontacts, fkvenues, primary_ )
+		VALUES ( %L, %L, %L, True );
+		$f$, v_eipl_pkid, v_return_record.fkcontacts, v_return_record.fkvenues ));
+    END LOOP;
+RETURN NEW;
+END;
+$_$;
+
+
+ALTER FUNCTION public.new_eipl_function() OWNER TO serveradmin;
+
+--
+-- TOC entry 242 (class 1255 OID 18143)
+-- Name: newpayment(text); Type: FUNCTION; Schema: public; Owner: serveradmin
+--
+
+CREATE FUNCTION newpayment(p_pkid text DEFAULT 'none'::text) RETURNS text
+    LANGUAGE plpgsql
+    AS $$Declare
+    v_return 		Text;
+
+Begin
+
+    Insert Into payments_ (fkeipl) Values(p_pkid) Returning pkid Into v_return;
+
+    Return v_return;
+
+End;$$;
+
+
+ALTER FUNCTION public.newpayment(p_pkid text) OWNER TO serveradmin;
+
+--
+-- TOC entry 246 (class 1255 OID 18144)
+-- Name: notify_table_change(); Type: FUNCTION; Schema: public; Owner: serveradmin
+--
+
+CREATE FUNCTION notify_table_change() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $_$-- Variables
+DECLARE
+    v_table_number  INTEGER;
+    v_table_name    TEXT;
+    v_active_status BOOLEAN;
+
+BEGIN       
+-- Searching for all the numbers of notify tables
+    FOR v_table_number IN 
+        SELECT notify_table_number
+        FROM   users.activity
+        WHERE  active_status = True
+	AND    TG_TABLE_NAME = ANY(pertinent_tables)
+    LOOP
+	-- Setting tablename
+	v_table_name = 'con' || v_table_number::text;
+
+	If TG_OP = 'INSERT'
+	OR TG_OP = 'UPDATE' THEN
+	    -- Inserting information into notify table
+	    EXECUTE(FORMAT($f$
+		INSERT INTO %s (effected_row_username, effected_row_id, effected_table)
+		    VALUES (%L, %L, %L);
+		    $f$, 'users.' || v_table_name, NEW.row_username, NEW."pkID", TG_TABLE_NAME));
+	END IF;
+	IF TG_OP = 'DELETE' THEN
+	    -- Inserting information into notify table
+	    EXECUTE(FORMAT($f$
+		INSERT INTO %s (effected_row_username, effected_row_id, effected_table)
+		    VALUES (%L, %L, %L);
+		    $f$, 'users.' || v_table_name, OLD.row_username, OLD."pkID", TG_TABLE_NAME));
+	END IF;
+
+    END LOOP;
+    --  Notifying everyone listening on table_mod channel
+    NOTIFY table_mod;
+    If TG_OP = 'INSERT'
+    OR TG_OP = 'UPDATE' THEN
+	RETURN new;
+    END IF;
+    IF TG_OP = 'DELETE' THEN
+	RETURN old;
+    END IF;
+END;$_$;
+
+
+ALTER FUNCTION public.notify_table_change() OWNER TO serveradmin;
+
+--
+-- TOC entry 247 (class 1255 OID 18145)
+-- Name: primary_update_function(); Type: FUNCTION; Schema: public; Owner: serveradmin
+--
+
+CREATE FUNCTION primary_update_function() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $_$DECLARE
+    v_pkid TEXT;
+    v_fk_eiplorevent TEXT;
+    v_eipleventvalue TEXT;
+    v_fk_contactorvenue TEXT;
+BEGIN
+    IF NEW.primary_ = false THEN
+	RETURN old;
+    END IF;
+    -- Checking wether we are dealing with a contact or venue
+    IF NEW.fkcontacts NOTNULL THEN 
+	v_fk_contactorvenue = 'fkcontacts';
+    ELSIf NEW.fkvenues NOTNULL THEN 
+	v_fk_contactorvenue = 'fkvenues' ;
+    END IF;
+    -- Checking whether we ar dealing with an eipl or an event
+    IF NEW.fkeipl NOTNULL THEN
+        v_fk_eiplorevent = 'fkeipl';
+    ELSIF NEW.fkevents_ NOTNULL THEN
+        v_fk_eiplorevent = 'fkevents_';
+    END IF;
+
+    -- Some variables
+    --v_fk_contactorvenue = 'fkcontacts';
+    --v_fk_eiplorevent = 'fkevents_';
+    v_pkid = NEW.pkid;
+    IF v_fk_eiplorevent = 'fkevents_' THEN
+	v_eipleventvalue = NEW.fkevents_;
+    ELSIF v_fk_eiplorevent = 'fkeipl' THEN
+	v_eipleventvalue = NEW.fkeipl;
+    END IF;
+    
+    EXECUTE(FORMAT($f$
+	UPDATE contact_venue_data
+	SET primary_ = false
+	WHERE contact_venue_data.pkid <> %L
+	AND %s NOTNULL
+	AND %s = %L; 
+	$f$, v_pkid, v_fk_contactorvenue, v_fk_eiplorevent, v_eipleventvalue ));
+
+RETURN old;
+END;
+$_$;
+
+
+ALTER FUNCTION public.primary_update_function() OWNER TO serveradmin;
+
+--
+-- TOC entry 248 (class 1255 OID 18146)
+-- Name: testing(text); Type: FUNCTION; Schema: public; Owner: serveradmin
+--
+
+CREATE FUNCTION testing(param1 text) RETURNS text
+    LANGUAGE plpgsql
+    AS $$-- calculate_eipl_subtotal
+	-- Triggerd From calculate_eipl_subtotal_trigg in discounts_
+	-- Triggered on Insert, Update, and Delete of grandtotal_
+	-- Purpose is to 
+		-- update the subtotal for eipl
+
+Declare
+    v_eiplpkid			Text;
+    v_grandtotal		Integer;
+
+Begin
+    -- Grab the line item pkid
+	v_eiplpkid = param1;
+
+    -- Grab field values from eipl
+	Select 	Sum( grandtotal_ )
+	Into 	v_grandtotal
+	From	discounts_
+	Where	fkeipl_ = v_eiplpkid;
+
+    -- Updating eipl fields
+	Update	eipl
+	Set	subtotal_ = v_grandtotal
+	Where	pkid = v_eiplpkid;
+
+Return '';
+End
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+$$;
+
+
+ALTER FUNCTION public.testing(param1 text) OWNER TO serveradmin;
+
+SET search_path = users, pg_catalog;
+
+--
+-- TOC entry 249 (class 1255 OID 18147)
+-- Name: activity_status_modify_after(); Type: FUNCTION; Schema: users; Owner: serveradmin
+--
+
+CREATE FUNCTION activity_status_modify_after() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $_$DECLARE
+    table_number     INTEGER;
+BEGIN
+
+-- Filtering out self activated updates
+IF OLD.active_status = NEW.active_status THEN
+RETURN new;
+END IF;
+
+IF  NEW.active_status = True      -- User becomes active
+THEN
+-- Getting last used table number
+    SELECT notify_table_number 
+	INTO table_number
+	FROM users.activity
+	ORDER BY notify_table_number desc limit 1;
+
+-- Increasing the table number by 1
+    table_number = table_number + 1;
+
+-- Defining notify table number in the users activity table record
+    UPDATE users.activity
+	SET notify_table_number = table_number
+	WHERE "pkID" = NEW."pkID";
+
+-- Deleting any current rows in notify table
+    EXECUTE(FORMAT($f$
+	DELETE FROM %s;
+	$f$, 'users.con' || table_number::text));
+
+-- Adding a new row with status pending
+    EXECUTE(FORMAT($f$
+	INSERT INTO %s (status) VALUES ('pending');
+	$f$, 'users.con' || table_number::text));
+RETURN new;
+
+
+ELSIF NEW.active_status = False       -- User becomes inactive
+THEN
+-- Set notify table number to 0
+    UPDATE users.activity
+	SET notify_table_number = 0,
+	    pertinent_tables = NULL,
+	    pertinent_id = NULL
+	WHERE "pkID" = NEW."pkID";
+
+-- Deleting any current rows in notify table
+    EXECUTE(FORMAT($f$
+	DELETE FROM %s;
+	$f$, 'users.con' || OLD.notify_table_number));
+RETURN new;
+
+END IF;
+RETURN new;
+END;
+$_$;
+
+
+ALTER FUNCTION users.activity_status_modify_after() OWNER TO serveradmin;
+
+--
+-- TOC entry 235 (class 1255 OID 18148)
+-- Name: con_insert_trigger_fuction(); Type: FUNCTION; Schema: users; Owner: serveradmin
+--
+
+CREATE FUNCTION con_insert_trigger_fuction() RETURNS trigger
+    LANGUAGE plpgsql
+    AS $$
+-- 11-05-15
+
+DECLARE
+    v_variable TEXT;
+BEGIN
+-- If status of inserted row is not pending
+     -- meaning this was not triggerd by the initialization of a user connection on the server
+v_variable = TG_TABLE_NAME;
+PERFORM pg_notify(TG_TABLE_NAME,'');
+
+
+-- If status of inserted row is equal to pending
+     -- meaning this was triggerd by the initialization of a user connection on the server
+IF NEW.status = 'pending' THEN
+NOTIFY initialization;
+INSERT INTO users.testtable (test) VALUES (1);
+END IF;
+RETURN new;
+END;$$;
+
+
+ALTER FUNCTION users.con_insert_trigger_fuction() OWNER TO serveradmin;
+
+SET search_path = public, pg_catalog;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- TOC entry 176 (class 1259 OID 18149)
+-- Name: mGlobal; Type: TABLE; Schema: public; Owner: serveradmin
+--
+
+CREATE TABLE "mGlobal" (
+    pkid text DEFAULT uuid_generate_v4() NOT NULL,
+    row_created timestamp with time zone DEFAULT timezone('utc'::text, now()) NOT NULL,
+    row_modified timestamp with time zone DEFAULT timezone('utc'::text, now()) NOT NULL,
+    row_username text DEFAULT "current_user"() NOT NULL,
+    row_in_use boolean DEFAULT false
+);
+
+
+ALTER TABLE "mGlobal" OWNER TO serveradmin;
+
+--
+-- TOC entry 2722 (class 0 OID 0)
+-- Dependencies: 176
+-- Name: COLUMN "mGlobal".row_in_use; Type: COMMENT; Schema: public; Owner: serveradmin
+--
+
+COMMENT ON COLUMN "mGlobal".row_in_use IS '
+';
+
+
+--
+-- TOC entry 177 (class 1259 OID 18160)
+-- Name: ContactDetails; Type: TABLE; Schema: public; Owner: serveradmin
+--
+
+CREATE TABLE "ContactDetails" (
+    email text,
+    phonecountry text,
+    phoneareacode text,
+    phonemain text,
+    addressline1 text,
+    addressline2 text,
+    addresscity text,
+    addressstate text,
+    addresszip text,
+    addresscountry text,
+    fkconven text,
+    company text,
+    "primary" text
+)
+INHERITS ("mGlobal");
+
+
+ALTER TABLE "ContactDetails" OWNER TO serveradmin;
+
+--
+-- TOC entry 178 (class 1259 OID 18171)
+-- Name: EIPLTypes; Type: TABLE; Schema: public; Owner: serveradmin
+--
+
+CREATE TABLE "EIPLTypes" (
+    "TypeName" text
+)
+INHERITS ("mGlobal");
+
+
+ALTER TABLE "EIPLTypes" OWNER TO serveradmin;
+
+--
+-- TOC entry 179 (class 1259 OID 18182)
+-- Name: eipl; Type: TABLE; Schema: public; Owner: serveradmin
+--
+
+CREATE TABLE eipl (
+    fkevents_ text,
+    eipl_nmbr integer NOT NULL,
+    fkdiscounts text,
+    duedate date DEFAULT now() NOT NULL,
+    type_ text DEFAULT 'Estimate'::text,
+    balance_ integer,
+    grandtotal_ integer,
+    subtotal_ integer,
+    discount_ integer,
+    lidiscountsum_ integer,
+    tax_ integer DEFAULT 0,
+    totalpaid_ integer DEFAULT 0,
+    discounttype_ text DEFAULT 'amount'::text,
+    discountperc_ integer,
+    discountamount_ integer,
+    shippingmethod_ text,
+    taxtotal_ integer DEFAULT 0,
+    discounttotal_ integer DEFAULT 0
+)
+INHERITS ("mGlobal");
+
+
+ALTER TABLE eipl OWNER TO serveradmin;
+
+--
+-- TOC entry 2723 (class 0 OID 0)
+-- Dependencies: 179
+-- Name: COLUMN eipl.balance_; Type: COMMENT; Schema: public; Owner: serveradmin
+--
+
+COMMENT ON COLUMN eipl.balance_ IS 'stored as cents';
+
+
+--
+-- TOC entry 2724 (class 0 OID 0)
+-- Dependencies: 179
+-- Name: COLUMN eipl.grandtotal_; Type: COMMENT; Schema: public; Owner: serveradmin
+--
+
+COMMENT ON COLUMN eipl.grandtotal_ IS 'stored as cents';
+
+
+--
+-- TOC entry 2725 (class 0 OID 0)
+-- Dependencies: 179
+-- Name: COLUMN eipl.subtotal_; Type: COMMENT; Schema: public; Owner: serveradmin
+--
+
+COMMENT ON COLUMN eipl.subtotal_ IS 'stored in cents';
+
+
+--
+-- TOC entry 2726 (class 0 OID 0)
+-- Dependencies: 179
+-- Name: COLUMN eipl.discount_; Type: COMMENT; Schema: public; Owner: serveradmin
+--
+
+COMMENT ON COLUMN eipl.discount_ IS 'stored as cents';
+
+
+--
+-- TOC entry 2727 (class 0 OID 0)
+-- Dependencies: 179
+-- Name: COLUMN eipl.lidiscountsum_; Type: COMMENT; Schema: public; Owner: serveradmin
+--
+
+COMMENT ON COLUMN eipl.lidiscountsum_ IS 'stored as cents';
+
+
+--
+-- TOC entry 2728 (class 0 OID 0)
+-- Dependencies: 179
+-- Name: COLUMN eipl.totalpaid_; Type: COMMENT; Schema: public; Owner: serveradmin
+--
+
+COMMENT ON COLUMN eipl.totalpaid_ IS 'stored as cents';
+
+
+--
+-- TOC entry 2729 (class 0 OID 0)
+-- Dependencies: 179
+-- Name: COLUMN eipl.discountamount_; Type: COMMENT; Schema: public; Owner: serveradmin
+--
+
+COMMENT ON COLUMN eipl.discountamount_ IS 'stored as cents';
+
+
+--
+-- TOC entry 2730 (class 0 OID 0)
+-- Dependencies: 179
+-- Name: COLUMN eipl.taxtotal_; Type: COMMENT; Schema: public; Owner: serveradmin
+--
+
+COMMENT ON COLUMN eipl.taxtotal_ IS 'stored as cents';
+
+
+--
+-- TOC entry 2731 (class 0 OID 0)
+-- Dependencies: 179
+-- Name: COLUMN eipl.discounttotal_; Type: COMMENT; Schema: public; Owner: serveradmin
+--
+
+COMMENT ON COLUMN eipl.discounttotal_ IS 'stored as cents';
+
+
+--
+-- TOC entry 180 (class 1259 OID 18200)
+-- Name: EIPL_EIPL_nmbr_seq; Type: SEQUENCE; Schema: public; Owner: serveradmin
+--
+
+CREATE SEQUENCE "EIPL_EIPL_nmbr_seq"
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE "EIPL_EIPL_nmbr_seq" OWNER TO serveradmin;
+
+--
+-- TOC entry 2732 (class 0 OID 0)
+-- Dependencies: 180
+-- Name: EIPL_EIPL_nmbr_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: serveradmin
+--
+
+ALTER SEQUENCE "EIPL_EIPL_nmbr_seq" OWNED BY eipl.eipl_nmbr;
+
+
+--
+-- TOC entry 181 (class 1259 OID 18202)
+-- Name: Employees; Type: TABLE; Schema: public; Owner: serveradmin
+--
+
+CREATE TABLE "Employees" (
+    "NameFirst" text,
+    "NameLast" text,
+    "EmployeeID" integer,
+    "PaymentMethod" text,
+    "JobTitle" text
+)
+INHERITS ("mGlobal");
+
+
+ALTER TABLE "Employees" OWNER TO serveradmin;
+
+--
+-- TOC entry 182 (class 1259 OID 18213)
+-- Name: InvItemized; Type: TABLE; Schema: public; Owner: serveradmin
+--
+
+CREATE TABLE "InvItemized" (
+    "fkInventory" text,
+    "ItemID" text DEFAULT 'N/A'::text NOT NULL,
+    "PurchaseDate" date,
+    "fkItemStatus" text
+)
+INHERITS ("mGlobal");
+
+
+ALTER TABLE "InvItemized" OWNER TO serveradmin;
+
+--
+-- TOC entry 2733 (class 0 OID 0)
+-- Dependencies: 182
+-- Name: COLUMN "InvItemized"."ItemID"; Type: COMMENT; Schema: public; Owner: serveradmin
+--
+
+COMMENT ON COLUMN "InvItemized"."ItemID" IS 'ex. AR-120';
+
+
+--
+-- TOC entry 183 (class 1259 OID 18225)
+-- Name: itemdescriptors; Type: TABLE; Schema: public; Owner: serveradmin
+--
+
+CREATE TABLE itemdescriptors (
+    name_ text,
+    manufacturer text,
+    model text,
+    department text,
+    category text,
+    subcategory text,
+    description text,
+    price integer DEFAULT 0 NOT NULL,
+    quantity_ integer DEFAULT 0
+)
+INHERITS ("mGlobal");
+
+
+ALTER TABLE itemdescriptors OWNER TO serveradmin;
+
+--
+-- TOC entry 2734 (class 0 OID 0)
+-- Dependencies: 183
+-- Name: COLUMN itemdescriptors.price; Type: COMMENT; Schema: public; Owner: serveradmin
+--
+
+COMMENT ON COLUMN itemdescriptors.price IS 'stored as cents';
+
+
+--
+-- TOC entry 184 (class 1259 OID 18238)
+-- Name: inventory; Type: TABLE; Schema: public; Owner: serveradmin
+--
+
+CREATE TABLE inventory (
+    name_ text,
+    manufacturer text,
+    model text,
+    department text,
+    category text,
+    subcategory text,
+    description text,
+    price integer DEFAULT 0,
+    "fkItemTypes" text,
+    owner text,
+    taxable_ text DEFAULT 'False'::text
+)
+INHERITS ("mGlobal", itemdescriptors);
+
+
+ALTER TABLE inventory OWNER TO serveradmin;
+
+--
+-- TOC entry 2735 (class 0 OID 0)
+-- Dependencies: 184
+-- Name: COLUMN inventory.price; Type: COMMENT; Schema: public; Owner: serveradmin
+--
+
+COMMENT ON COLUMN inventory.price IS 'stored as cents';
+
+
+--
+-- TOC entry 185 (class 1259 OID 18252)
+-- Name: InvTemp; Type: TABLE; Schema: public; Owner: serveradmin
+--
+
+CREATE TABLE "InvTemp" (
+)
+INHERITS (inventory);
+
+
+ALTER TABLE "InvTemp" OWNER TO serveradmin;
+
+--
+-- TOC entry 186 (class 1259 OID 18266)
+-- Name: ItemStatus; Type: TABLE; Schema: public; Owner: serveradmin
+--
+
+CREATE TABLE "ItemStatus" (
+    "StatusName" text
+)
+INHERITS ("mGlobal");
+
+
+ALTER TABLE "ItemStatus" OWNER TO serveradmin;
+
+--
+-- TOC entry 187 (class 1259 OID 18277)
+-- Name: ItemTypes; Type: TABLE; Schema: public; Owner: serveradmin
+--
+
+CREATE TABLE "ItemTypes" (
+    "TypeName" text
+)
+INHERITS ("mGlobal");
+
+
+ALTER TABLE "ItemTypes" OWNER TO serveradmin;
+
+--
+-- TOC entry 188 (class 1259 OID 18288)
+-- Name: MaintenenceLogs; Type: TABLE; Schema: public; Owner: serveradmin
+--
+
+CREATE TABLE "MaintenenceLogs" (
+    "fkInvItemized" text,
+    "Name" text,
+    "Status" text,
+    "Description" text
+)
+INHERITS ("mGlobal");
+
+
+ALTER TABLE "MaintenenceLogs" OWNER TO serveradmin;
+
+--
+-- TOC entry 189 (class 1259 OID 18299)
+-- Name: Notes; Type: TABLE; Schema: public; Owner: serveradmin
+--
+
+CREATE TABLE "Notes" (
+    "fkMaster" text,
+    "Title" text,
+    "Body" text
+)
+INHERITS ("mGlobal");
+
+
+ALTER TABLE "Notes" OWNER TO serveradmin;
+
+--
+-- TOC entry 190 (class 1259 OID 18310)
+-- Name: Photos; Type: TABLE; Schema: public; Owner: serveradmin
+--
+
+CREATE TABLE "Photos" (
+    "fkMaster" text,
+    "Title" text
+)
+INHERITS ("mGlobal");
+
+
+ALTER TABLE "Photos" OWNER TO serveradmin;
+
+--
+-- TOC entry 2736 (class 0 OID 0)
+-- Dependencies: 190
+-- Name: COLUMN "Photos"."fkMaster"; Type: COMMENT; Schema: public; Owner: serveradmin
+--
+
+COMMENT ON COLUMN "Photos"."fkMaster" IS 'not actually linkedby postgres';
+
+
+--
+-- TOC entry 191 (class 1259 OID 18321)
+-- Name: contact_venue_data; Type: TABLE; Schema: public; Owner: serveradmin
+--
+
+CREATE TABLE contact_venue_data (
+    fkcontacts text,
+    fkvenues text,
+    fkevents_ text,
+    fkeipl text,
+    primary_ boolean DEFAULT false
+)
+INHERITS ("mGlobal");
+
+
+ALTER TABLE contact_venue_data OWNER TO serveradmin;
+
+--
+-- TOC entry 2737 (class 0 OID 0)
+-- Dependencies: 191
+-- Name: COLUMN contact_venue_data.fkvenues; Type: COMMENT; Schema: public; Owner: serveradmin
+--
+
+COMMENT ON COLUMN contact_venue_data.fkvenues IS '
+';
+
+
+--
+-- TOC entry 192 (class 1259 OID 18333)
+-- Name: contacts; Type: TABLE; Schema: public; Owner: serveradmin
+--
+
+CREATE TABLE contacts (
+    namefirst text,
+    namelast text,
+    jobtitle text
+)
+INHERITS ("mGlobal", "ContactDetails");
+
+
+ALTER TABLE contacts OWNER TO serveradmin;
+
+--
+-- TOC entry 193 (class 1259 OID 18344)
+-- Name: discounts_; Type: TABLE; Schema: public; Owner: serveradmin
+--
+
+CREATE TABLE discounts_ (
+    fkeipl text,
+    department_ text,
+    type_ text DEFAULT 'amount'::text,
+    amount_ integer DEFAULT 0,
+    grandtotal_ integer,
+    subtotal_ integer,
+    discountperc_ integer,
+    discountamount_ integer
+)
+INHERITS ("mGlobal");
+
+
+ALTER TABLE discounts_ OWNER TO serveradmin;
+
+--
+-- TOC entry 2738 (class 0 OID 0)
+-- Dependencies: 193
+-- Name: COLUMN discounts_.department_; Type: COMMENT; Schema: public; Owner: serveradmin
+--
+
+COMMENT ON COLUMN discounts_.department_ IS '
+
+';
+
+
+--
+-- TOC entry 2739 (class 0 OID 0)
+-- Dependencies: 193
+-- Name: COLUMN discounts_.amount_; Type: COMMENT; Schema: public; Owner: serveradmin
+--
+
+COMMENT ON COLUMN discounts_.amount_ IS 'stored as cents';
+
+
+--
+-- TOC entry 2740 (class 0 OID 0)
+-- Dependencies: 193
+-- Name: COLUMN discounts_.grandtotal_; Type: COMMENT; Schema: public; Owner: serveradmin
+--
+
+COMMENT ON COLUMN discounts_.grandtotal_ IS 'stored in cents';
+
+
+--
+-- TOC entry 2741 (class 0 OID 0)
+-- Dependencies: 193
+-- Name: COLUMN discounts_.subtotal_; Type: COMMENT; Schema: public; Owner: serveradmin
+--
+
+COMMENT ON COLUMN discounts_.subtotal_ IS 'stored in cents';
+
+
+--
+-- TOC entry 194 (class 1259 OID 18357)
+-- Name: events_; Type: TABLE; Schema: public; Owner: serveradmin
+--
+
+CREATE TABLE events_ (
+    name text DEFAULT '...'::text NOT NULL,
+    start_ts timestamp with time zone DEFAULT timezone('utc'::text, now()) NOT NULL,
+    end_ts timestamp with time zone DEFAULT timezone('utc'::text, now()) NOT NULL,
+    loadin_ts timestamp with time zone DEFAULT timezone('utc'::text, now()) NOT NULL,
+    loadout_ts timestamp with time zone DEFAULT timezone('utc'::text, now()) NOT NULL,
+    details text,
+    acountmanager_ text,
+    startdate_ date DEFAULT ('now'::text)::date,
+    enddate_ date DEFAULT ('now'::text)::date,
+    loadindate_ date DEFAULT ('now'::text)::date,
+    loadoutdate_ date DEFAULT ('now'::text)::date,
+    starttime_ time without time zone DEFAULT ('now'::text)::time with time zone,
+    endtime_ time without time zone DEFAULT ('now'::text)::time with time zone,
+    loadintime_ time without time zone DEFAULT ('now'::text)::time with time zone,
+    loadouttime_ time without time zone DEFAULT ('now'::text)::time with time zone
+)
+INHERITS ("mGlobal");
+
+
+ALTER TABLE events_ OWNER TO serveradmin;
+
+--
+-- TOC entry 195 (class 1259 OID 18381)
+-- Name: lineitems; Type: TABLE; Schema: public; Owner: serveradmin
+--
+
+CREATE TABLE lineitems (
+    name_ text,
+    manufacturer text,
+    model text,
+    department text,
+    category text,
+    subcategory text,
+    description text,
+    fkeipl text,
+    fkinventory text,
+    type_ text,
+    note_ text,
+    rate_ text DEFAULT 'Daily'::text,
+    discounttype_ text DEFAULT 'amount'::text,
+    total_ integer DEFAULT 0,
+    time_ double precision DEFAULT 1,
+    discount_ integer DEFAULT 0,
+    discountperc_ integer,
+    discountamount_ integer,
+    taxable_ boolean,
+    taxtotal_ integer DEFAULT 0,
+    quantity double precision
+)
+INHERITS ("mGlobal", itemdescriptors);
+
+
+ALTER TABLE lineitems OWNER TO serveradmin;
+
+--
+-- TOC entry 2742 (class 0 OID 0)
+-- Dependencies: 195
+-- Name: COLUMN lineitems.taxtotal_; Type: COMMENT; Schema: public; Owner: serveradmin
+--
+
+COMMENT ON COLUMN lineitems.taxtotal_ IS 'stored as cents';
+
+
+--
+-- TOC entry 196 (class 1259 OID 18400)
+-- Name: payments_; Type: TABLE; Schema: public; Owner: serveradmin
+--
+
+CREATE TABLE payments_ (
+    date_ date DEFAULT now() NOT NULL,
+    memo_ text,
+    amount_ integer DEFAULT 0,
+    paymenttype_ text,
+    fkeipl text
+)
+INHERITS ("mGlobal");
+
+
+ALTER TABLE payments_ OWNER TO serveradmin;
+
+--
+-- TOC entry 2743 (class 0 OID 0)
+-- Dependencies: 196
+-- Name: COLUMN payments_.amount_; Type: COMMENT; Schema: public; Owner: serveradmin
+--
+
+COMMENT ON COLUMN payments_.amount_ IS 'stored in cents';
+
+
+--
+-- TOC entry 197 (class 1259 OID 18413)
+-- Name: result; Type: TABLE; Schema: public; Owner: serveradmin
+--
+
+CREATE TABLE result (
+    inventory_to_lineitem text
+);
+
+
+ALTER TABLE result OWNER TO serveradmin;
+
+--
+-- TOC entry 198 (class 1259 OID 18419)
+-- Name: testtable; Type: TABLE; Schema: public; Owner: serveradmin
+--
+
+CREATE TABLE testtable (
+    pkid text DEFAULT uuid_generate_v4(),
+    field1 text
+);
+
+
+ALTER TABLE testtable OWNER TO serveradmin;
+
+--
+-- TOC entry 199 (class 1259 OID 18426)
+-- Name: venues; Type: TABLE; Schema: public; Owner: serveradmin
+--
+
+CREATE TABLE venues (
+    name text,
+    type text
+)
+INHERITS ("mGlobal", "ContactDetails");
+
+
+ALTER TABLE venues OWNER TO serveradmin;
+
+SET search_path = update, pg_catalog;
+
+--
+-- TOC entry 205 (class 1259 OID 18730)
+-- Name: Version; Type: TABLE; Schema: update; Owner: serveradmin
+--
+
+CREATE TABLE "Version" (
+    row_created timestamp with time zone DEFAULT now(),
+    major_version integer DEFAULT 0,
+    minor_version integer DEFAULT 0,
+    bug_version integer DEFAULT 0,
+    nonrelease_version integer DEFAULT 0
+);
+
+
+ALTER TABLE "Version" OWNER TO serveradmin;
+
+SET search_path = users, pg_catalog;
+
+--
+-- TOC entry 200 (class 1259 OID 18437)
+-- Name: activity; Type: TABLE; Schema: users; Owner: serveradmin
+--
+
+CREATE TABLE activity (
+    notify_table_number integer DEFAULT 0,
+    active_status boolean DEFAULT false,
+    user_name text,
+    pertinent_tables text[],
+    pertinent_id text
+)
+INHERITS (public."mGlobal");
+
+
+ALTER TABLE activity OWNER TO serveradmin;
+
+--
+-- TOC entry 201 (class 1259 OID 18450)
+-- Name: con_template; Type: TABLE; Schema: users; Owner: serveradmin
+--
+
+CREATE TABLE con_template (
+    "pkID" text DEFAULT public.uuid_generate_v4() NOT NULL,
+    row_created timestamp with time zone DEFAULT timezone('utc'::text, now()) NOT NULL,
+    row_modified timestamp with time zone DEFAULT timezone('utc'::text, now()) NOT NULL,
+    row_username text DEFAULT "current_user"() NOT NULL,
+    row_in_use boolean DEFAULT false,
+    effected_row_id text,
+    effected_row_username text,
+    effected_table text,
+    status text,
+    pertinent_tables text[],
+    pertinent_id text
+);
+
+
+ALTER TABLE con_template OWNER TO serveradmin;
+
+--
+-- TOC entry 202 (class 1259 OID 18461)
+-- Name: con1; Type: TABLE; Schema: users; Owner: serveradmin
+--
+
+CREATE TABLE con1 (
+)
+INHERITS (con_template);
+
+
+ALTER TABLE con1 OWNER TO serveradmin;
+
+--
+-- TOC entry 203 (class 1259 OID 18472)
+-- Name: con2; Type: TABLE; Schema: users; Owner: serveradmin
+--
+
+CREATE TABLE con2 (
+)
+INHERITS (con_template);
+
+
+ALTER TABLE con2 OWNER TO serveradmin;
+
+--
+-- TOC entry 204 (class 1259 OID 18483)
+-- Name: testtable; Type: TABLE; Schema: users; Owner: serveradmin
+--
+
+CREATE TABLE testtable (
+    test integer
+);
+
+
+ALTER TABLE testtable OWNER TO serveradmin;
+
+SET search_path = public, pg_catalog;
+
+--
+-- TOC entry 2328 (class 2604 OID 19339)
+-- Name: pkid; Type: DEFAULT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY "ContactDetails" ALTER COLUMN pkid SET DEFAULT uuid_generate_v4();
+
+
+--
+-- TOC entry 2329 (class 2604 OID 19340)
+-- Name: row_created; Type: DEFAULT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY "ContactDetails" ALTER COLUMN row_created SET DEFAULT timezone('utc'::text, now());
+
+
+--
+-- TOC entry 2330 (class 2604 OID 19341)
+-- Name: row_modified; Type: DEFAULT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY "ContactDetails" ALTER COLUMN row_modified SET DEFAULT timezone('utc'::text, now());
+
+
+--
+-- TOC entry 2331 (class 2604 OID 19342)
+-- Name: row_username; Type: DEFAULT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY "ContactDetails" ALTER COLUMN row_username SET DEFAULT "current_user"();
+
+
+--
+-- TOC entry 2332 (class 2604 OID 19343)
+-- Name: row_in_use; Type: DEFAULT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY "ContactDetails" ALTER COLUMN row_in_use SET DEFAULT false;
+
+
+--
+-- TOC entry 2333 (class 2604 OID 19344)
+-- Name: pkid; Type: DEFAULT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY "EIPLTypes" ALTER COLUMN pkid SET DEFAULT uuid_generate_v4();
+
+
+--
+-- TOC entry 2334 (class 2604 OID 19345)
+-- Name: row_created; Type: DEFAULT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY "EIPLTypes" ALTER COLUMN row_created SET DEFAULT timezone('utc'::text, now());
+
+
+--
+-- TOC entry 2335 (class 2604 OID 19346)
+-- Name: row_modified; Type: DEFAULT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY "EIPLTypes" ALTER COLUMN row_modified SET DEFAULT timezone('utc'::text, now());
+
+
+--
+-- TOC entry 2336 (class 2604 OID 19347)
+-- Name: row_username; Type: DEFAULT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY "EIPLTypes" ALTER COLUMN row_username SET DEFAULT "current_user"();
+
+
+--
+-- TOC entry 2337 (class 2604 OID 19348)
+-- Name: row_in_use; Type: DEFAULT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY "EIPLTypes" ALTER COLUMN row_in_use SET DEFAULT false;
+
+
+--
+-- TOC entry 2351 (class 2604 OID 19349)
+-- Name: pkid; Type: DEFAULT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY "Employees" ALTER COLUMN pkid SET DEFAULT uuid_generate_v4();
+
+
+--
+-- TOC entry 2352 (class 2604 OID 19350)
+-- Name: row_created; Type: DEFAULT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY "Employees" ALTER COLUMN row_created SET DEFAULT timezone('utc'::text, now());
+
+
+--
+-- TOC entry 2353 (class 2604 OID 19351)
+-- Name: row_modified; Type: DEFAULT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY "Employees" ALTER COLUMN row_modified SET DEFAULT timezone('utc'::text, now());
+
+
+--
+-- TOC entry 2354 (class 2604 OID 19352)
+-- Name: row_username; Type: DEFAULT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY "Employees" ALTER COLUMN row_username SET DEFAULT "current_user"();
+
+
+--
+-- TOC entry 2355 (class 2604 OID 19353)
+-- Name: row_in_use; Type: DEFAULT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY "Employees" ALTER COLUMN row_in_use SET DEFAULT false;
+
+
+--
+-- TOC entry 2356 (class 2604 OID 19354)
+-- Name: pkid; Type: DEFAULT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY "InvItemized" ALTER COLUMN pkid SET DEFAULT uuid_generate_v4();
+
+
+--
+-- TOC entry 2357 (class 2604 OID 19355)
+-- Name: row_created; Type: DEFAULT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY "InvItemized" ALTER COLUMN row_created SET DEFAULT timezone('utc'::text, now());
+
+
+--
+-- TOC entry 2358 (class 2604 OID 19356)
+-- Name: row_modified; Type: DEFAULT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY "InvItemized" ALTER COLUMN row_modified SET DEFAULT timezone('utc'::text, now());
+
+
+--
+-- TOC entry 2359 (class 2604 OID 19357)
+-- Name: row_username; Type: DEFAULT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY "InvItemized" ALTER COLUMN row_username SET DEFAULT "current_user"();
+
+
+--
+-- TOC entry 2360 (class 2604 OID 19358)
+-- Name: row_in_use; Type: DEFAULT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY "InvItemized" ALTER COLUMN row_in_use SET DEFAULT false;
+
+
+--
+-- TOC entry 2377 (class 2604 OID 19359)
+-- Name: pkid; Type: DEFAULT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY "InvTemp" ALTER COLUMN pkid SET DEFAULT uuid_generate_v4();
+
+
+--
+-- TOC entry 2378 (class 2604 OID 19360)
+-- Name: row_created; Type: DEFAULT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY "InvTemp" ALTER COLUMN row_created SET DEFAULT timezone('utc'::text, now());
+
+
+--
+-- TOC entry 2379 (class 2604 OID 19361)
+-- Name: row_modified; Type: DEFAULT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY "InvTemp" ALTER COLUMN row_modified SET DEFAULT timezone('utc'::text, now());
+
+
+--
+-- TOC entry 2380 (class 2604 OID 19362)
+-- Name: row_username; Type: DEFAULT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY "InvTemp" ALTER COLUMN row_username SET DEFAULT "current_user"();
+
+
+--
+-- TOC entry 2381 (class 2604 OID 19363)
+-- Name: row_in_use; Type: DEFAULT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY "InvTemp" ALTER COLUMN row_in_use SET DEFAULT false;
+
+
+--
+-- TOC entry 2382 (class 2604 OID 19364)
+-- Name: price; Type: DEFAULT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY "InvTemp" ALTER COLUMN price SET DEFAULT 0;
+
+
+--
+-- TOC entry 2383 (class 2604 OID 19365)
+-- Name: quantity_; Type: DEFAULT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY "InvTemp" ALTER COLUMN quantity_ SET DEFAULT 0;
+
+
+--
+-- TOC entry 2384 (class 2604 OID 19366)
+-- Name: taxable_; Type: DEFAULT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY "InvTemp" ALTER COLUMN taxable_ SET DEFAULT 'False'::text;
+
+
+--
+-- TOC entry 2385 (class 2604 OID 19367)
+-- Name: pkid; Type: DEFAULT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY "ItemStatus" ALTER COLUMN pkid SET DEFAULT uuid_generate_v4();
+
+
+--
+-- TOC entry 2386 (class 2604 OID 19368)
+-- Name: row_created; Type: DEFAULT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY "ItemStatus" ALTER COLUMN row_created SET DEFAULT timezone('utc'::text, now());
+
+
+--
+-- TOC entry 2387 (class 2604 OID 19369)
+-- Name: row_modified; Type: DEFAULT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY "ItemStatus" ALTER COLUMN row_modified SET DEFAULT timezone('utc'::text, now());
+
+
+--
+-- TOC entry 2388 (class 2604 OID 19370)
+-- Name: row_username; Type: DEFAULT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY "ItemStatus" ALTER COLUMN row_username SET DEFAULT "current_user"();
+
+
+--
+-- TOC entry 2389 (class 2604 OID 19371)
+-- Name: row_in_use; Type: DEFAULT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY "ItemStatus" ALTER COLUMN row_in_use SET DEFAULT false;
+
+
+--
+-- TOC entry 2390 (class 2604 OID 19372)
+-- Name: pkid; Type: DEFAULT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY "ItemTypes" ALTER COLUMN pkid SET DEFAULT uuid_generate_v4();
+
+
+--
+-- TOC entry 2391 (class 2604 OID 19373)
+-- Name: row_created; Type: DEFAULT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY "ItemTypes" ALTER COLUMN row_created SET DEFAULT timezone('utc'::text, now());
+
+
+--
+-- TOC entry 2392 (class 2604 OID 19374)
+-- Name: row_modified; Type: DEFAULT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY "ItemTypes" ALTER COLUMN row_modified SET DEFAULT timezone('utc'::text, now());
+
+
+--
+-- TOC entry 2393 (class 2604 OID 19375)
+-- Name: row_username; Type: DEFAULT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY "ItemTypes" ALTER COLUMN row_username SET DEFAULT "current_user"();
+
+
+--
+-- TOC entry 2394 (class 2604 OID 19376)
+-- Name: row_in_use; Type: DEFAULT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY "ItemTypes" ALTER COLUMN row_in_use SET DEFAULT false;
+
+
+--
+-- TOC entry 2395 (class 2604 OID 19377)
+-- Name: pkid; Type: DEFAULT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY "MaintenenceLogs" ALTER COLUMN pkid SET DEFAULT uuid_generate_v4();
+
+
+--
+-- TOC entry 2396 (class 2604 OID 19378)
+-- Name: row_created; Type: DEFAULT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY "MaintenenceLogs" ALTER COLUMN row_created SET DEFAULT timezone('utc'::text, now());
+
+
+--
+-- TOC entry 2397 (class 2604 OID 19379)
+-- Name: row_modified; Type: DEFAULT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY "MaintenenceLogs" ALTER COLUMN row_modified SET DEFAULT timezone('utc'::text, now());
+
+
+--
+-- TOC entry 2398 (class 2604 OID 19380)
+-- Name: row_username; Type: DEFAULT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY "MaintenenceLogs" ALTER COLUMN row_username SET DEFAULT "current_user"();
+
+
+--
+-- TOC entry 2399 (class 2604 OID 19381)
+-- Name: row_in_use; Type: DEFAULT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY "MaintenenceLogs" ALTER COLUMN row_in_use SET DEFAULT false;
+
+
+--
+-- TOC entry 2400 (class 2604 OID 19382)
+-- Name: pkid; Type: DEFAULT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY "Notes" ALTER COLUMN pkid SET DEFAULT uuid_generate_v4();
+
+
+--
+-- TOC entry 2401 (class 2604 OID 19383)
+-- Name: row_created; Type: DEFAULT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY "Notes" ALTER COLUMN row_created SET DEFAULT timezone('utc'::text, now());
+
+
+--
+-- TOC entry 2402 (class 2604 OID 19384)
+-- Name: row_modified; Type: DEFAULT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY "Notes" ALTER COLUMN row_modified SET DEFAULT timezone('utc'::text, now());
+
+
+--
+-- TOC entry 2403 (class 2604 OID 19385)
+-- Name: row_username; Type: DEFAULT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY "Notes" ALTER COLUMN row_username SET DEFAULT "current_user"();
+
+
+--
+-- TOC entry 2404 (class 2604 OID 19386)
+-- Name: row_in_use; Type: DEFAULT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY "Notes" ALTER COLUMN row_in_use SET DEFAULT false;
+
+
+--
+-- TOC entry 2405 (class 2604 OID 19387)
+-- Name: pkid; Type: DEFAULT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY "Photos" ALTER COLUMN pkid SET DEFAULT uuid_generate_v4();
+
+
+--
+-- TOC entry 2406 (class 2604 OID 19388)
+-- Name: row_created; Type: DEFAULT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY "Photos" ALTER COLUMN row_created SET DEFAULT timezone('utc'::text, now());
+
+
+--
+-- TOC entry 2407 (class 2604 OID 19389)
+-- Name: row_modified; Type: DEFAULT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY "Photos" ALTER COLUMN row_modified SET DEFAULT timezone('utc'::text, now());
+
+
+--
+-- TOC entry 2408 (class 2604 OID 19390)
+-- Name: row_username; Type: DEFAULT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY "Photos" ALTER COLUMN row_username SET DEFAULT "current_user"();
+
+
+--
+-- TOC entry 2409 (class 2604 OID 19391)
+-- Name: row_in_use; Type: DEFAULT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY "Photos" ALTER COLUMN row_in_use SET DEFAULT false;
+
+
+--
+-- TOC entry 2410 (class 2604 OID 19392)
+-- Name: pkid; Type: DEFAULT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY contact_venue_data ALTER COLUMN pkid SET DEFAULT uuid_generate_v4();
+
+
+--
+-- TOC entry 2411 (class 2604 OID 19393)
+-- Name: row_created; Type: DEFAULT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY contact_venue_data ALTER COLUMN row_created SET DEFAULT timezone('utc'::text, now());
+
+
+--
+-- TOC entry 2412 (class 2604 OID 19394)
+-- Name: row_modified; Type: DEFAULT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY contact_venue_data ALTER COLUMN row_modified SET DEFAULT timezone('utc'::text, now());
+
+
+--
+-- TOC entry 2413 (class 2604 OID 19395)
+-- Name: row_username; Type: DEFAULT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY contact_venue_data ALTER COLUMN row_username SET DEFAULT "current_user"();
+
+
+--
+-- TOC entry 2414 (class 2604 OID 19396)
+-- Name: row_in_use; Type: DEFAULT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY contact_venue_data ALTER COLUMN row_in_use SET DEFAULT false;
+
+
+--
+-- TOC entry 2416 (class 2604 OID 19397)
+-- Name: pkid; Type: DEFAULT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY contacts ALTER COLUMN pkid SET DEFAULT uuid_generate_v4();
+
+
+--
+-- TOC entry 2417 (class 2604 OID 19398)
+-- Name: row_created; Type: DEFAULT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY contacts ALTER COLUMN row_created SET DEFAULT timezone('utc'::text, now());
+
+
+--
+-- TOC entry 2418 (class 2604 OID 19399)
+-- Name: row_modified; Type: DEFAULT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY contacts ALTER COLUMN row_modified SET DEFAULT timezone('utc'::text, now());
+
+
+--
+-- TOC entry 2419 (class 2604 OID 19400)
+-- Name: row_username; Type: DEFAULT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY contacts ALTER COLUMN row_username SET DEFAULT "current_user"();
+
+
+--
+-- TOC entry 2420 (class 2604 OID 19401)
+-- Name: row_in_use; Type: DEFAULT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY contacts ALTER COLUMN row_in_use SET DEFAULT false;
+
+
+--
+-- TOC entry 2421 (class 2604 OID 19402)
+-- Name: pkid; Type: DEFAULT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY discounts_ ALTER COLUMN pkid SET DEFAULT uuid_generate_v4();
+
+
+--
+-- TOC entry 2422 (class 2604 OID 19403)
+-- Name: row_created; Type: DEFAULT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY discounts_ ALTER COLUMN row_created SET DEFAULT timezone('utc'::text, now());
+
+
+--
+-- TOC entry 2423 (class 2604 OID 19404)
+-- Name: row_modified; Type: DEFAULT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY discounts_ ALTER COLUMN row_modified SET DEFAULT timezone('utc'::text, now());
+
+
+--
+-- TOC entry 2424 (class 2604 OID 19405)
+-- Name: row_username; Type: DEFAULT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY discounts_ ALTER COLUMN row_username SET DEFAULT "current_user"();
+
+
+--
+-- TOC entry 2425 (class 2604 OID 19406)
+-- Name: row_in_use; Type: DEFAULT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY discounts_ ALTER COLUMN row_in_use SET DEFAULT false;
+
+
+--
+-- TOC entry 2345 (class 2604 OID 19407)
+-- Name: pkid; Type: DEFAULT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY eipl ALTER COLUMN pkid SET DEFAULT uuid_generate_v4();
+
+
+--
+-- TOC entry 2346 (class 2604 OID 19408)
+-- Name: row_created; Type: DEFAULT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY eipl ALTER COLUMN row_created SET DEFAULT timezone('utc'::text, now());
+
+
+--
+-- TOC entry 2347 (class 2604 OID 19409)
+-- Name: row_modified; Type: DEFAULT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY eipl ALTER COLUMN row_modified SET DEFAULT timezone('utc'::text, now());
+
+
+--
+-- TOC entry 2348 (class 2604 OID 19410)
+-- Name: row_username; Type: DEFAULT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY eipl ALTER COLUMN row_username SET DEFAULT "current_user"();
+
+
+--
+-- TOC entry 2349 (class 2604 OID 19411)
+-- Name: row_in_use; Type: DEFAULT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY eipl ALTER COLUMN row_in_use SET DEFAULT false;
+
+
+--
+-- TOC entry 2350 (class 2604 OID 19412)
+-- Name: eipl_nmbr; Type: DEFAULT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY eipl ALTER COLUMN eipl_nmbr SET DEFAULT nextval('"EIPL_EIPL_nmbr_seq"'::regclass);
+
+
+--
+-- TOC entry 2429 (class 2604 OID 19413)
+-- Name: pkid; Type: DEFAULT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY events_ ALTER COLUMN pkid SET DEFAULT uuid_generate_v4();
+
+
+--
+-- TOC entry 2431 (class 2604 OID 19414)
+-- Name: row_created; Type: DEFAULT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY events_ ALTER COLUMN row_created SET DEFAULT timezone('utc'::text, now());
+
+
+--
+-- TOC entry 2432 (class 2604 OID 19415)
+-- Name: row_modified; Type: DEFAULT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY events_ ALTER COLUMN row_modified SET DEFAULT timezone('utc'::text, now());
+
+
+--
+-- TOC entry 2433 (class 2604 OID 19416)
+-- Name: row_username; Type: DEFAULT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY events_ ALTER COLUMN row_username SET DEFAULT "current_user"();
+
+
+--
+-- TOC entry 2434 (class 2604 OID 19417)
+-- Name: row_in_use; Type: DEFAULT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY events_ ALTER COLUMN row_in_use SET DEFAULT false;
+
+
+--
+-- TOC entry 2371 (class 2604 OID 19418)
+-- Name: pkid; Type: DEFAULT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY inventory ALTER COLUMN pkid SET DEFAULT uuid_generate_v4();
+
+
+--
+-- TOC entry 2372 (class 2604 OID 19419)
+-- Name: row_created; Type: DEFAULT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY inventory ALTER COLUMN row_created SET DEFAULT timezone('utc'::text, now());
+
+
+--
+-- TOC entry 2373 (class 2604 OID 19420)
+-- Name: row_modified; Type: DEFAULT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY inventory ALTER COLUMN row_modified SET DEFAULT timezone('utc'::text, now());
+
+
+--
+-- TOC entry 2374 (class 2604 OID 19421)
+-- Name: row_username; Type: DEFAULT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY inventory ALTER COLUMN row_username SET DEFAULT "current_user"();
+
+
+--
+-- TOC entry 2375 (class 2604 OID 19422)
+-- Name: row_in_use; Type: DEFAULT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY inventory ALTER COLUMN row_in_use SET DEFAULT false;
+
+
+--
+-- TOC entry 2376 (class 2604 OID 19423)
+-- Name: quantity_; Type: DEFAULT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY inventory ALTER COLUMN quantity_ SET DEFAULT 0;
+
+
+--
+-- TOC entry 2364 (class 2604 OID 19424)
+-- Name: pkid; Type: DEFAULT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY itemdescriptors ALTER COLUMN pkid SET DEFAULT uuid_generate_v4();
+
+
+--
+-- TOC entry 2365 (class 2604 OID 19425)
+-- Name: row_created; Type: DEFAULT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY itemdescriptors ALTER COLUMN row_created SET DEFAULT timezone('utc'::text, now());
+
+
+--
+-- TOC entry 2366 (class 2604 OID 19426)
+-- Name: row_modified; Type: DEFAULT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY itemdescriptors ALTER COLUMN row_modified SET DEFAULT timezone('utc'::text, now());
+
+
+--
+-- TOC entry 2367 (class 2604 OID 19427)
+-- Name: row_username; Type: DEFAULT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY itemdescriptors ALTER COLUMN row_username SET DEFAULT "current_user"();
+
+
+--
+-- TOC entry 2368 (class 2604 OID 19428)
+-- Name: row_in_use; Type: DEFAULT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY itemdescriptors ALTER COLUMN row_in_use SET DEFAULT false;
+
+
+--
+-- TOC entry 2446 (class 2604 OID 19429)
+-- Name: pkid; Type: DEFAULT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY lineitems ALTER COLUMN pkid SET DEFAULT uuid_generate_v4();
+
+
+--
+-- TOC entry 2453 (class 2604 OID 19430)
+-- Name: row_created; Type: DEFAULT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY lineitems ALTER COLUMN row_created SET DEFAULT timezone('utc'::text, now());
+
+
+--
+-- TOC entry 2454 (class 2604 OID 19431)
+-- Name: row_modified; Type: DEFAULT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY lineitems ALTER COLUMN row_modified SET DEFAULT timezone('utc'::text, now());
+
+
+--
+-- TOC entry 2455 (class 2604 OID 19432)
+-- Name: row_username; Type: DEFAULT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY lineitems ALTER COLUMN row_username SET DEFAULT "current_user"();
+
+
+--
+-- TOC entry 2456 (class 2604 OID 19433)
+-- Name: row_in_use; Type: DEFAULT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY lineitems ALTER COLUMN row_in_use SET DEFAULT false;
+
+
+--
+-- TOC entry 2457 (class 2604 OID 19434)
+-- Name: price; Type: DEFAULT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY lineitems ALTER COLUMN price SET DEFAULT 0;
+
+
+--
+-- TOC entry 2458 (class 2604 OID 19435)
+-- Name: quantity_; Type: DEFAULT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY lineitems ALTER COLUMN quantity_ SET DEFAULT 1;
+
+
+--
+-- TOC entry 2461 (class 2604 OID 19436)
+-- Name: pkid; Type: DEFAULT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY payments_ ALTER COLUMN pkid SET DEFAULT uuid_generate_v4();
+
+
+--
+-- TOC entry 2462 (class 2604 OID 19437)
+-- Name: row_created; Type: DEFAULT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY payments_ ALTER COLUMN row_created SET DEFAULT timezone('utc'::text, now());
+
+
+--
+-- TOC entry 2463 (class 2604 OID 19438)
+-- Name: row_modified; Type: DEFAULT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY payments_ ALTER COLUMN row_modified SET DEFAULT timezone('utc'::text, now());
+
+
+--
+-- TOC entry 2464 (class 2604 OID 19439)
+-- Name: row_username; Type: DEFAULT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY payments_ ALTER COLUMN row_username SET DEFAULT "current_user"();
+
+
+--
+-- TOC entry 2465 (class 2604 OID 19440)
+-- Name: row_in_use; Type: DEFAULT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY payments_ ALTER COLUMN row_in_use SET DEFAULT false;
+
+
+--
+-- TOC entry 2467 (class 2604 OID 19441)
+-- Name: pkid; Type: DEFAULT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY venues ALTER COLUMN pkid SET DEFAULT uuid_generate_v4();
+
+
+--
+-- TOC entry 2468 (class 2604 OID 19442)
+-- Name: row_created; Type: DEFAULT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY venues ALTER COLUMN row_created SET DEFAULT timezone('utc'::text, now());
+
+
+--
+-- TOC entry 2469 (class 2604 OID 19443)
+-- Name: row_modified; Type: DEFAULT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY venues ALTER COLUMN row_modified SET DEFAULT timezone('utc'::text, now());
+
+
+--
+-- TOC entry 2470 (class 2604 OID 19444)
+-- Name: row_username; Type: DEFAULT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY venues ALTER COLUMN row_username SET DEFAULT "current_user"();
+
+
+--
+-- TOC entry 2471 (class 2604 OID 19445)
+-- Name: row_in_use; Type: DEFAULT; Schema: public; Owner: serveradmin
+--
+
+ALTER TABLE ONLY venues ALTER COLUMN row_in_use SET DEFAULT false;
+
+
+SET search_path = users, pg_catalog;
+
+--
+-- TOC entry 2474 (class 2604 OID 19446)
+-- Name: pkid; Type: DEFAULT; Schema: users; Owner: serveradmin
+--
+
+ALTER TABLE ONLY activity ALTER COLUMN pkid SET DEFAULT public.uuid_generate_v4();
+
+
+--
+-- TOC entry 2475 (class 2604 OID 19447)
+-- Name: row_created; Type: DEFAULT; Schema: users; Owner: serveradmin
+--
+
+ALTER TABLE ONLY activity ALTER COLUMN row_created SET DEFAULT timezone('utc'::text, now());
+
+
+--
+-- TOC entry 2476 (class 2604 OID 19448)
+-- Name: row_modified; Type: DEFAULT; Schema: users; Owner: serveradmin
+--
+
+ALTER TABLE ONLY activity ALTER COLUMN row_modified SET DEFAULT timezone('utc'::text, now());
+
+
+--
+-- TOC entry 2477 (class 2604 OID 19449)
+-- Name: row_username; Type: DEFAULT; Schema: users; Owner: serveradmin
+--
+
+ALTER TABLE ONLY activity ALTER COLUMN row_username SET DEFAULT "current_user"();
+
+
+--
+-- TOC entry 2478 (class 2604 OID 19450)
+-- Name: row_in_use; Type: DEFAULT; Schema: users; Owner: serveradmin
+--
+
+ALTER TABLE ONLY activity ALTER COLUMN row_in_use SET DEFAULT false;
+
+
+--
+-- TOC entry 2484 (class 2604 OID 19451)
+-- Name: pkID; Type: DEFAULT; Schema: users; Owner: serveradmin
+--
+
+ALTER TABLE ONLY con1 ALTER COLUMN "pkID" SET DEFAULT public.uuid_generate_v4();
+
+
+--
+-- TOC entry 2485 (class 2604 OID 19452)
+-- Name: row_created; Type: DEFAULT; Schema: users; Owner: serveradmin
+--
+
+ALTER TABLE ONLY con1 ALTER COLUMN row_created SET DEFAULT timezone('utc'::text, now());
+
+
+--
+-- TOC entry 2486 (class 2604 OID 19453)
+-- Name: row_modified; Type: DEFAULT; Schema: users; Owner: serveradmin
+--
+
+ALTER TABLE ONLY con1 ALTER COLUMN row_modified SET DEFAULT timezone('utc'::text, now());
+
+
+--
+-- TOC entry 2487 (class 2604 OID 19454)
+-- Name: row_username; Type: DEFAULT; Schema: users; Owner: serveradmin
+--
+
+ALTER TABLE ONLY con1 ALTER COLUMN row_username SET DEFAULT "current_user"();
+
+
+--
+-- TOC entry 2488 (class 2604 OID 19455)
+-- Name: row_in_use; Type: DEFAULT; Schema: users; Owner: serveradmin
+--
+
+ALTER TABLE ONLY con1 ALTER COLUMN row_in_use SET DEFAULT false;
+
+
+--
+-- TOC entry 2489 (class 2604 OID 19456)
+-- Name: pkID; Type: DEFAULT; Schema: users; Owner: serveradmin
+--
+
+ALTER TABLE ONLY con2 ALTER COLUMN "pkID" SET DEFAULT public.uuid_generate_v4();
+
+
+--
+-- TOC entry 2490 (class 2604 OID 19457)
+-- Name: row_created; Type: DEFAULT; Schema: users; Owner: serveradmin
+--
+
+ALTER TABLE ONLY con2 ALTER COLUMN row_created SET DEFAULT timezone('utc'::text, now());
+
+
+--
+-- TOC entry 2491 (class 2604 OID 19458)
+-- Name: row_modified; Type: DEFAULT; Schema: users; Owner: serveradmin
+--
+
+ALTER TABLE ONLY con2 ALTER COLUMN row_modified SET DEFAULT timezone('utc'::text, now());
+
+
+--
+-- TOC entry 2492 (class 2604 OID 19459)
+-- Name: row_username; Type: DEFAULT; Schema: users; Owner: serveradmin
+--
+
+ALTER TABLE ONLY con2 ALTER COLUMN row_username SET DEFAULT "current_user"();
+
+
+--
+-- TOC entry 2493 (class 2604 OID 19460)
+-- Name: row_in_use; Type: DEFAULT; Schema: users; Owner: serveradmin
+--
+
+ALTER TABLE ONLY con2 ALTER COLUMN row_in_use SET DEFAULT false;
+
+
+--
+-- TOC entry 2719 (class 0 OID 0)
+-- Dependencies: 10
+-- Name: public; Type: ACL; Schema: -; Owner: sean
+--
+
+REVOKE ALL ON SCHEMA public FROM PUBLIC;
+REVOKE ALL ON SCHEMA public FROM sean;
+GRANT ALL ON SCHEMA public TO sean;
+GRANT ALL ON SCHEMA public TO PUBLIC;
+
+
+-- Completed on 2016-06-25 01:41:28 CDT
+
+--
+-- PostgreSQL database dump complete
+--
+
