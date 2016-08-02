@@ -1,18 +1,12 @@
 
-##################################
-###### Create Otis Database ######
-##################################
+-- ##################################
+-- ###### Create Otis Database ######
+-- ##################################
 
 
--- Delete the database if it exists
-	Drop Database If Exists otis_structure;
 
--- Now we need to create it again
-	Create Database otis_structure 
-		With Owner = serveradmin
-		;
 
--- Next we create our schemas
+-- Create our schemas
 	
 	-- Main Schema
 	Create Schema main_schema;
@@ -25,6 +19,11 @@
 	Alter Schema notification_schema
 		Owner To serveradmin
 		;
+
+-- Change some environment variables for users
+	Alter Role general_user SET search_path to main_schema;
+
+
 
 
 -- Set up our Extensions
@@ -233,7 +232,7 @@ Set search_path = main_schema, pg_catalog;
 
 -- Create Contracts Table
 	CREATE TABLE contracts_ (
-    	contract_number text ;
+    	contract_number text 
 	)
 	INHERITS ("mGlobal");
 
@@ -1513,66 +1512,7 @@ Set search_path = main_schema, pg_catalog;
 	ALTER FUNCTION main_schema."syncEventDatesToStart_triggFunc"() OWNER TO serveradmin;
 
 
--- Create the function to make contract numbers
-	CREATE FUNCTION create_contract_number() RETURNS text
-	    LANGUAGE plpgsql
-	    AS $$
-	-- create_contract_id
-		-- Triggerd From 
-		-- Triggered on Insert into contracts_
-		-- Purpose is to 
-			-- create a new id for a contract
 
-	Declare
-		n1		integer;
-		n2		integer;
-		s1		text;
-		year_currval	int;
-		final_id 	text;
-		next_seq_value 	int;
-
-
-	Begin
-
-		-- set the current year
-		s1 = 'year';
-		year_currval = date_part( s1, current_timestamp );
-		
-		-- store the full year for later use
-		n1 = year_currval;
-		
-		-- grab just the last 2 numbers of the year
-		s1 = cast( year_currval as text );
-		s1 = right( s1, 2 );
-		year_currval = cast( s1 as int );
-
-		-- check if any eipls exist from this year
-		Select count(*) Into n2 From contracts_ Where date_part( 'year', contracts_.row_created ) = n1;
-
-		-- if no eipls from this year exit we reset the sequence to 1000
-		If n2 = 0 Then
-			n1 = 1000;
-			Perform setval( 'contract_number_sequence', n1 );
-		End If;
-
-
-		-- Pull the next value from contract_number_sequence
-		next_seq_value = nextval( 'contract_number_sequence' );
-
-		--Combine into final id
-		final_id = cast( year_currval as text ) || '-' || cast( next_seq_value as text );
-		
-		
-		
-
-
-	Return final_id;
-	End
-
-	$$;
-
-
-	ALTER FUNCTION public.create_contract_number() OWNER TO serveradmin;
 
 
 

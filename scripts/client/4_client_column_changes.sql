@@ -29,8 +29,6 @@ CREATE TRIGGER calc_lineitem_total_trigg AFTER INSERT OR UPDATE OF discountperc_
 
 CREATE TRIGGER fkeipl_update_trigger AFTER UPDATE OF fkeipl ON contact_venue_data FOR EACH ROW EXECUTE PROCEDURE cvd_update_function();
 
-CREATE TRIGGER my_table_insert AFTER INSERT OR DELETE OR UPDATE ON events_ FOR EACH ROW EXECUTE PROCEDURE notify_table_change();
-
 CREATE TRIGGER new_eipl_trigger AFTER INSERT ON eipl FOR EACH ROW EXECUTE PROCEDURE new_eipl_function();
 
 CREATE TRIGGER price_discrepency_checker_triggfunc AFTER INSERT OR UPDATE OF price ON lineitems FOR EACH ROW EXECUTE PROCEDURE price_discrepency_checker_triggfunc();
