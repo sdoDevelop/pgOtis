@@ -47,11 +47,12 @@
 Set search_path = info_schema, pg_catalog;
 
 -- Database information table
-	Create Table "dbinfo"
+	Create Table "dbinfo" (
 		pkid text DEFAULT main_schema.uuid_generate_v4() Not Null,
 		major_version Integer, 
 		minor_version Integer, 
-		build_version Integer ;
+		build_version Integer 
+		);
 
 	Alter Table dbinfo Owner to serveradmin;
 

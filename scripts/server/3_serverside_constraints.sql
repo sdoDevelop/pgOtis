@@ -50,10 +50,7 @@ ALTER TABLE ONLY itemdescriptors
     ADD CONSTRAINT pkid_itemdescriptors PRIMARY KEY (pkid);
 
 
-Set search_path = client_server_schema, pg_catalog;
 
-ALTER TABLE ONLY client_server_scripts
-    ADD CONSTRAINT order_number_ PRIMARY KEY (pkid);
 
 
 

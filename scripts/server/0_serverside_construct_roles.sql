@@ -82,7 +82,7 @@ Drop Role If Exists
 
 	Create User
 		transfer_monkey
-		With Encrypted Password '7jkgs3rhbxdy8y93jr929rud'
+		With Encrypted Password 'this monkey transfers data'
 		;
 	Grant backup_role To transfer_monkey;
 
@@ -97,12 +97,3 @@ Drop Role If Exists
 	Grant general_user To benassef;
 
 
--- ##################################
--- ###### Create Otis Database ######
--- ##################################
-
-
--- Now we need to create it again
-	Create Database otis_data 
-		With Owner = serveradmin
-		;

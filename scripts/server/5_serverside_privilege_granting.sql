@@ -75,3 +75,7 @@
 	Grant All Privileges On Schema notification_schema to backup_role;
 	Grant Select On All	Sequences In Schema notification_schema to backup_role;
 	Grant Select On All Tables In Schema notification_schema to backup_role;
+	Grant All Privileges On Schema info_schema to backup_role;
+	Grant All Privileges On All	Sequences In Schema info_schema to backup_role;
+	Grant All Privileges On All Tables In Schema info_schema to backup_role;
+

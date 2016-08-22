@@ -20,9 +20,9 @@
 		Owner To serveradmin
 		;
 
-	-- Client Server Creation Schema
-	Create Schema client_server_schema;
-	Alter Schema client_server_schema
+	--
+	Create Schema info_schema;
+	Alter Schema info_schema
 		Owner To serveradmin
 		;
 
@@ -43,23 +43,28 @@
 	COMMENT ON EXTENSION "uuid-ossp" IS 'generate universally unique identifiers (UUIDs)';
 
 
-	Set search_path = info_schema, pg_catalog;
+Set search_path = info_schema, pg_catalog;
 
 -- Database information table
-	Create Table "dbinfo"
+	Create Table "dbinfo" (
 		pkid text DEFAULT main_schema.uuid_generate_v4() Not Null,
 		major_version Integer, 
 		minor_version Integer, 
-		build_version Integer ;
+		build_version Integer 
+		);
 
-	Alter Table dbinfo Owner to serveradmin;
+	Alter Table "dbinfo" Owner to serveradmin;
 
 -- Database Creation Scripts
-	Create Table "db_creation"
+	Create Table "db_creation" (
 		pkid text DEFAULT main_schema.uuid_generate_v4() Not Null,
 		script_name Text, 
 		script_contents Text, 
-		switch_db text ;
+		switch_db text, 
+		order_ Integer
+		);
+
+		Alter Table "db_creation" Owner to serveradmin;
 
 
 -- #################################################
@@ -383,14 +388,6 @@ SET search_path = notification_schema, pg_catalog;
 
 SET search_path = client_server_schema, pg_catalog;
 
-
--- Create the table to store our server scripts
-	Create client_server_scripts (
-		order_number_ 	integer,
-		contents_
-		)
-		;
-	Alter Table client_server_scripts To serveradmin;
 
 
 
