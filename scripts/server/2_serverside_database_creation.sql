@@ -43,6 +43,25 @@
 	COMMENT ON EXTENSION "uuid-ossp" IS 'generate universally unique identifiers (UUIDs)';
 
 
+	Set search_path = info_schema, pg_catalog;
+
+-- Database information table
+	Create Table "dbinfo"
+		pkid text DEFAULT main_schema.uuid_generate_v4() Not Null,
+		major_version Integer, 
+		minor_version Integer, 
+		build_version Integer ;
+
+	Alter Table dbinfo Owner to serveradmin;
+
+-- Database Creation Scripts
+	Create Table "db_creation"
+		pkid text DEFAULT main_schema.uuid_generate_v4() Not Null,
+		script_name Text, 
+		script_contents Text, 
+		switch_db text ;
+
+
 -- #################################################
 -- ############         Tables         #############
 -- #################################################

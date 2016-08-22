@@ -20,6 +20,12 @@
 		Owner To serveradmin
 		;
 
+	-- info_schema Schema
+	Create Schema info_schema;
+	Alter schema info_schema
+		Owner To serveradmin
+		;
+
 -- Change some environment variables for users
 	Alter Role general_user SET search_path to main_schema;
 
@@ -35,6 +41,20 @@
 	-- uuid-ossp
 	CREATE EXTENSION IF NOT EXISTS "uuid-ossp" WITH SCHEMA main_schema;
 	COMMENT ON EXTENSION "uuid-ossp" IS 'generate universally unique identifiers (UUIDs)';
+
+
+
+Set search_path = info_schema, pg_catalog;
+
+-- Database information table
+	Create Table "dbinfo"
+		pkid text DEFAULT main_schema.uuid_generate_v4() Not Null,
+		major_version Integer, 
+		minor_version Integer, 
+		build_version Integer ;
+
+	Alter Table dbinfo Owner to serveradmin;
+
 
 
 -- #################################################
