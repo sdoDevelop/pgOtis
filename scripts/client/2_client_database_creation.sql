@@ -10,25 +10,28 @@
 	
 	-- Main Schema
 	Create Schema main_schema;
+-- --eol-- --
 	Alter Schema main_schema 
 		Owner To serveradmin
 		;
-
+-- --eol-- --
 	-- Notification Schema
 	Create Schema notification_schema;
+-- --eol-- --
 	Alter Schema notification_schema
 		Owner To serveradmin
 		;
-
+-- --eol-- --
 	-- info_schema Schema
 	Create Schema info_schema;
+	-- --eol-- --
 	Alter schema info_schema
 		Owner To serveradmin
 		;
-
+-- --eol-- --
 -- Change some environment variables for users
 	Alter Role general_user SET search_path to main_schema;
-
+-- --eol-- --
 
 
 
@@ -36,15 +39,19 @@
 
 	-- plpsql
 	CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+-- --eol-- --
 	COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+-- --eol-- --
 
 	-- uuid-ossp
 	CREATE EXTENSION IF NOT EXISTS "uuid-ossp" WITH SCHEMA main_schema;
+	-- --eol-- --
 	COMMENT ON EXTENSION "uuid-ossp" IS 'generate universally unique identifiers (UUIDs)';
-
+-- --eol-- --
 
 
 Set search_path = info_schema, pg_catalog;
+-- --eol-- --
 
 -- Database information table
 	Create Table "dbinfo" (
@@ -53,9 +60,17 @@ Set search_path = info_schema, pg_catalog;
 		minor_version Integer, 
 		build_version Integer 
 		);
-
+-- --eol-- --
 	Alter Table dbinfo Owner to serveradmin;
+-- --eol-- --
 
+	-- This is where all of our sql queries get stored for server upload
+	Create Table "sql_log" (
+		pkid text Default main_schema.uuid_generate_v4() Not Null,
+		creation_ts timestamp with time zone, 
+		username_ text, 
+		sql_statement text
+		);
 
 
 -- #################################################
@@ -63,6 +78,7 @@ Set search_path = info_schema, pg_catalog;
 -- #################################################
 
 Set search_path = main_schema, pg_catalog;
+-- --eol-- --
 
 -- Now we move on to creating our tables in the table Schema
 
@@ -74,10 +90,10 @@ Set search_path = main_schema, pg_catalog;
 	    row_modified timestamp with time zone DEFAULT now() NOT NULL,
 	    row_username text DEFAULT "current_user"() NOT NULL 
 	);
-
+-- --eol-- --
 
 	ALTER TABLE "mGlobal" OWNER TO serveradmin;
-
+-- --eol-- --
 
 -- Item Descriptors
 	-- this tables contains the colums for main parts of an inventory item
@@ -93,11 +109,11 @@ Set search_path = main_schema, pg_catalog;
 	    quantity_ integer DEFAULT 0
 	)
 	INHERITS ("mGlobal");
-
+-- --eol-- --
 	ALTER TABLE itemdescriptors OWNER TO serveradmin;
-
+-- --eol-- --
 	COMMENT ON COLUMN itemdescriptors.price IS 'stored as cents';
-
+-- --eol-- --
 
 -- Events Table
 	CREATE TABLE events_ (
@@ -118,10 +134,10 @@ Set search_path = main_schema, pg_catalog;
 	    loadouttime_ time without time zone DEFAULT ('now'::text)::time with time zone
 	)
 	INHERITS ("mGlobal");
-
+-- --eol-- --
 
 	ALTER TABLE events_ OWNER TO serveradmin;
-
+-- --eol-- --
 
 -- Line Item Table
 	CREATE TABLE lineitems (
@@ -149,11 +165,11 @@ Set search_path = main_schema, pg_catalog;
 	    ignore_price_discrepency boolean DEFAULT false
 	)
 	INHERITS ("mGlobal", itemdescriptors);
-
+-- --eol-- --
 	ALTER TABLE lineitems OWNER TO serveradmin;
-
+-- --eol-- --
 	COMMENT ON COLUMN lineitems.taxtotal_ IS 'stored as cents';
-
+-- --eol-- --
 
 -- Create the EIPL Table
 	CREATE TABLE eipl (
@@ -177,30 +193,39 @@ Set search_path = main_schema, pg_catalog;
 	    discounttotal_ integer DEFAULT 0
 	)
 	INHERITS ("mGlobal");
-
+-- --eol-- --
 
 	ALTER TABLE eipl OWNER TO serveradmin;
-
+-- --eol-- --
 	COMMENT ON COLUMN eipl.balance_ IS 'stored as cents';
+-- --eol-- --
 	COMMENT ON COLUMN eipl.grandtotal_ IS 'stored as cents';
+-- --eol-- --
 	COMMENT ON COLUMN eipl.subtotal_ IS 'stored in cents';
+-- --eol-- --
 	COMMENT ON COLUMN eipl.discount_ IS 'stored as cents';
+-- --eol-- --
 	COMMENT ON COLUMN eipl.lidiscountsum_ IS 'stored as cents';
+-- --eol-- --
 	COMMENT ON COLUMN eipl.totalpaid_ IS 'stored as cents';
+-- --eol-- --
 	COMMENT ON COLUMN eipl.discountamount_ IS 'stored as cents';
+-- --eol-- --
 	COMMENT ON COLUMN eipl.taxtotal_ IS 'stored as cents';
+-- --eol-- --
 	COMMENT ON COLUMN eipl.discounttotal_ IS 'stored as cents';
-
+-- --eol-- --
 	CREATE SEQUENCE "EIPL_EIPL_nmbr_seq"
 	    START WITH 1
 	    INCREMENT BY 1
 	    NO MINVALUE
 	    NO MAXVALUE
 	    CACHE 1;
-
+-- --eol-- --
 	ALTER TABLE "EIPL_EIPL_nmbr_seq" OWNER TO serveradmin;
+-- --eol-- --
 	ALTER SEQUENCE "EIPL_EIPL_nmbr_seq" OWNED BY eipl.eipl_nmbr;
-
+-- --eol-- --
 
 -- Create the Table Contact Venue Data
 	CREATE TABLE contact_venue_data (
@@ -211,10 +236,10 @@ Set search_path = main_schema, pg_catalog;
 	    primary_ boolean DEFAULT false
 	)
 	INHERITS ("mGlobal");
-
+-- --eol-- --
 
 	ALTER TABLE contact_venue_data OWNER TO serveradmin;
-
+-- --eol-- --
 
 -- Create the table contact Details
 	-- contains columns that all contacts tables need
@@ -234,10 +259,10 @@ Set search_path = main_schema, pg_catalog;
 	    "primary" text
 	)
 	INHERITS ("mGlobal");
-
+-- --eol-- --
 
 	ALTER TABLE contactdetails OWNER TO serveradmin;
-
+-- --eol-- --
 
 -- Create the Table Contacts
 	CREATE TABLE contacts (
@@ -246,20 +271,20 @@ Set search_path = main_schema, pg_catalog;
 	    jobtitle text
 	)
 	INHERITS ("mGlobal", contactdetails);
-
+-- --eol-- --
 
 	ALTER TABLE contacts OWNER TO serveradmin;
-
+-- --eol-- --
 
 -- Create Contracts Table
 	CREATE TABLE contracts_ (
     	contract_number text 
 	)
 	INHERITS ("mGlobal");
-
+-- --eol-- --
 
 	ALTER TABLE contracts_ OWNER TO serveradmin;
-
+-- --eol-- --
 
 	CREATE SEQUENCE contract_number_sequence
 	    START WITH 1
@@ -267,10 +292,10 @@ Set search_path = main_schema, pg_catalog;
 	    NO MINVALUE
 	    NO MAXVALUE
 	    CACHE 1;
-
+-- --eol-- --
 
 	ALTER TABLE contract_number_sequence OWNER TO serveradmin;
-
+-- --eol-- --
 
 -- Create the Contract Sections Table
 	CREATE TABLE contract_sections_ (
@@ -278,10 +303,10 @@ Set search_path = main_schema, pg_catalog;
 	    section_number_ integer
 	)
 	INHERITS ("mGlobal");
-
+-- --eol-- --
 
 	ALTER TABLE contract_sections_ OWNER TO serveradmin;
-
+-- --eol-- --
 
 -- Create the Discounts Table
 	CREATE TABLE discounts_ (
@@ -295,14 +320,16 @@ Set search_path = main_schema, pg_catalog;
 	    discountamount_ integer
 	)
 	INHERITS ("mGlobal");
-
+-- --eol-- --
 
 	ALTER TABLE discounts_ OWNER TO serveradmin;
-
+-- --eol-- --
 	COMMENT ON COLUMN discounts_.amount_ IS 'stored as cents';
+-- --eol-- --
 	COMMENT ON COLUMN discounts_.grandtotal_ IS 'stored in cents';
+-- --eol-- --
 	COMMENT ON COLUMN discounts_.subtotal_ IS 'stored in cents';
-
+-- --eol-- --
 
 -- Create our Inventory Table
 	CREATE TABLE inventory (
@@ -319,12 +346,12 @@ Set search_path = main_schema, pg_catalog;
 	    taxable_ text DEFAULT 'False'::text
 	)
 	INHERITS ("mGlobal", itemdescriptors);
-
+-- --eol-- --
 
 	ALTER TABLE inventory OWNER TO serveradmin;
-
+-- --eol-- --
 	COMMENT ON COLUMN inventory.price IS 'stored as cents';
-
+-- --eol-- --
 
 -- Create our Payments Table
 	CREATE TABLE payments_ (
@@ -335,12 +362,12 @@ Set search_path = main_schema, pg_catalog;
 	    fkeipl text
 	)
 	INHERITS ("mGlobal");
-
+-- --eol-- --
 
 	ALTER TABLE payments_ OWNER TO serveradmin;
-
+-- --eol-- --
 	COMMENT ON COLUMN payments_.amount_ IS 'stored in cents';
-
+-- --eol-- --
 
 -- Create Venues Table
 	CREATE TABLE venues (
@@ -348,17 +375,17 @@ Set search_path = main_schema, pg_catalog;
 	    type text
 	)
 	INHERITS ("mGlobal", contactdetails);
-
+-- --eol-- --
 
 	ALTER TABLE venues OWNER TO serveradmin;
-
+-- --eol-- --
 
 --
 
 
 
 SET search_path = notification_schema, pg_catalog;
-
+-- --eol-- --
 
 -- Template Table for notifications
 	CREATE TABLE template_ (
@@ -371,10 +398,10 @@ SET search_path = notification_schema, pg_catalog;
 	    notification_type text,
 	    event_pkid_ text
 	);
-
+-- --eol-- --
 
 	ALTER TABLE template_ OWNER TO serveradmin;
-
+-- --eol-- --
 
 
 -- #################################################
@@ -384,7 +411,7 @@ SET search_path = notification_schema, pg_catalog;
 
 
 Set search_path = main_schema, pg_catalog;
-
+-- --eol-- --
 
 -- Create our Functions for the functions schema
 
@@ -424,10 +451,10 @@ Set search_path = main_schema, pg_catalog;
 		Return s1;
 		End
 		$$;
-
+-- --eol-- --
 
 	ALTER FUNCTION main_schema.login_tasks() OWNER TO serveradmin;
-
+-- --eol-- --
 
 -- Calculate Amount Paid
 	CREATE FUNCTION calc_amountpaid(param1 text) RETURNS text
@@ -465,10 +492,11 @@ Set search_path = main_schema, pg_catalog;
 	Return '';
 	End
 	$$;
+	-- --eol-- --
 
 
 	ALTER FUNCTION main_schema.calc_amountpaid(param1 text) OWNER TO serveradmin;
-
+-- --eol-- --
 
 -- Create the Trigger Function
 	CREATE FUNCTION calc_amountpaid_triggfunc() RETURNS trigger
@@ -490,10 +518,10 @@ Set search_path = main_schema, pg_catalog;
 		Return New;
 
 	End;$$;
-
+-- --eol-- --
 
 	ALTER FUNCTION main_schema.calc_amountpaid_triggfunc() OWNER TO serveradmin;
-
+-- --eol-- --
 
 -- Calculate Depaartment Grand Total Function
 	CREATE FUNCTION calc_dept_grandtotal(param1 text) RETURNS text
@@ -560,10 +588,10 @@ Set search_path = main_schema, pg_catalog;
 	Return '';
 	End
 	$$;
-
+-- --eol-- --
 
 	ALTER FUNCTION main_schema.calc_dept_grandtotal(param1 text) OWNER TO serveradmin;
-
+-- --eol-- --
 
 -- Create the Trigger Function
 	CREATE FUNCTION calc_dept_grandtotal_triggfunc() RETURNS trigger
@@ -579,10 +607,10 @@ Set search_path = main_schema, pg_catalog;
 		Return New;
 
 	End;$$;
-
+-- --eol-- --
 
 	ALTER FUNCTION main_schema.calc_dept_grandtotal_triggfunc() OWNER TO serveradmin;
-
+-- --eol-- --
 
 -- Calculate Department Totals Function
 	CREATE FUNCTION calc_dept_totals(param1 text) RETURNS text
@@ -663,9 +691,11 @@ Set search_path = main_schema, pg_catalog;
 	Return '';
 	End
 	$$;
+	-- --eol-- --
 
 
 	ALTER FUNCTION main_schema.calc_dept_totals(param1 text) OWNER TO serveradmin;
+-- --eol-- --
 
 -- Create the Trigger Function
 	CREATE FUNCTION calc_dept_totals_triggfunc() RETURNS trigger
@@ -685,10 +715,11 @@ Set search_path = main_schema, pg_catalog;
 		Return New;
 
 	End;$$;
+	-- --eol-- --
 
 
 	ALTER FUNCTION main_schema.calc_dept_totals_triggfunc() OWNER TO serveradmin;
-
+-- --eol-- --
 
 -- Calculate Eipl Subtotal Fuction
 	CREATE FUNCTION calc_eipl_subtotal(param1 text) RETURNS text
@@ -727,9 +758,11 @@ Set search_path = main_schema, pg_catalog;
 	Return '';
 	End
 	$$;
+	-- --eol-- --
 
 
 	ALTER FUNCTION main_schema.calc_eipl_subtotal(param1 text) OWNER TO serveradmin;
+-- --eol-- --
 
 -- Create the Trigger Function
 	CREATE FUNCTION calc_eipl_subtotal_triggfunc() RETURNS trigger
@@ -751,10 +784,10 @@ Set search_path = main_schema, pg_catalog;
 		Return New;
 
 	End;$$;
-
+-- --eol-- --
 
 	ALTER FUNCTION main_schema.calc_eipl_subtotal_triggfunc() OWNER TO serveradmin;
-
+-- --eol-- --
 
 -- Calculate the EIPL Totals Function
 	CREATE FUNCTION calc_eipl_totals(param1 text) RETURNS text
@@ -833,10 +866,11 @@ Set search_path = main_schema, pg_catalog;
 	Return v_grandtotal;
 	End
 	$$;
+	-- --eol-- --
 
 -- Create the Trigger Function
 	ALTER FUNCTION main_schema.calc_eipl_totals(param1 text) OWNER TO serveradmin;
-
+-- --eol-- --
 
 	CREATE FUNCTION calc_eipl_totals_triggfunc() RETURNS trigger
 	    LANGUAGE plpgsql
@@ -851,10 +885,11 @@ Set search_path = main_schema, pg_catalog;
 		Return New;
 
 	End;$$;
+	-- --eol-- --
 
 
 	ALTER FUNCTION main_schema.calc_eipl_totals_triggfunc() OWNER TO serveradmin;
-
+-- --eol-- --
 
 -- Calculate Line Itesm Total Function
 	CREATE FUNCTION calc_lineitem_total(param1 text) RETURNS text
@@ -943,9 +978,10 @@ Set search_path = main_schema, pg_catalog;
 	Return '';
 	End
 	$$;
-
+-- --eol-- --
 
 	ALTER FUNCTION main_schema.calc_lineitem_total(param1 text) OWNER TO serveradmin;
+-- --eol-- --
 
 -- Calculate Line Item Total Trigger Function
 	CREATE FUNCTION calc_lineitem_total_triggfunc() RETURNS trigger
@@ -961,10 +997,10 @@ Set search_path = main_schema, pg_catalog;
 		Return New;
 
 	End;$$;
-
+-- --eol-- --
 
 	ALTER FUNCTION main_schema.calc_lineitem_total_triggfunc() OWNER TO serveradmin;
-
+-- --eol-- --
 
 -- Create Contract Number Function
 -- Currently Unused **
@@ -1019,8 +1055,10 @@ Set search_path = main_schema, pg_catalog;
 	Return final_id;
 	End
 	$$;
+-- --eol-- --
 
 	ALTER FUNCTION main_schema.create_contract_number() OWNER TO serveradmin;
+-- --eol-- --
 
 
 -- Contact Venue Data Update Trigger Funciton
@@ -1047,9 +1085,11 @@ Set search_path = main_schema, pg_catalog;
 	    Return New;
 	END;
 	   $$;
+-- --eol-- --
 
 
 	ALTER FUNCTION main_schema.cvd_update_function() OWNER TO serveradmin;
+-- --eol-- --
 
 
 -- Delete Record Function
@@ -1109,10 +1149,10 @@ Set search_path = main_schema, pg_catalog;
 
 	Return v_return;
 	End;$_$;
-
+-- --eol-- --
 
 	ALTER FUNCTION main_schema.deleterecord(p_options text, p_pkid text, p_table text) OWNER TO serveradmin;
-
+-- --eol-- --
 
 -- Inventory to Line Item Function
 	CREATE FUNCTION inventory_to_lineitem(inventoryid text DEFAULT 0, eiplid text DEFAULT 0) RETURNS text
@@ -1127,10 +1167,11 @@ Set search_path = main_schema, pg_catalog;
 	    RETURNING pkid INTO result;
 	  RETURN result;
 	END;$$;
+	-- --eol-- --
 
 
 	ALTER FUNCTION main_schema.inventory_to_lineitem(inventoryid text, eiplid text) OWNER TO serveradmin;
-
+-- --eol-- --
 
 -- Line Item to Inventory Funciton
 	CREATE FUNCTION lineitem_to_inventory(lineitem_id text) RETURNS text
@@ -1145,10 +1186,10 @@ Set search_path = main_schema, pg_catalog;
 	    RETURNING pkid INTO result;
 	  RETURN result;
 	END;$$;
-
+-- --eol-- --
 
 	ALTER FUNCTION main_schema.lineitem_to_inventory(lineitem_id text) OWNER TO serveradmin;
-
+-- --eol-- --
 
 -- Make Next Eipl Function
 	CREATE FUNCTION mknexteipl(p_pkid text DEFAULT 'none'::text, p_mode integer DEFAULT '-1'::integer) RETURNS text
@@ -1263,10 +1304,10 @@ Set search_path = main_schema, pg_catalog;
 	Return v_newpkid ;
 	End;
 	$_$;
-
+-- --eol-- --
 
 	ALTER FUNCTION main_schema.mknexteipl(p_pkid text, p_mode integer) OWNER TO serveradmin;
-
+-- --eol-- --
 
 -- New EIPL function
 	CREATE FUNCTION new_eipl_function() RETURNS trigger
@@ -1294,10 +1335,10 @@ Set search_path = main_schema, pg_catalog;
 	RETURN NEW;
 	END;
 	$_$;
-
+-- --eol-- --
 
 	ALTER FUNCTION main_schema.new_eipl_function() OWNER TO serveradmin;
-
+-- --eol-- --
 
 -- Create New Payment Function
 	CREATE FUNCTION newpayment(p_pkid text DEFAULT 'none'::text) RETURNS text
@@ -1312,10 +1353,10 @@ Set search_path = main_schema, pg_catalog;
 	    Return v_return;
 
 	End;$$;
-
+-- --eol-- --
 
 	ALTER FUNCTION main_schema.newpayment(p_pkid text) OWNER TO serveradmin;
-
+-- --eol-- --
 
 -- Create the Price Discrepency Checker Function
 	CREATE FUNCTION price_discrepency_checker(param1 lineitems) RETURNS text
@@ -1420,8 +1461,10 @@ Set search_path = main_schema, pg_catalog;
 	return 'sm' || s1 || ', df' || s2 || ', t' || s3;
 
 	End$_$;
+	-- --eol-- --
 
 	ALTER FUNCTION main_schema.price_discrepency_checker(param1 lineitems) OWNER TO serveradmin;
+-- --eol-- --
 
 
 -- Create the Trigger function
@@ -1436,8 +1479,10 @@ Set search_path = main_schema, pg_catalog;
 
 	return new;
 	End$$;
+-- --eol-- --
 
 	ALTER FUNCTION main_schema.price_discrepency_checker_triggfunc() OWNER TO serveradmin;
+-- --eol-- --
 
 
 -- Create the Function to update the primary venues and contacts
@@ -1486,9 +1531,10 @@ Set search_path = main_schema, pg_catalog;
 	RETURN old;
 	END;
 	$_$;
-
+-- --eol-- --
 
 	ALTER FUNCTION main_schema.primary_update_function() OWNER TO serveradmin;
+-- --eol-- --
 
 
 -- Sync the Event Dates to the Start Date Function
@@ -1515,10 +1561,10 @@ Set search_path = main_schema, pg_catalog;
 
 	return ' ';
 	End;$_$;
-
+-- --eol-- --
 
 	ALTER FUNCTION main_schema.synceventdatestostart_func(param1 events_) OWNER TO serveradmin;
-
+-- --eol-- --
 
 -- Create the Trigger Function
 	CREATE FUNCTION "syncEventDatesToStart_triggFunc"() RETURNS trigger
@@ -1528,15 +1574,9 @@ Set search_path = main_schema, pg_catalog;
 	Perform * from syncEventDatesToStart_func(new);
 	Return new;
 	End;$$;
-
+-- --eol-- --
 
 	ALTER FUNCTION main_schema."syncEventDatesToStart_triggFunc"() OWNER TO serveradmin;
-
-
-
-
-
-
 
 
 
