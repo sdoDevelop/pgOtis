@@ -1,0 +1,31 @@
+
+
+
+	rv = plpy.execute(
+		Select column_name 
+		From information_schema.columns 
+		Where table_name = tg_table_name 
+		)
+
+	For v_col_name In rv :
+
+		v_new_value = plpy.execute( 'Select v_col_name From New' )
+		v_old_value = plpy.execute( 'Select v_col_name From Old' )
+
+		If v_new_value <> v_old_value Then
+
+			v_field_names.append( v_col_name )
+			v_field_values.append( v_new_value )
+
+		End If
+
+
+	array_len = v_field_names.len
+
+	For i1 In v_field_names :
+		vari_string.append( "$" + i1.str )
+
+	If TG_OP = "INSERT" 
+
+		plpy.execute( 'Insert Into ' + TG_Schema_Name + "." + Tg_Table_Name 
+			+ " " + v_field_names.join + " Values( " + vari_string.join(", ") + " ) ") 

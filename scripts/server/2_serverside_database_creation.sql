@@ -66,6 +66,16 @@ Set search_path = info_schema, pg_catalog;
 
 		Alter Table "db_creation" Owner to serveradmin;
 
+-- Database Creation Scripts
+	Create Table "sql_statements" (
+		pkid text DEFAULT main_schema.uuid_generate_v4() Not Null,
+		user_name Text, 
+		execution_time timestamp, 
+		statement_ text
+		);
+
+		Alter Table "db_creation" Owner to serveradmin;
+
 
 -- #################################################
 -- ############         Tables         #############
